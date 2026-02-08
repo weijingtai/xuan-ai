@@ -50,7 +50,7 @@ class ChatService {
           systemPrompt = _promptService.substituteVariables(
             systemPrompt,
             context,
-          ) as String;
+          );
         }
 
         await _persistenceService.addMessage(

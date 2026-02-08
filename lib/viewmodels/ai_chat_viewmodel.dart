@@ -16,15 +16,17 @@ class AiChatViewModel extends ChangeNotifier {
   bool _isLoading = false;
   String? _error;
   AiPersona? _currentPersona;
+  LlmProvider? _currentLlmProvider;
+  LlmModel? _currentLlmModel;
   StreamSubscription<List<AiChatMessage>>? _messagesSubscription;
 
   AiChatViewModel({
     required ChatService chatService,
     required ChatPersistenceService persistenceService,
     required AiDatabase db,
-  })  : _chatService = chatService,
-        _persistenceService = persistenceService,
-        _db = db;
+  }) : _chatService = chatService,
+       _persistenceService = persistenceService,
+       _db = db;
 
   // Getters
   String? get currentSessionUuid => _currentSessionUuid;
@@ -32,6 +34,8 @@ class AiChatViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get error => _error;
   AiPersona? get currentPersona => _currentPersona;
+  LlmProvider? get currentLlmProvider => _currentLlmProvider;
+  LlmModel? get currentLlmModel => _currentLlmModel;
   bool get hasSession => _currentSessionUuid != null;
 
   /// Start a new chat session
@@ -57,6 +61,9 @@ class AiChatViewModel extends ChangeNotifier {
       // Watch messages
       _subscribeToMessages();
 
+      // Resolve LLM configuration
+      await _resolveLlmConfiguration();
+
       notifyListeners();
     } catch (e) {
       _setError(e.toString());
@@ -78,6 +85,7 @@ class AiChatViewModel extends ChangeNotifier {
 
       _currentSessionUuid = sessionUuid;
       _currentPersona = await _db.aiPersonasDao.getByUuid(session.personaUuid);
+      await _resolveLlmConfiguration();
 
       // Load existing messages
       _messages = await _persistenceService.getMessages(sessionUuid);
@@ -124,9 +132,9 @@ class AiChatViewModel extends ChangeNotifier {
       _messagesSubscription = _persistenceService
           .watchMessages(_currentSessionUuid!)
           .listen((messages) {
-        _messages = messages;
-        notifyListeners();
-      });
+            _messages = messages;
+            notifyListeners();
+          });
     }
   }
 
@@ -136,6 +144,8 @@ class AiChatViewModel extends ChangeNotifier {
     _currentSessionUuid = null;
     _messages = [];
     _currentPersona = null;
+    _currentLlmProvider = null;
+    _currentLlmModel = null;
     notifyListeners();
   }
 
@@ -165,6 +175,7 @@ class AiChatViewModel extends ChangeNotifier {
     if (_currentSessionUuid == null) return;
 
     _currentPersona = await _db.aiPersonasDao.getByUuid(personaUuid);
+    await _resolveLlmConfiguration();
     notifyListeners();
   }
 
@@ -173,8 +184,9 @@ class AiChatViewModel extends ChangeNotifier {
     if (_currentSessionUuid == null || _messages.isEmpty) return;
 
     // Find last user message
-    final lastUserMessageIndex =
-        _messages.lastIndexWhere((m) => m.role == 'user');
+    final lastUserMessageIndex = _messages.lastIndexWhere(
+      (m) => m.role == 'user',
+    );
     if (lastUserMessageIndex < 0) return;
 
     final lastUserMessage = _messages[lastUserMessageIndex];
@@ -194,6 +206,39 @@ class AiChatViewModel extends ChangeNotifier {
     } finally {
       _setLoading(false);
     }
+  }
+
+  /// Resolve effective LLM Provider and Model
+  Future<void> _resolveLlmConfiguration() async {
+    _currentLlmModel = null;
+    _currentLlmProvider = null;
+
+    if (_currentPersona != null) {
+      // 1. Try to get model from persona
+      if (_currentPersona!.modelUuid.isNotEmpty) {
+        _currentLlmModel = await _db.llmModelsDao.getByUuid(
+          _currentPersona!.modelUuid,
+        );
+      }
+    }
+
+    // 2. If no model yet, try system default model
+    if (_currentLlmModel == null) {
+      _currentLlmModel = await _db.llmModelsDao.getDefault();
+    }
+
+    // 3. If we have a model, get its provider
+    if (_currentLlmModel != null) {
+      _currentLlmProvider = await _db.llmProvidersDao.getByUuid(
+        _currentLlmModel!.providerUuid,
+      );
+    } else {
+      // 4. Fallback: try default provider directly (though model should exist)
+      _currentLlmProvider = await _db.llmProvidersDao.getDefault();
+    }
+
+    // 5. Ensure we have both
+    // If not, we might need to prompt user to configure providers
   }
 
   // Private helpers

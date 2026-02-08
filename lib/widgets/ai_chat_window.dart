@@ -7,6 +7,7 @@ import 'chat_message_bubble.dart';
 import 'chat_input_bar.dart';
 
 /// Main AI chat window widget
+@Deprecated('Use AiChatView instead')
 class AiChatWindow extends StatefulWidget {
   final String? divinationUuid;
   final Map<String, dynamic>? initialContext;
@@ -31,7 +32,7 @@ class _AiChatWindowState extends State<AiChatWindow> {
   @override
   void initState() {
     super.initState();
-    _initSession();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _initSession());
   }
 
   Future<void> _initSession() async {
@@ -44,7 +45,8 @@ class _AiChatWindowState extends State<AiChatWindow> {
     if (personaUuid.isEmpty) {
       final db = context.read<AiDatabase>();
       final defaultPersona = await db.aiPersonasDao.getDefault();
-      personaUuid = defaultPersona?.uuid ?? 'default-master';
+      if (defaultPersona == null) return;
+      personaUuid = defaultPersona.uuid;
     }
 
     await viewModel.startSession(
@@ -93,9 +95,7 @@ class _AiChatWindowState extends State<AiChatWindow> {
               _buildHeader(context, viewModel),
 
               // Messages
-              Expanded(
-                child: _buildMessageList(context, viewModel),
-              ),
+              Expanded(child: _buildMessageList(context, viewModel)),
 
               // Input
               ChatInputBar(
@@ -147,10 +147,7 @@ class _AiChatWindowState extends State<AiChatWindow> {
                 if (viewModel.isLoading)
                   const Text(
                     '正在思考...',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
               ],
             ),

@@ -33,12 +33,8 @@ class LlmProviders extends Table with UuidPrimaryKey, TimestampColumns {
   @override
   String get tableName => 't_llm_providers';
 
-  /// 提供商名称 (如 "OpenAI", "Claude", "DeepSeek")
+  /// 提供商名称 (如 "Default", "DeepSeek", "Claude")
   TextColumn get name => text().withLength(min: 1, max: 100).named('name')();
-
-  /// 提供商类型 (openai_compatible, anthropic, etc.)
-  TextColumn get providerType =>
-      text().withLength(min: 1, max: 50).named('provider_type')();
 
   /// API 基础 URL
   TextColumn get baseUrl => text().named('base_url')();
@@ -497,7 +493,6 @@ class AiDivinations extends Table with UuidPrimaryKey, TimestampColumns {
   TextColumn get provenanceUuid =>
       text().nullable().named('provenance_uuid').references(AiProvenances, #uuid)();
 
-  @override
   List<Index> get indexes => [
         Index(
           'idx_ai_divinations_divination_uuid',
@@ -521,10 +516,12 @@ class AgentInvocations extends Table with UuidPrimaryKey {
   String get tableName => 't_agent_invocations';
 
   /// 调用者 Agent 人设 UUID
+  @ReferenceName('callerInvocations')
   TextColumn get callerPersonaUuid =>
       text().named('caller_persona_uuid').references(AiPersonas, #uuid)();
 
   /// 被调用者 Agent 人设 UUID
+  @ReferenceName('calleeInvocations')
   TextColumn get calleePersonaUuid =>
       text().named('callee_persona_uuid').references(AiPersonas, #uuid)();
 
@@ -608,7 +605,6 @@ class AiUsageAudits extends Table with AutoIncrementingPrimaryKey {
   /// 设备信息
   TextColumn get deviceInfo => text().nullable().named('device_info')();
 
-  @override
   List<Index> get indexes => [
         Index(
           'idx_ai_usage_audits_audited_at',

@@ -119,7 +119,7 @@ class AiUsageAuditsDao extends DatabaseAccessor<AiDatabase>
           ..where((t) => t.tokensUsed.isNotNull()))
         .get();
 
-    return audits.fold(0, (sum, audit) => sum + (audit.tokensUsed ?? 0));
+    return audits.fold<int>(0, (sum, audit) => sum + (audit.tokensUsed ?? 0));
   }
 
   /// Get estimated cost for a period
@@ -130,6 +130,6 @@ class AiUsageAuditsDao extends DatabaseAccessor<AiDatabase>
           ..where((t) => t.estimatedCost.isNotNull()))
         .get();
 
-    return audits.fold(0.0, (sum, audit) => sum + (audit.estimatedCost ?? 0.0));
+    return audits.fold<double>(0.0, (sum, audit) => sum + (audit.estimatedCost ?? 0.0));
   }
 }

@@ -1,0 +1,3914 @@
+
+ ▐▛███▜▌   Claude Code v2.1.29
+▝▜█████▛▘  Opus 4.5 · API Usage Billing
+  ▘▘ ▝▝    ~/Git/Public/xuan
+
+  Welcome to Opus 4.5
+
+❯ /model 
+  ⎿  Set model to opus (claude-opus-4-5-20251101)
+
+❯ hi  
+
+⏺ Hi! How can I help you today?
+
+❯ 请对当前代码做一次提交 
+
+⏺ 我来检查当前的代码状态并准备提交。
+
+⏺ Bash(git status)
+  ⎿  On branch standby
+     Your branch is ahead of 'origin/standby' by 1 commit.
+       (use "git push" to publish your local commits)
+     … +14 lines (ctrl+o to expand)
+
+⏺ Bash(git diff)
+  ⎿  (No content)
+
+⏺ Bash(git log --oneline -5)
+  ⎿ e727d35 五星格局 version 1
+    5234992 docs: rewrite README.md with comprehensive project documentatio
+    n
+    … +4 lines (ctrl+o to expand)
+
+
+⏺ 让我查看一下更多细节。
+
+⏺ Bash(cd qizhengsiyu && git status)
+  ⎿  On branch feature/ge_ju
+     Untracked files:
+       (use "git add <file>..." to include in what will be committed)
+     … +17 lines (ctrl+o to expand)
+
+⏺ Searched for 1 pattern, read 3 files (ctrl+o to expand)
+
+⏺ 当前代码状态如下：
+
+  主仓库 (xuan):
+  - extract_names.sh - 提取格局名称的脚本
+  - names.txt - 提取出的格局名称列表（444个）
+  - scripts/ - 目录不存在（可能已被删除）
+
+  子模块 qizhengsiyu (在 feature/ge_ju 分支):
+  - 新增 ge_ju/ling_tai_ge_ju.json
+  - 新增 ge_ju/shi_san_bu_yi_ge_ju.json
+  - 若干临时校正文件 (tmp/*.txt)
+
+  请问您想要提交哪些内容？
+
+⏺ User answered Claude's questions:
+  ⎿  · 您希望提交哪些内容？ → 主模块当前是否有更改
+
+⏺ 让我再详细说明一下当前状态：
+
+  主仓库状态：
+  - 有2个未跟踪文件：extract_names.sh 和 names.txt
+  - 子模块 qizhengsiyu 显示有未跟踪内容（但这是子模块内部的变化）
+  - 没有已修改的已跟踪文件
+
+  子模块 qizhengsiyu 状态：
+  - 在 feature/ge_ju 分支
+  - 有8个未跟踪文件（新的格局JSON和临时校正文件）
+
+  简单来说：
+  - 主仓库没有代码改动，只有2个新增的工具脚本文件
+  - 实际的功能代码改动在 qizhengsiyu 子模块中
+
+  您想先提交子模块的改动吗？
+
+✻ Cogitated for 45s
+
+❯ 我已经将scripts文件夹 以及 *names.* 一同放在了qizhengsiyu                 
+  中,且加入到gitignore中(qizhengsiyu子模块),请重新查看                      
+
+⏺ Bash(git status)
+  ⎿  On branch feature/ge_ju
+     Changes not staged for commit:
+       (use "git add <file>..." to update what will be committed)
+     … +21 lines (ctrl+o to expand)
+
+⏺ Bash(cd qizhengsiyu && git status)
+  ⎿  Error: Exit code 1
+     (eval):cd:1: no such file or directory: qizhengsiyu
+
+⏺ Bash(cd qizhengsiyu && git diff)
+  ⎿  Error: Sibling tool call errored
+
+⏺ Bash(pwd && ls -la)
+  ⎿  /Users/jingtaiwei/Git/Public/xuan/qizhengsiyu
+     total 168
+     drwxr-xr-x@ 20 jingtaiwei  staff    640 Feb  7 15:46 .
+     … +21 lines (ctrl+o to expand)
+
+⏺ Bash(git diff .gitignore)
+  ⎿  diff --git a/.gitignore b/.gitignore
+     index 9141595..365369f 100644
+     --- a/.gitignore
+     … +8 lines (ctrl+o to expand)
+
+⏺ Bash(git log --oneline -5)
+  ⎿ 70e2116 五星格局 version 1
+    ec6ff95 fix(ge_ju): resolve parser crashes and pinyin display issues in
+     conditions
+    … +4 lines (ctrl+o to expand)
+
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ 我注意到 .gitignore 只添加了 scripts/*，但没有 *names.*。让我确认一下 names
+  文件的位置。
+
+⏺ Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+⏺ 明白了。当前 qizhengsiyu 子模块状态：
+
+  已修改：
+  - .gitignore - 添加了 scripts/*
+
+  新增文件（未跟踪）：
+  - example/assets/qizhengsiyu/ge_ju/ling_tai_ge_ju.json
+  - example/assets/qizhengsiyu/ge_ju/shi_san_bu_yi_ge_ju.json
+  - 6个临时校正文件 (example/assets/tmp/*.txt)
+
+  临时校正文件是否也需要提交，还是只提交格局 JSON 文件？
+
+⏺ User declined to answer questions
+
+❯ 不需要,当前跟项目是否有改变.(ignore submodules) 
+
+⏺ Bash(cd /Users/jingtaiwei/Git/Public/xuan && git status --ignore-submodules)
+  ⎿  On branch standby
+     Your branch is ahead of 'origin/standby' by 1 commit.
+       (use "git push" to publish your local commits)
+     … +2 lines (ctrl+o to expand)
+
+⏺ 主项目（忽略子模块）没有任何改动，工作区是干净的。
+
+  当前分支 standby 比远程领先 1 个提交（尚未推送）。
+
+  所以只需要提交 qizhengsiyu 子模块的改动即可。是否现在提交子模块？
+
+❯ 与我讨论并计划, 现在我要将AI(like chatgpt deepseek                        
+  etc)大语言模型介入"占测"中.                                               
+
+⏺ 这是一个很有意思的方向！将大语言模型引入占测可以提供更丰富的解读和个性化的分析
+  。
+
+  让我先探索当前代码库，了解占测系统的现有架构，然后我们再讨论具体的集成方案。
+
+⏺ 2 Explore agents finished (ctrl+o to expand)
+   ├─ 探索占测系统架构 · 42 tool uses · 80.5k tokens
+   │  ⎿  Done
+   └─ 查找现有网络/API模式 · 18 tool uses · 76.1k tokens
+      ⎿  Done
+
+⏺ 很好，我已经全面了解了项目架构。让我总结一下关键发现，然后我们讨论 AI
+  集成方案。
+
+  当前架构概览
+
+  技术栈：
+  - 网络层：已使用 Dio HTTP 客户端
+  - 状态管理：Provider + ChangeNotifier
+  - 数据持久化：Drift (本地) + Firebase (云同步)
+  - 认证：Firebase Auth（支持动态认证头注入模式）
+
+  占测流程：
+  用户输入 → 计算引擎(SwEph) → 占测结果(BasePanelModel) → 存储 → UI展示
+
+  现有解读机制：
+  - ge_ju_text_parser.dart - 格局文本解析
+  - shen_sha_manager.dart - 神煞释义
+  - 格局 JSON 文件 - 静态规则数据
+
+  ---
+  AI 集成讨论
+
+  我想先了解您的具体需求，以便制定最合适的方案：
+  ⎿ Tool use rejected with user message: The user wants to clarify these 
+    questions.
+        This means they may have additional information, context or questions 
+    for you.
+        Take their response into account and then reformulate the questions if 
+    appropriate.
+        Start by asking them what they would like to clarify.
+
+        Questions asked:
+    - "您希望AI在占测中承担什么角色？（可多选）"
+      (No answer provided)
+    - "需要支持哪些 LLM 提供商？（可多选）"
+      (No answer provided)
+    - "AI解读应该如何触发？"
+      (No answer provided)
+
+⏺ 您想补充或澄清什么信息？请告诉我您对 AI 集成的具体想法。
+
+✻ Cooked for 3m 19s
+
+❯ 以奇门遁甲这个子项目为例.用户在完成起局之后(或AI可以调用本地的函数起局).  
+  占卜师可以点击按钮调出"AI对话框",与AI进行交流. AI通过调用程序的"接口"或"  
+  式盘的数据",结合式盘所有信息以及"占卜问题"等和卦师交流.                   
+
+⏺ 明白了！这是一个很清晰的场景：
+
+  核心需求：
+  1. 奇门遁甲起局完成后，卦师点击按钮打开 AI 对话框
+  2. AI 可以通过「函数调用」访问式盘数据和相关接口
+  3. AI 结合式盘信息 + 占卜问题与卦师进行对话交流
+
+  让我深入探索奇门遁甲模块的数据结构，以便设计 AI 接口。
+
+⏺ Explore(探索奇门遁甲数据结构)
+  ⎿  Done (26 tool uses · 80.9k tokens · 1m 45s)
+
+⏺ 非常好！现在我对奇门遁甲模块有了深入的理解。让我整理关键信息并设计 AI
+  集成方案。
+
+  关键发现总结
+
+  式盘核心数据 (QiMenPan)：
+  - 九宫映射：Map<HouTianGua, EachGong>
+  - 每宫包含：八门、九星、八神、天盘干、地盘干、暗干、隐干等
+  - 值符值使、伏吟反吟、格局列表、驿马位
+
+  起局流程：
+  DateTime → CalculateJuUseCase → ShiJiaJu → ArrangePanUseCase → QiMenPan
+
+  关键接口：
+  - QiMenCalculatorRepository - 起局排盘
+  - QiMenDataRepository - 十干克应、门星克应、三奇入宫等解读数据
+  - QiMenViewModel - 状态管理
+
+  现在让我编写详细的实现计划。
+
+⏺ Updated plan
+  ⎿  /plan to preview
+
+⏺ 我已经编写了详细的实现计划。在最终确定之前，有几个关键问题需要确认：
+
+⏺ User answered Claude's questions:
+  ⎿  · AI 回复是否需要流式显示（打字机效果）？ → 需要流式显示
+     · 是否需要保存 AI 对话历史以便后续查阅？ → 需要保存历史
+     · 占卜问题（用事）是否需要持久化存储？ → 需要持久化
+
+⏺ 明白了！让我更新计划，纳入这些需求：
+  - ✅ 流式显示（打字机效果）
+  - ✅ 保存对话历史
+  - ✅ 占卜问题持久化
+
+  还有一个关键问题：
+
+⏺ User answered Claude's questions:
+  ⎿  · 需要支持哪些 AI 提供商？（可多选） → 
+     目前使用自定义进行开发,用户可以自行管理,稍后提供类似"marketplace"商城功
+     能,可以选择使用.不同的skill可以使用不同"微调"模型,当让可以自定义大模型
+     的调用api以及访问token还有模型名称
+
+⏺ 这是一个很好的设计思路！让我更新计划以反映这个灵活的架构：
+
+  核心设计变更：
+  1. 初期: 自定义 API 配置（用户自行管理端点、Token、模型名）
+  2. 后期: Marketplace 商城功能，可选择不同的微调模型/技能
+  3. 灵活性: 不同 Skill 可绑定不同模型配置
+
+⏺ Updated plan
+  ⎿  /plan to preview
+
+⏺ Updated plan
+  ⎿  /plan to preview
+
+⏺ Updated plan
+  ⎿  /plan to preview
+
+⏺ Updated plan
+  ⎿  /plan to preview
+
+⏺ Updated plan
+  ⎿  /plan to preview
+
+⏺ 让我读取完整的计划文件确认内容：
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ 计划已完成。主要内容包括：
+
+  核心功能：
+  - 🤖 AI 对话框集成到奇门遁甲起局页面
+  - 🔧 6个 AI 可调用的工具函数（获取式盘、宫位、克应等）
+  - 📡 流式显示（打字机效果）
+  - 💾 对话历史持久化
+  - ⚙️ 自定义 API 配置（端点、Token、模型名）
+  - 📦 未来 Marketplace 扩展预留
+
+  实现分7个阶段：
+  1. 基础架构与数据模型
+  2. AI Provider 层（OpenAI 兼容格式）
+  3. 工具系统
+  4. 对话管理
+  5. UI 层
+  6. 占卜问题持久化
+  7. 测试与优化
+  ⎿  Tool use rejected with user message: 请继续与我讨论
+
+⏺ 好的，我们继续讨论。您有什么想法或者需要调整的地方？
+
+  例如：
+  - 工具函数的设计是否需要增减？
+  - 系统提示词的风格偏好？
+  - UI 交互方式的调整？
+  - 其他技术细节？
+
+  请告诉我您想深入讨论的方面。
+
+✻ Cogitated for 6m 20s
+
+❯ 首先,这个是否应该作为创新的项目进行开发(成为独立的子模块以及单独的git仓库 
+  和其他子模块一样);其次,对于ai模型的"管理"还有写粗浅,应该加入prompt管理;再 
+  次,应该定义各个占测技法子模块的对外调用接口,让大语言模型能够自如的调用对  
+  应的技法,(以及增加类似Agents的功能调用,让大语言能够调用其他大语言使用不同 
+  于当前"占测技艺"的技法深入或"运筹",如:用户使用奇门遁甲占测遇到的问题,奇门 
+  遁甲AI在完成基础的占测后,进行辅助解析调用"四柱八字AI(Agent)",让这个四柱八 
+  字AI"起卦"解析定位这个"命运时间段",对问题进行辅助占测.随后,再调用另外的大 
+  六壬AI,起大六壬课,完成对占测问题的细节占测,或者调用另外的Agent,择日AI启动 
+  择日的技法,对这件事进行"运筹化解"之类);最后,存储方案中,是将AI相关所有的内 
+  容都存储在自己的数据库中,还是入侵到子模块的数据库中(以qizhengsiyu为例,在  
+  其中增加AI占测相关数据表,还是在存储表中增加对应的`TEXT ai_*`字段.         
+  如果对一个占测有了独立"直断"或是"总结",是否表明(增加`bool is_ai_did`      
+  数据表字段)这个"直断"与"总结"是AI进行的),请与我讨论                       
+
+⏺ 这些都是非常重要的架构决策，让我逐一与您讨论：
+
+  ---
+  1. 独立子模块 vs 集成开发
+
+  方案对比：
+  维度: 代码复用
+  独立子模块 (ai_core): ✅ 所有技法共享同一套 AI 基础设施
+  集成到各子模块: ❌ 每个模块各自实现，重复代码
+  ────────────────────────────────────────
+  维度: 版本管理
+  独立子模块 (ai_core): ✅ 独立演进，不影响技法模块稳定性
+  集成到各子模块: ❌ AI 更新可能破坏技法模块
+  ────────────────────────────────────────
+  维度: 依赖关系
+  独立子模块 (ai_core): 技法模块 → ai_core (单向依赖)
+  集成到各子模块: 耦合在一起
+  ────────────────────────────────────────
+  维度: Agent 互调
+  独立子模块 (ai_core): ✅ 天然支持跨模块调用
+  集成到各子模块: ❌ 需要额外抽象
+  ────────────────────────────────────────
+  维度: 团队协作
+  独立子模块 (ai_core): ✅ AI 和技法可以并行开发
+  集成到各子模块: ❌ 容易冲突
+  我的建议：创建独立的 ai_core 子模块
+
+  xuan/
+  ├── common/           # 公共基础
+  ├── ai_core/          # 🆕 AI 核心模块 (新 git 仓库)
+  │   ├── lib/
+  │   │   ├── providers/       # LLM Provider 管理
+  │   │   ├── prompts/         # Prompt 模板管理
+  │   │   ├── agents/          # Agent 定义与编排
+  │   │   ├── tools/           # 工具注册与执行框架
+  │   │   ├── chat/            # 对话管理
+  │   │   └── storage/         # AI 专属存储
+  │   └── pubspec.yaml
+  ├── qimendunjia/      # 依赖 ai_core，暴露技法接口
+  ├── qizhengsiyu/      # 依赖 ai_core，暴露技法接口
+  ├── daliuren/         # ...
+  └── ...
+
+  您认为这个方向对吗？
+
+  ---
+  2. Prompt 管理系统
+
+  您说得对，当前设计过于粗浅。一个完善的 Prompt 管理系统应该包括：
+
+  /// Prompt 模板实体
+  class PromptTemplate {
+    final String id;
+    final String name;
+    final String description;
+    final String category;          // 分类: system/user/few_shot
+    final String template;          // 模板内容，支持变量插值 {variable}
+    final List<String> variables;   // 可用变量列表
+    final String? parentId;         // 继承自哪个模板
+    final Map<String, dynamic>? metadata;
+    final int version;
+    final DateTime createdAt;
+    final DateTime updatedAt;
+  }
+
+  /// Prompt 管理器
+  abstract class PromptManager {
+    /// CRUD
+    Future<PromptTemplate> create(PromptTemplate template);
+    Future<PromptTemplate> update(String id, PromptTemplate template);
+    Future<void> delete(String id);
+    Future<PromptTemplate?> getById(String id);
+
+    /// 查询
+    Future<List<PromptTemplate>> listByCategory(String category);
+    Future<List<PromptTemplate>> listBySkill(String skillId);
+
+    /// 渲染
+    String render(PromptTemplate template, Map<String, dynamic> variables);
+
+    /// 版本管理
+    Future<List<PromptTemplate>> getVersionHistory(String id);
+    Future<PromptTemplate> rollback(String id, int version);
+  }
+
+  Prompt 组织结构：
+
+  prompts/
+  ├── system/
+  │   ├── base_diviner.prompt      # 基础占卜师人设
+  │   ├── qimen_expert.prompt      # 奇门专家 (继承 base_diviner)
+  │   ├── liuren_expert.prompt     # 六壬专家
+  │   └── bazi_expert.prompt       # 八字专家
+  ├── skills/
+  │   ├── pan_interpretation.prompt   # 解盘技能
+  │   ├── timing_selection.prompt     # 择日技能
+  │   └── event_prediction.prompt     # 事件预测
+  ├── few_shot/
+  │   ├── qimen_examples.prompt    # 奇门解读示例
+  │   └── liuren_examples.prompt   # 六壬解读示例
+  └── chains/
+      └── cross_skill_orchestration.prompt  # 跨技法协调
+
+  Prompt 继承与组合：
+
+  // 渲染时自动合并父模板
+  final qimenPrompt = promptManager.getById('qimen_expert');
+  // qimen_expert 继承 base_diviner，渲染时会合并
+  final rendered = promptManager.render(qimenPrompt, {
+    'question': '问财运',
+    'pan_data': panJson,
+  });
+
+  ---
+  3. 技法模块对外接口标准化
+
+  每个技法模块应该暴露一套标准化的接口，让 AI 可以统一调用：
+
+  /// 技法模块对外接口 (所有技法模块必须实现)
+  abstract class DivinationSkillInterface {
+    /// 技法元信息
+    SkillMetadata get metadata;
+
+    /// 获取可用工具列表 (供 AI 调用)
+    List<AIToolDefinition> getAvailableTools();
+
+    /// 执行工具调用
+    Future<ToolResult> executeTool(String toolName, Map<String, dynamic>
+  params);
+
+    /// 起卦/排盘
+    Future<DivinationResult> divine({
+      required DateTime dateTime,
+      required String question,
+      Map<String, dynamic>? options,
+    });
+
+    /// 获取当前盘/卦的结构化数据 (供其他 Agent 参考)
+    Future<Map<String, dynamic>> getStructuredData();
+
+    /// 获取解读摘要 (供其他 Agent 快速了解)
+    Future<String> getSummary();
+  }
+
+  /// 技法元信息
+  class SkillMetadata {
+    final String id;              // qimendunjia, daliuren, qizhengsiyu...
+    final String name;            // 奇门遁甲, 大六壬, 七政四余...
+    final String description;     // 技法简介
+    final List<String> useCases;  // 适用场景: 预测, 择日, 风水...
+    final List<String> capabilities; // 能力标签
+  }
+
+  各模块实现示例：
+
+  // qimendunjia/lib/skill_interface.dart
+  class QiMenSkillInterface implements DivinationSkillInterface {
+    @override
+    SkillMetadata get metadata => SkillMetadata(
+      id: 'qimendunjia',
+      name: '奇门遁甲',
+      description: '以时空为经纬，通过天盘地盘人盘排布...',
+      useCases: ['事件预测', '出行择日', '商业决策', '军事谋略'],
+      capabilities: ['时空定位', '吉凶判断', '方位选择', '时机把握'],
+    );
+
+    @override
+    List<AIToolDefinition> getAvailableTools() => [
+      AIToolDefinition(name: 'arrange_pan', ...),
+      AIToolDefinition(name: 'get_gong_detail', ...),
+      // ...
+    ];
+
+    @override
+    Future<DivinationResult> divine({...}) async {
+      // 调用现有的 CalculateJuUseCase 和 ArrangePanUseCase
+    }
+  }
+
+  ---
+  4. Multi-Agent 编排系统
+
+  这是最复杂但也最有价值的部分。让我设计一个 Agent 编排系统：
+
+  /// Agent 定义
+  class DivinationAgent {
+    final String id;
+    final String name;
+    final String skillId;                    // 关联的技法
+    final AIProviderConfig providerConfig;   // 使用的 LLM 配置
+    final PromptTemplate systemPrompt;       // 系统提示词
+    final List<String> capabilities;         // 能力声明
+    final bool canOrchestrate;               // 是否可以调用其他 Agent
+  }
+
+  /// Agent 调用请求
+  class AgentInvocation {
+    final String fromAgentId;      // 调用方 Agent
+    final String toAgentId;        // 被调用 Agent
+    final String purpose;          // 调用目的
+    final Map<String, dynamic> context;  // 上下文数据
+    final String? instruction;     // 具体指令
+  }
+
+  /// Agent 编排器
+  class AgentOrchestrator {
+    final Map<String, DivinationAgent> _agents;
+    final Map<String, DivinationSkillInterface> _skills;
+
+    /// 注册 Agent
+    void registerAgent(DivinationAgent agent);
+
+    /// 主 Agent 发起跨技法调用
+    Future<AgentResponse> invokeAgent(AgentInvocation invocation) async {
+      final targetAgent = _agents[invocation.toAgentId];
+      final skill = _skills[targetAgent.skillId];
+
+      // 1. 被调用 Agent 根据上下文起卦
+      final divinationResult = await skill.divine(
+        dateTime: invocation.context['dateTime'],
+        question: invocation.context['question'],
+      );
+
+      // 2. 被调用 Agent 进行解读
+      final interpretation = await _runAgentChat(
+        agent: targetAgent,
+        context: {
+          ...invocation.context,
+          'divination_result': divinationResult,
+          'instruction': invocation.instruction,
+        },
+      );
+
+      return AgentResponse(
+        agentId: targetAgent.id,
+        skillId: targetAgent.skillId,
+        divinationData: divinationResult,
+        interpretation: interpretation,
+      );
+    }
+  }
+
+  使用场景示例：
+
+  用户问题: "下个月想换工作，问时机和方向"
+
+  奇门 AI (主Agent):
+    1. 起奇门局，分析基本态势
+    2. 发现需要更精确的时间判断
+    3. 调用 八字 Agent:
+       - instruction: "请分析求测人八字中近期的事业运势变化节点"
+       - context: { dateTime, question, qimen_summary }
+    4. 八字 Agent 返回: "命主流月在X月有变动之象..."
+    5. 奇门 AI 综合两者给出建议
+    6. 如需择日，调用 择日 Agent:
+       - instruction: "请选择适合求职面试的吉日"
+       - context: { dateTime, direction, qimen_advice }
+    7. 整合所有 Agent 的结果，给出最终建议
+
+  Agent 调用工具定义：
+
+  {
+    "name": "invoke_agent",
+    "description": "调用其他专业领域的占测 Agent 进行辅助分析",
+    "parameters": {
+      "agent_id": {
+        "type": "string",
+        "enum": ["bazi_agent", "liuren_agent", "zeri_agent", "fengshui_agent"],
+        "description": "要调用的 Agent ID"
+      },
+      "purpose": {
+        "type": "string",
+        "description": "调用目的，说明为什么需要这个 Agent 的协助"
+      },
+      "instruction": {
+        "type": "string",
+        "description": "给被调用 Agent 的具体指令"
+      },
+      "share_context": {
+        "type": "boolean",
+        "description": "是否共享当前占测的上下文数据"
+      }
+    }
+  }
+
+  ---
+  5. 存储方案讨论
+
+  这是一个关键的架构决策，有几种方案：
+
+  方案 A: AI 完全独立存储
+
+  ai_core/
+  └── database/
+      ├── ai_sessions        # 对话会话
+      ├── ai_messages        # 消息
+      ├── ai_provider_configs # Provider 配置
+      ├── prompt_templates   # Prompt 模板
+      └── agent_invocations  # Agent 调用记录
+
+  # 通过外键关联到各技法模块
+  ai_sessions.related_divination_uuid → qimendunjia.panels.uuid
+
+  优点: 完全解耦，不侵入技法模块
+  缺点: 跨库查询复杂，数据一致性挑战
+
+  方案 B: 混合存储 (推荐)
+
+  common/database/
+  ├── ai_core_tables/       # AI 核心表 (独立)
+  │   ├── ai_sessions
+  │   ├── ai_messages
+  │   ├── ai_provider_configs
+  │   ├── prompt_templates
+  │   └── agent_invocations
+
+  # 各技法模块扩展字段
+  qimendunjia/panels:
+    + ai_summary: TEXT         # AI 生成的总结
+    + ai_direct_reading: TEXT  # AI 直断
+    + is_ai_generated: BOOL    # 标记是否 AI 生成
+    + ai_session_uuid: TEXT    # 关联的 AI 会话
+
+  优点: 核心 AI 功能独立，但占测结果的 AI 扩展与原数据在一起
+  缺点: 需要修改技法模块的表结构
+
+  方案 C: 纯扩展字段
+
+  # 每个技法模块自己的表增加 AI 字段
+  qimendunjia/panels:
+    + ai_context_json: TEXT    # 存储所有 AI 相关数据的 JSON
+
+  # JSON 结构
+  {
+    "sessions": [...],
+    "summary": "...",
+    "direct_reading": "...",
+    "is_ai_generated": true,
+    "agent_chain": [...]
+  }
+
+  优点: 最小侵入
+  缺点: 查询复杂，无法利用数据库索引
+
+  ---
+  我的建议: 方案 B (混合存储)
+
+  // common/lib/database/tables/ai_tables.dart
+  // AI 核心表 - 独立存储
+  class AISessions extends Table { ... }
+  class AIMessages extends Table { ... }
+  class AIProviderConfigs extends Table { ... }
+  class PromptTemplates extends Table { ... }
+  class AgentInvocations extends Table { ... }
+
+  // 各技法模块添加 AI 扩展字段
+  // qimendunjia/lib/database/tables/panels.dart
+  class Panels extends Table {
+    // ... 原有字段 ...
+
+    // AI 扩展
+    TextColumn get aiSummary => text().nullable()();
+    TextColumn get aiDirectReading => text().nullable()();
+    BoolColumn get isAiGenerated => boolean().withDefault(const
+  Constant(false))();
+    TextColumn get aiSessionUuid => text().nullable()();  // 关联 AI 会话
+    DateTimeColumn get aiGeneratedAt => dateTime().nullable()();
+  }
+
+  关于 is_ai_generated 标记：
+
+  我认为应该更细粒度：
+
+  class Panels extends Table {
+    // ...
+
+    /// AI 贡献度标记
+    TextColumn get aiContributions => text().nullable()();
+    // JSON: {"summary": true, "direct_reading": true, "interpretation": false}
+
+    /// 或者用枚举
+    IntColumn get aiGenerationLevel =>
+  intEnum<AIGenerationLevel>().nullable()();
+    // 0: 纯人工, 1: AI 辅助, 2: AI 生成人工审核, 3: 纯 AI
+  }
+
+  ---
+  您对以上各点的看法如何？我们可以逐一深入讨论。
+
+✻ Baked for 1m 21s
+
+❯ 1. 反向是对的，但是集成到common中有些不太合适，首先，common已经很臃肿。再 
+  次，ai功能应该能被独立大开发管理，并能向“外界”暴露调用的接口（如：与AI对  
+  话的“chat window”Widget,等）                                              
+  2. 应该增加明确的大语言模型的数据表，其中一定包括 api+token               
+  以及对应的大语言版本模型。（甚至需要细化到不同的                          
+  大语言版本+prompt+占测技艺。正如一直的不同的大语言模型搭配不同的prompt应  
+  用在不同的占测及以上会有不同的效果）                                      
+  3. SkillMetadata 是否已经有现成数据表结构等，以此类推，是否存在重复的定义 
+  4. 是否应该增加”AI“使用的大语言模型版本+prompt                            
+  5. 采取混合方案。细节等内容由AI自己进行存储（对话细节，以及ai chains      
+  调用等）；具体占测所有子module 都增加对应的`t_ai_<子模块自己的占测>`。如" 
+  qimendunjia"占测用户手动添加对对一次占测的总结“问题描述、诉求、直断、吉凶 
+  、”等，存储在（qimendunjia自己的子module t_analyze_summary表）            
+  ai对占测的总结等则存储在(qimendunjia子module                              
+  t_ai_analyze_summary表中，但增加一个ai_chat_uuid,用与指向ai子模块中存储的 
+   “chat window”里的记录）这样，在类似history 或 records 列表中能够同时显示 
+   占卜师自己与AI的不同判断，甚至可以帮助卦师知道                           
+  自己或大语言模型哪个不准确                                                
+  6. 与你的讨论让我有了新的思路，AI在程序中可以不只是“ai占卜师”也可以是学习 
+  的老师，进一步开发程序的“权限”，提供更多的接口。让ai可以辅助“使用者”学习  
+  占测技艺。请思考一下这个场景“使用者点击某可七政四余星盘中的星体或神煞或格 
+  局，那么与星体、神煞、格局有关的UI界面将被高亮，典籍中记载的内容会显示出  
+  来，这些不是程序编写，而是由AI自主完成”                                   
+
+⏺ 非常好的反馈！让我逐一回应并深入讨论：
+
+  ---
+  1. ai_core 完全独立
+
+  同意。让 ai_core 成为一个完全独立的、可对外暴露接口的模块：
+
+  xuan/
+  ├── common/              # 保持现状，不增加 AI 负担
+  ├── ai_core/             # 独立 git 仓库
+  │   ├── lib/
+  │   │   ├── src/         # 内部实现
+  │   │   │   ├── providers/
+  │   │   │   ├── prompts/
+  │   │   │   ├── agents/
+  │   │   │   ├── storage/
+  │   │   │   └── ...
+  │   │   ├── widgets/     # 📦 对外暴露的 UI 组件
+  │   │   │   ├── ai_chat_window.dart
+  │   │   │   ├── ai_config_panel.dart
+  │   │   │   ├── prompt_editor.dart
+  │   │   │   └── agent_chain_viewer.dart
+  │   │   ├── interfaces/  # 📦 对外暴露的接口
+  │   │   │   ├── skill_interface.dart
+  │   │   │   ├── tool_registry.dart
+  │   │   │   └── ai_service.dart
+  │   │   └── ai_core.dart # 统一导出
+  │   └── pubspec.yaml
+  ├── qimendunjia/         # 依赖 ai_core
+  ├── qizhengsiyu/         # 依赖 ai_core
+  └── ...
+
+  对外暴露的接口设计：
+
+  // ai_core/lib/ai_core.dart
+  library ai_core;
+
+  // Widgets - 可直接在技法模块中使用
+  export 'widgets/ai_chat_window.dart';
+  export 'widgets/ai_config_panel.dart';
+  export 'widgets/prompt_editor.dart';
+
+  // Interfaces - 技法模块需要实现
+  export 'interfaces/skill_interface.dart';
+  export 'interfaces/tool_registry.dart';
+
+  // Services - 技法模块可以调用
+  export 'interfaces/ai_service.dart';
+  export 'interfaces/agent_orchestrator.dart';
+
+  技法模块使用示例：
+
+  // qimendunjia/lib/pages/panel_page.dart
+  import 'package:ai_core/ai_core.dart';
+
+  class PanelPage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: ...,
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.smart_toy),
+          onPressed: () {
+            // 直接使用 ai_core 提供的 Widget
+            showModalBottomSheet(
+              context: context,
+              builder: (_) => AIChatWindow(
+                skillInterface: qimenSkillInterface,
+                initialContext: {'pan': currentPan},
+              ),
+            );
+          },
+        ),
+      );
+    }
+  }
+
+  ---
+  2. LLM 模型版本管理
+
+  您说得对，需要更精细的模型管理：
+
+  /// LLM 提供商配置
+  class LLMProvider extends Table {
+    TextColumn get uuid => text()();
+    TextColumn get name => text()();           // "我的 DeepSeek"
+    TextColumn get apiBaseUrl => text()();     // https://api.deepseek.com
+    TextColumn get apiKey => text()();         // 加密存储
+    TextColumn get providerType => text()();   // openai_compatible, anthropic, 
+  custom
+    DateTimeColumn get createdAt => dateTime()();
+  }
+
+  /// LLM 模型版本
+  class LLMModel extends Table {
+    TextColumn get uuid => text()();
+    TextColumn get providerUuid => text()();   // → LLMProvider
+    TextColumn get modelId => text()();        // deepseek-chat, gpt-4o, 
+  claude-3-opus
+    TextColumn get modelName => text()();      // 显示名称
+    TextColumn get modelVersion => text().nullable()(); // v2024-01-15
+    IntColumn get maxTokens => integer().nullable()();
+    RealColumn get defaultTemperature => real().nullable()();
+    TextColumn get capabilitiesJson => text().nullable()(); // 
+  ["function_calling", "vision"]
+    BoolColumn get isActive => boolean().withDefault(const Constant(true))();
+  }
+
+  /// Prompt 模板
+  class PromptTemplate extends Table {
+    TextColumn get uuid => text()();
+    TextColumn get name => text()();
+    TextColumn get category => text()();       // system, user, few_shot, chain
+    TextColumn get content => text()();
+    TextColumn get variablesJson => text()();  // ["question", "pan_data"]
+    IntColumn get version => integer()();
+    TextColumn get parentUuid => text().nullable()(); // 继承
+    DateTimeColumn get createdAt => dateTime()();
+  }
+
+  /// 🔑 核心：模型 + Prompt + 技艺 的组合配置
+  class AISkillConfiguration extends Table {
+    TextColumn get uuid => text()();
+    TextColumn get name => text()();           // "奇门解盘-DeepSeek专业版"
+    TextColumn get skillId => text()();        // qimendunjia, qizhengsiyu...
+    TextColumn get llmModelUuid => text()();   // → LLMModel
+    TextColumn get systemPromptUuid => text()(); // → PromptTemplate
+    TextColumn get userPromptUuid => text().nullable()(); // → PromptTemplate
+    TextColumn get fewShotPromptUuid => text().nullable()(); // → PromptTemplate
+    TextColumn get enabledToolsJson => text()(); // ["get_pan", 
+  "get_gong_detail"]
+    RealColumn get temperature => real().nullable()();
+    TextColumn get extraParamsJson => text().nullable()();
+    BoolColumn get isDefault => boolean().withDefault(const Constant(false))();
+    DateTimeColumn get createdAt => dateTime()();
+  }
+
+  配置组合的含义：
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │              AISkillConfiguration 示例                       │
+  ├─────────────────────────────────────────────────────────────┤
+  │  名称: "奇门解盘-DeepSeek专业版"                              │
+  │                                                             │
+  │  技艺: qimendunjia                                          │
+  │  模型: DeepSeek-V3 (via api.deepseek.com)                   │
+  │  系统Prompt: qimen_expert_v2.prompt                         │
+  │  Few-shot: qimen_examples_professional.prompt               │
+  │  Temperature: 0.3                                           │
+  │  工具: [get_pan, get_gong, get_ke_ying, invoke_agent]       │
+  ├─────────────────────────────────────────────────────────────┤
+  │  名称: "奇门解盘-GPT4o轻量版"                                 │
+  │                                                             │
+  │  技艺: qimendunjia                                          │
+  │  模型: GPT-4o-mini (via api.openai.com)                     │
+  │  系统Prompt: qimen_expert_lite.prompt                       │
+  │  Few-shot: null                                             │
+  │  Temperature: 0.7                                           │
+  │  工具: [get_pan, get_gong]  // 减少工具，降低成本            │
+  └─────────────────────────────────────────────────────────────┘
+
+  ---
+  3. SkillMetadata 复用检查
+
+  让我检查现有代码中是否有类似结构。
+
+⏺ Searched for 2 patterns, read 2 files (ctrl+o to expand)
+  ⎿  Loaded common/CLAUDE.md
+
+⏺ 很好的发现！已经存在相关结构：
+
+  现有表结构：
+  - t_skills - 技艺表 (id, name, descriptions, isAvailable)
+  - t_skill_classes - 技艺流派/变体
+  - t_divination_types - 占测类型 (命理、运程、占测、择吉、化解、运筹、堪舆)
+  - t_divinations - 占测记录 (question, tinyPredict, directlyPredict)
+  - t_panels - 盘面 (关联 skillId)
+
+  复用策略：
+
+  /// AI 不需要重新定义 SkillMetadata，而是通过接口获取现有 Skill 数据
+  abstract class DivinationSkillInterface {
+    /// 从现有 t_skills 表获取
+    Future<Skill> getSkillInfo();  // 复用现有 Skill 数据模型
+
+    /// AI 专属扩展能力 - 不存在于现有表
+    List<AIToolDefinition> getAvailableTools();
+    Future<Map<String, dynamic>> getStructuredData();
+    // ...
+  }
+
+  ---
+  4 & 5. 存储方案细化
+
+  综合您的反馈，我理解的存储架构：
+
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                        ai_core 模块数据库                        │
+  ├─────────────────────────────────────────────────────────────────┤
+  │  t_llm_providers        # LLM 提供商配置                         │
+  │  t_llm_models           # 模型版本                               │
+  │  t_prompt_templates     # Prompt 模板                            │
+  │  t_ai_skill_configs     # 模型+Prompt+技艺 组合配置               │
+  │  t_ai_chat_sessions     # 对话会话                               │
+  │  t_ai_chat_messages     # 对话消息                               │
+  │  t_ai_agent_invocations # Agent 调用链                           │
+  └─────────────────────────────────────────────────────────────────┘
+
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                    qimendunjia 子模块数据库                       │
+  ├─────────────────────────────────────────────────────────────────┤
+  │  t_analyze_summary      # 🧑 卦师手动总结                         │
+  │  ├─ uuid                                                        │
+  │  ├─ panel_uuid          # 关联的盘                               │
+  │  ├─ question            # 问题描述                               │
+  │  ├─ appeal              # 诉求                                   │
+  │  ├─ direct_reading      # 直断                                   │
+  │  ├─ fortune             # 吉凶                                   │
+  │  ├─ summary             # 总结                                   │
+  │  └─ created_at                                                  │
+  │                                                                 │
+  │  t_ai_analyze_summary   # 🤖 AI 总结                             │
+  │  ├─ uuid                                                        │
+  │  ├─ panel_uuid          # 关联的盘                               │
+  │  ├─ ai_chat_session_uuid # → ai_core.t_ai_chat_sessions         │
+  │  ├─ ai_skill_config_uuid # 使用的 AI 配置 (模型+Prompt)          │
+  │  ├─ question            # 问题描述                               │
+  │  ├─ appeal              # 诉求                                   │
+  │  ├─ direct_reading      # 直断                                   │
+  │  ├─ fortune             # 吉凶                                   │
+  │  ├─ summary             # 总结                                   │
+  │  ├─ confidence_score    # AI 自评置信度 (可选)                   │
+  │  └─ created_at                                                  │
+  └─────────────────────────────────────────────────────────────────┘
+
+  History/Records 列表展示效果：
+
+  ┌────────────────────────────────────────────────────┐
+  │  占测记录 - 2024年2月7日 问事业                     │
+  ├────────────────────────────────────────────────────┤
+  │  🧑 卦师判断:                                       │
+  │     直断: 阳遁三局，开门临乾...利于西北方求职        │
+  │     吉凶: 中吉                                      │
+  │                                                    │
+  │  🤖 AI 判断 (DeepSeek-V3 + 奇门专业v2):            │
+  │     直断: 值符落宫旺相，天盘丁奇...建议把握时机      │
+  │     吉凶: 吉                                        │
+  │     [查看完整对话 →]                                │
+  │                                                    │
+  │  📊 对比: 卦师与AI判断一致度 85%                    │
+  └────────────────────────────────────────────────────┘
+
+  ---
+  6. AI 作为"学习助手"的新场景
+
+  这是一个非常有价值的延伸！让我详细设计：
+
+  场景描述
+
+  用户在七政四余星盘中点击某个星体（如"太阳"），AI 自动完成：
+  1. 高亮星盘中与太阳相关的 UI 元素（如太阳所在宫位、太阳与其他星体的相位线）
+  2. 显示典籍中关于太阳的记载
+  3. 解释太阳在当前盘中的具体含义
+
+  关键：这不是预先编程的静态规则，而是 AI 实时分析并操控 UI
+
+  技术实现方案
+
+  /// AI 可调用的 UI 控制工具
+  class AIUIControlTools {
+    /// 高亮指定元素
+    static const highlightElements = AIToolDefinition(
+      name: 'highlight_ui_elements',
+      description: '高亮星盘中的指定元素',
+      parameters: {
+        'element_type': {'enum': ['star', 'gong', 'shen_sha', 'ge_ju',
+  'aspect_line']},
+        'element_ids': {'type': 'array', 'items': {'type': 'string'}},
+        'highlight_style': {'enum': ['glow', 'pulse', 'border', 'dim_others']},
+      },
+    );
+
+    /// 显示典籍内容
+    static const showClassicText = AIToolDefinition(
+      name: 'show_classic_text',
+      description: '在侧边栏显示典籍内容',
+      parameters: {
+        'source': {'type': 'string'},  // 典籍来源
+        'content': {'type': 'string'}, // 内容
+        'highlights': {'type': 'array'}, // 需要高亮的关键词
+      },
+    );
+
+    /// 添加注解标记
+    static const addAnnotation = AIToolDefinition(
+      name: 'add_annotation',
+      description: '在星盘指定位置添加注解气泡',
+      parameters: {
+        'target_element': {'type': 'string'},
+        'annotation_text': {'type': 'string'},
+        'position': {'enum': ['top', 'bottom', 'left', 'right']},
+      },
+    );
+
+    /// 播放动画演示
+    static const playAnimation = AIToolDefinition(
+      name: 'play_animation',
+      description: '播放动画演示某个概念',
+      parameters: {
+        'animation_type': {'enum': ['star_movement', 'aspect_formation',
+  'house_rulership']},
+        'duration_ms': {'type': 'integer'},
+      },
+    );
+  }
+
+  交互流程
+
+  用户点击星盘中的"太阳"
+           │
+           ▼
+  ┌─────────────────────────────────────────────────────────┐
+  │  AI 接收到 onElementTapped(type: 'star', id: 'sun')     │
+  │                                                         │
+  │  AI 分析当前星盘上下文:                                  │
+  │  - 太阳在第10宫                                         │
+  │  - 与木星形成三合                                        │
+  │  - 太阳为日主                                           │
+  │                                                         │
+  │  AI 决定调用以下工具:                                    │
+  └─────────────────────────────────────────────────────────┘
+           │
+           ▼
+  ┌─────────────────────────────────────────────────────────┐
+  │  1. highlight_ui_elements({                             │
+  │       element_type: 'gong',                             │
+  │       element_ids: ['gong_10'],                         │
+  │       highlight_style: 'glow'                           │
+  │     })                                                  │
+  │                                                         │
+  │  2. highlight_ui_elements({                             │
+  │       element_type: 'aspect_line',                      │
+  │       element_ids: ['sun_jupiter_trine'],               │
+  │       highlight_style: 'pulse'                          │
+  │     })                                                  │
+  │                                                         │
+  │  3. show_classic_text({                                 │
+  │       source: '《果老星宗》卷三',                        │
+  │       content: '太阳为日主，居官禄宫...',                │
+  │       highlights: ['官禄', '木星三合']                   │
+  │     })                                                  │
+  │                                                         │
+  │  4. add_annotation({                                    │
+  │       target_element: 'sun',                            │
+  │       annotation_text: '日主入庙，事业有成之象',         │
+  │       position: 'right'                                 │
+  │     })                                                  │
+  └─────────────────────────────────────────────────────────┘
+
+  典籍知识库
+
+  /// 典籍知识库接口 (AI 可查询)
+  abstract class ClassicTextRepository {
+    /// 按主题查询典籍
+    Future<List<ClassicPassage>> queryByTopic({
+      required String topic,      // 'sun', 'trine', 'house_10'
+      String? bookFilter,         // 限定典籍
+      int limit = 5,
+    });
+
+    /// 按关键词搜索
+    Future<List<ClassicPassage>> search(String keywords);
+  }
+
+  class ClassicPassage {
+    final String bookName;        // 《果老星宗》
+    final String chapter;         // 卷三·论日月
+    final String content;         // 原文内容
+    final String? interpretation; // 白话解读 (可选)
+    final List<String> relatedTopics; // 相关主题标签
+  }
+
+  AI 教学模式
+
+  /// 学习模式配置
+  class LearningModeConfig {
+    final bool autoExplainOnTap;        // 点击元素自动解释
+    final bool showClassicReferences;   // 显示典籍引用
+    final bool interactiveQuiz;         // 互动问答模式
+    final String difficultyLevel;       // beginner, intermediate, advanced
+  }
+
+  /// 学习模式 Agent
+  class TeachingAgent extends DivinationAgent {
+    @override
+    String get systemPrompt => '''
+  你是一位耐心的占测教学助手，正在帮助学员学习{skill_name}。
+
+  当学员点击星盘/式盘上的元素时:
+  1. 使用 highlight_ui_elements 工具高亮相关联的元素
+  2. 使用 show_classic_text 工具展示典籍记载
+  3. 用通俗易懂的语言解释这个元素的含义
+  4. 结合当前盘局，说明在这个具体情境下的意义
+
+  教学风格:
+  - 循序渐进，先讲基础概念再深入
+  - 多用比喻和生活化的例子
+  - 鼓励学员提问
+  - 可以主动出小测验检验理解
+  ''';
+
+    @override
+    List<AIToolDefinition> get tools => [
+      AIUIControlTools.highlightElements,
+      AIUIControlTools.showClassicText,
+      AIUIControlTools.addAnnotation,
+      AIUIControlTools.playAnimation,
+      ClassicTextQueryTool.queryByTopic,
+      ClassicTextQueryTool.search,
+    ];
+  }
+
+  ---
+  让我更新计划文件，整合以上所有讨论：
+
+⏺ User answered Claude's questions:
+  ⎿  · 以上设计方向是否符合您的预期？您希望如何继续？ → 继续讨论
+
+⏺ 好的，请问您想深入讨论哪些方面？
+
+  例如：
+  - AI Agent 之间的协作协议细节？
+  - 典籍知识库的构建方案？
+  - UI 控制工具的具体实现？
+  - 存储方案的其他细节？
+  - 或者有新的想法/场景？
+
+  请告诉我您的想法。
+
+✻ Cooked for 2m 19s
+
+❯ 2.①对于 LLM+Prompt 这种信息偏向“技术化”，不是非AI人员理解起来有些困难，是 
+  否可能“拟人化”。且在未来“AI MarketPlace”                                  
+  中也是使用“拟人化”展示让不动AI的用户也能很好的使用；②prompt               
+  模板数据表中不应有variblesJson，                                          
+  因为它与具体的一次占测有关，模版表应该只用来存储模版。同时，这个表应该增  
+  加对应的一对多的映射表（用来限制对应的prompt只能用在对应                  
+  “占测以及”）如，有的prompt只能用于 七政四余                               
+  ，有些能够用于七政四余和大六壬，有些全都可以用。并且增加“最近使用”以及“使 
+  用次数”和“占卜正确”（建议是另外的审计表，这可以提供当AI chians 调用其他   
+  占测技法ai 进行辅助断盘时，提供默认的选择）\r                             
+  3. AI应该也具备一个功能，“卦师”在输入简短的“占测描述”时，AI进行分析+拆解  
+  这次占测分类，以及涉及到的技法                                            
+  隐含“t_divination_types”+“t_sub_divination_types”                         
+  提高判断的准确率，以及“占测的命中率”                                      
+  延伸讨论，common 中已经有了 “CombinedDivinations,Divinations,Seekers,Pane 
+  ls”等占测问题相关的数据类。是否可以复用（子模块                           
+  如qimendunji中t_analyze_summary，也不再增加                               
+  t_ai_analyze_summary表，而是t_ai_divinations 或 t_ai_seekers）            
+
+⏺ 非常好的深化讨论！让我逐一展开：
+
+  ---
+  2① "拟人化" AI 配置
+
+  将技术化的 "LLM + Prompt" 转化为用户友好的"AI 占卜师人设"：
+
+  /// 拟人化 AI 人设 (取代技术化的 AISkillConfiguration)
+  class AIPersona extends Table {
+    TextColumn get uuid => text()();
+
+    // 📌 拟人化展示信息
+    TextColumn get name => text()();           // "明远先生"、"玄机子"
+    TextColumn get title => text()();          // "奇门遁甲专家"、"七政四余大师"
+    TextColumn get avatar => text().nullable()(); // 头像资源路径
+    TextColumn get bio => text()();            // 简介："专精奇门预测三十年..."
+    TextColumn get personality => text()();   // 
+  性格标签："严谨、详细、引经据典"
+    TextColumn get speakingStyle => text()(); // 说话风格描述
+
+    // 📌 能力标签 (用户可见)
+    TextColumn get specialtiesJson => text()(); // ["事业预测", "择日选时", 
+  "风水布局"]
+    TextColumn get strengthsJson => text()();   // ["擅长细节分析", 
+  "善于引用典籍"]
+
+    // 📌 底层技术配置 (用户不可见，管理员/开发者配置)
+    TextColumn get llmModelUuid => text()();      // → t_llm_models
+    TextColumn get systemPromptUuid => text()();  // → t_prompt_templates
+    TextColumn get fewShotPromptUuid => text().nullable()();
+    TextColumn get skillBindingsJson => text()(); // 可用技法列表
+    TextColumn get toolsConfigJson => text()();   // 工具配置
+
+    // 📌 状态
+    BoolColumn get isPublic => boolean()();       // 是否公开 (Marketplace)
+    BoolColumn get isOfficial => boolean()();     // 是否官方认证
+    IntColumn get sortOrder => integer()();
+  }
+
+  用户界面展示：
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │                    选择 AI 占卜师                            │
+  ├─────────────────────────────────────────────────────────────┤
+  │  ┌────────┐                                                 │
+  │  │  👤    │  明远先生                                        │
+  │  │ avatar │  奇门遁甲专家 · 官方认证                         │
+  │  └────────┘                                                 │
+  │            "专精奇门预测，善于引经据典，                      │
+  │             分析详细严谨，尤擅事业财运。"                     │
+  │                                                             │
+  │  擅长: 🏢事业预测  💰财运分析  📅择日选时                    │
+  │  风格: 严谨 · 详细 · 引用典籍                                │
+  │                                              [选择此师]      │
+  ├─────────────────────────────────────────────────────────────┤
+  │  ┌────────┐                                                 │
+  │  │  👤    │  玄机子                                          │
+  │  │ avatar │  六壬预测师 · 社区推荐                           │
+  │  └────────┘                                                 │
+  │            "善占人事吉凶，断事精准快速，                      │
+  │             言简意赅，直指核心。"                            │
+  │                                                             │
+  │  擅长: 👥人事关系  ❓寻物占卜  📋具体事件                    │
+  │  风格: 简洁 · 直接 · 实战派                                  │
+  │                                              [选择此师]      │
+  └─────────────────────────────────────────────────────────────┘
+
+  Marketplace 展示：
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │                  AI 占卜师 商城                              │
+  ├─────────────────────────────────────────────────────────────┤
+  │  🔥 热门推荐                                                 │
+  │  ┌─────────┐ ┌─────────┐ ┌─────────┐                       │
+  │  │ 明远先生 │ │ 玄机子  │ │ 易简居士│                       │
+  │  │ ⭐4.9   │ │ ⭐4.7   │ │ ⭐4.8   │                       │
+  │  │ 奇门专家 │ │ 六壬大师│ │ 八字名家│                       │
+  │  │ 准确率92%│ │ 准确率88%│ │ 准确率90%│                       │
+  │  └─────────┘ └─────────┘ └─────────┘                       │
+  │                                                             │
+  │  📚 按技法分类                                               │
+  │  [奇门遁甲] [大六壬] [七政四余] [八字命理] [择日]             │
+  │                                                             │
+  │  🎯 按专长分类                                               │
+  │  [事业财运] [婚姻感情] [健康] [出行] [寻物]                   │
+  └─────────────────────────────────────────────────────────────┘
+
+  ---
+  2② Prompt 模板表重构
+
+  /// Prompt 模板表 (纯模板，不含变量)
+  class PromptTemplates extends Table {
+    TextColumn get uuid => text()();
+    TextColumn get name => text()();
+    TextColumn get category => text()();     // system, user, few_shot, chain
+    TextColumn get content => text()();      // 模板内容，使用 {placeholder} 
+  占位
+    TextColumn get description => text()();  // 模板说明
+    IntColumn get version => integer()();
+    TextColumn get parentUuid => text().nullable()(); // 继承关系
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get updatedAt => dateTime()();
+    DateTimeColumn get deletedAt => dateTime().nullable()();
+  }
+
+  /// Prompt 技法适用范围映射 (一对多)
+  class PromptSkillBindings extends Table {
+    IntColumn get id => integer().autoIncrement()();
+    TextColumn get promptUuid => text()();   // → t_prompt_templates
+    IntColumn get skillId => integer()();    // → t_skills (null = 全部适用)
+
+    // 可选：更细粒度的绑定
+    TextColumn get divinationTypeUuid => text().nullable()(); // → 
+  t_divination_types
+    TextColumn get subDivinationTypeUuid => text().nullable()(); // → 
+  t_sub_divination_types
+
+    DateTimeColumn get createdAt => dateTime()();
+  }
+
+  /// Prompt 使用审计表
+  class PromptUsageAudits extends Table {
+    TextColumn get uuid => text()();
+    TextColumn get promptUuid => text()();       // → t_prompt_templates
+    TextColumn get personaUuid => text()();      // 使用的 AI 人设
+    TextColumn get skillId => text()();          // 使用的技法
+    TextColumn get chatSessionUuid => text()();  // 对话会话
+
+    DateTimeColumn get usedAt => dateTime()();
+
+    // 📌 效果评估
+    IntColumn get userRating => integer().nullable()();   // 用户评分 1-5
+    BoolColumn get wasHelpful => boolean().nullable()();  // 是否有帮助
+    BoolColumn get wasAccurate => boolean().nullable()(); // 是否准确 (事后验证)
+    TextColumn get feedbackText => text().nullable()();   // 用户反馈
+  }
+
+  /// Prompt 使用统计视图 (可用 SQL View 或运行时计算)
+  // SELECT 
+  //   prompt_uuid,
+  //   skill_id,
+  //   COUNT(*) as usage_count,
+  //   MAX(used_at) as last_used_at,
+  //   AVG(user_rating) as avg_rating,
+  //   SUM(CASE WHEN was_accurate THEN 1 ELSE 0 END) * 1.0 / 
+  //     SUM(CASE WHEN was_accurate IS NOT NULL THEN 1 ELSE 0 END) as 
+  accuracy_rate
+  // FROM t_prompt_usage_audits
+  // GROUP BY prompt_uuid, skill_id
+
+  AI Chain 调用时的默认选择逻辑：
+
+  class AgentSelector {
+    /// 为指定技法选择最佳 AI 人设
+    Future<AIPersona> selectBestPersona({
+      required int skillId,
+      String? divinationTypeUuid,
+    }) async {
+      // 1. 查询该技法下所有可用人设
+      // 2. 按准确率、使用次数加权排序
+      // 3. 返回最优人设
+
+      final candidates = await _personaRepo.listBySkill(skillId);
+      final stats = await _auditRepo.getStatsForPersonas(
+        candidates.map((p) => p.uuid),
+        skillId: skillId,
+      );
+
+      return candidates
+        .map((p) => _PersonaWithScore(p, _calculateScore(stats[p.uuid])))
+        .sorted((a, b) => b.score.compareTo(a.score))
+        .first
+        .persona;
+    }
+
+    double _calculateScore(PromptUsageStats? stats) {
+      if (stats == null) return 0.5; // 新人设给个中等分
+
+      // 准确率权重 60%，使用次数权重 20%，评分权重 20%
+      return stats.accuracyRate * 0.6 +
+             _normalizeUsageCount(stats.usageCount) * 0.2 +
+             (stats.avgRating / 5.0) * 0.2;
+    }
+  }
+
+  ---
+  3. AI 自动分类占测描述
+
+  用户输入简短描述，AI 分析并映射到系统分类：
+
+  /// 占测分类分析工具
+  const classifyDivinationTool = AIToolDefinition(
+    name: 'classify_divination',
+    description: '分析用户的占测描述，识别占测类型和适用技法',
+    parameters: {
+      'description': {'type': 'string', 'description': '用户输入的占测描述'},
+    },
+    returns: {
+      'divination_type': {'type': 'string'},      // → t_divination_types.uuid
+      'sub_types': {'type': 'array'},             // → 
+  t_sub_divination_types.uuid[]
+      'recommended_skills': {'type': 'array'},    // → t_skills.id[]
+      'key_entities': {'type': 'object'},         // 识别出的关键实体
+      'clarifying_questions': {'type': 'array'},  // 需要进一步澄清的问题
+    },
+  );
+
+  交互流程：
+
+  用户输入: "下个月想换工作，问问时机"
+                │
+                ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │  AI 分类分析结果:                                            │
+  │                                                             │
+  │  📂 占测类型: 运程预测                                        │
+  │  📁 子类型: [事业变动, 时机选择]                              │
+  │                                                             │
+  │  🔧 推荐技法:                                                │
+  │     1. 奇门遁甲 (适合问时机、方向) - 推荐度 95%               │
+  │     2. 大六壬 (适合具体事件预测) - 推荐度 80%                 │
+  │     3. 八字流年 (看整体运势) - 推荐度 70%                     │
+  │                                                             │
+  │  🔍 识别关键信息:                                            │
+  │     时间范围: 下个月                                         │
+  │     事项: 换工作                                             │
+  │     问题焦点: 时机                                           │
+  │                                                             │
+  │  ❓ 补充问题 (可选):                                         │
+  │     - 是否有意向的公司/行业方向？                             │
+  │     - 目前工作遇到什么具体问题？                              │
+  └─────────────────────────────────────────────────────────────┘
+                │
+                ▼
+      用户选择技法 → 进入起盘/起卦流程
+
+  准确率追踪：
+
+  /// 分类准确率审计
+  class ClassificationAudits extends Table {
+    TextColumn get uuid => text()();
+    TextColumn get originalDescription => text()();  // 原始描述
+    TextColumn get aiClassificationJson => text()(); // AI 分类结果
+
+    // 用户修正 (如果有)
+    TextColumn get userCorrectedTypeUuid => text().nullable()();
+    TextColumn get userCorrectedSubTypesJson => text().nullable()();
+    TextColumn get userCorrectedSkillsJson => text().nullable()();
+
+    // 最终使用
+    TextColumn get finalTypeUuid => text()();
+    TextColumn get finalSkillId => integer()();
+
+    // 事后验证
+    BoolColumn get predictionAccurate => boolean().nullable()();
+
+    DateTimeColumn get createdAt => dateTime()();
+  }
+
+  ---
+  延伸讨论：复用 common 的数据结构
+
+  您说得对！common 已经有完善的占测数据结构，应该复用而非重复创建。
+
+  现有结构回顾：
+  - CombinedDivinations - 组合占测（如八字+化解）
+  - Divinations - 单次占测请求（含 question, tinyPredict, directlyPredict）
+  - Seekers - 求测人
+  - Panels - 盘面
+
+  复用方案：
+
+  /// 方案: 扩展现有表，增加 AI 标识字段
+
+  // 修改 t_divinations 表
+  class Divinations extends Table {
+    // ... 现有字段 ...
+
+    // 📌 新增 AI 相关字段
+    BoolColumn get isAiGenerated => boolean()
+      .withDefault(const Constant(false))
+      .named('is_ai_generated')();
+
+    TextColumn get aiPersonaUuid => text()
+      .nullable()
+      .named('ai_persona_uuid')();  // 生成此记录的 AI 人设
+
+    TextColumn get aiChatSessionUuid => text()
+      .nullable()
+      .named('ai_chat_session_uuid')();  // 关联的对话会话
+
+    RealColumn get aiConfidenceScore => real()
+      .nullable()
+      .named('ai_confidence_score')();  // AI 自评置信度
+  }
+
+  // 不需要单独的 t_ai_divinations，而是复用 t_divinations
+  // 通过 is_ai_generated = true 区分
+
+  查询示例：
+
+  // 获取某盘的所有解读（人工 + AI）
+  Future<List<DivinationWithSource>> getDivinationsForPanel(String panelUuid)
+  async {
+    final query = select(divinations)
+      .join([
+        leftOuterJoin(
+          divinationPanelMappers,
+          divinationPanelMappers.divinationUuid.equalsExp(divinations.uuid),
+        ),
+      ])
+      ..where(divinationPanelMappers.panelUuid.equals(panelUuid))
+      ..orderBy([OrderingTerm.desc(divinations.createdAt)]);
+
+    return query.map((row) {
+      final divination = row.readTable(divinations);
+      return DivinationWithSource(
+        divination: divination,
+        source: divination.isAiGenerated
+          ? DivinationSource.ai(divination.aiPersonaUuid!)
+          : DivinationSource.human(),
+      );
+    }).get();
+  }
+
+  UI 展示：
+
+  ┌────────────────────────────────────────────────────────────┐
+  │  奇门遁甲占测 - 问事业                                       │
+  │  2024-02-07 阳遁三局                                        │
+  ├────────────────────────────────────────────────────────────┤
+  │                                                            │
+  │  🧑 卦师解读 (您)                          2024-02-07 14:30 │
+  │  ┌────────────────────────────────────────────────────┐   │
+  │  │ 直断: 开门临乾宫，利于西北方向发展...               │   │
+  │  │ 吉凶: 中吉                                         │   │
+  │  │ 总结: 建议近期可以考虑...                          │   │
+  │  └────────────────────────────────────────────────────┘   │
+  │                                                            │
+  │  🤖 AI 解读 (明远先生)                     2024-02-07 14:35 │
+  │  ┌────────────────────────────────────────────────────┐   │
+  │  │ 直断: 值符临兑，天盘丁奇加临...                    │   │
+  │  │ 吉凶: 吉                                           │   │
+  │  │ 总结: 综合分析，此盘显示...                        │   │
+  │  │ 置信度: 85%                                        │   │
+  │  │                                   [查看完整对话 →] │   │
+  │  └────────────────────────────────────────────────────┘   │
+  │                                                            │
+  │  📊 对比分析                                               │
+  │  - 吉凶判断: 一致 (均为吉/中吉)                            │
+  │  - 方向建议: 略有差异 (人工:西北 AI:西+北)                  │
+  │                                                            │
+  └────────────────────────────────────────────────────────────┘
+
+  ---
+  总结这轮讨论的架构调整：
+  ┌───────────────────────────────┬──────────────────────────────────────┐
+  │            原方案             │              调整后方案              │
+  ├───────────────────────────────┼──────────────────────────────────────┤
+  │ 技术化的 AISkillConfiguration │ 拟人化的 AIPersona                   │
+  ├───────────────────────────────┼──────────────────────────────────────┤
+  │ PromptTemplate.variablesJson  │ 移除，变量在运行时传入               │
+  ├───────────────────────────────┼──────────────────────────────────────┤
+  │ 独立的 t_ai_analyze_summary   │ 复用 t_divinations + is_ai_generated │
+  ├───────────────────────────────┼──────────────────────────────────────┤
+  │ 无分类功能                    │ AI 自动分类占测描述                  │
+  ├───────────────────────────────┼──────────────────────────────────────┤
+  │ 无使用统计                    │ 审计表追踪准确率                     │
+  └───────────────────────────────┴──────────────────────────────────────┘
+  您觉得这个方向如何？还有其他需要讨论的方面吗？
+
+✻ Brewed for 1m 34s
+
+❯ 首先,需要独立的t_ai_divinations(并且希望有divination_uuid+AIPersona's     
+  uuid                                                                      
+  两个可被INDEX的字段);其次,与我讨论如何确保"LLM"+"LLM不同版本"+"Prompt"    
+  的数据"可信"回溯;最后,与我讨论AI Chians 见Agent如何调用,(定义接口),以及AI 
+   与程序接口调用定义的关键                                                 
+
+⏺ 好的，让我们深入讨论这三个关键问题：
+
+  ---
+  1. 独立的 t_ai_divinations 表设计
+
+  /// AI 占测结果表 (独立于人工占测)
+  class AIDivinations extends Table {
+    @override
+    String get tableName => 't_ai_divinations';
+
+    TextColumn get uuid => text()();
+
+    // 📌 核心关联 (双索引)
+    TextColumn get divinationUuid => text()
+      .named('divination_uuid')();  // → t_divinations (原始占测请求)
+    TextColumn get personaUuid => text()
+      .named('persona_uuid')();     // → t_ai_personas (使用的 AI 人设)
+
+    // 📌 AI 生成内容
+    TextColumn get question => text().nullable()();        // AI 理解的问题
+    TextColumn get tinyPredict => text().nullable()();     // 吉凶判断
+    TextColumn get directReading => text().nullable()();   // 直断
+    TextColumn get summary => text().nullable()();         // 详细总结
+    TextColumn get keyPointsJson => text().nullable()();   // 关键点 JSON 数组
+
+    // 📌 可信溯源 (下一节详细讨论)
+    TextColumn get provenanceUuid => text()
+      .named('provenance_uuid')();  // → t_ai_provenance (溯源记录)
+
+    // 📌 质量评估
+    RealColumn get confidenceScore => real().nullable()(); // AI 自评置信度
+    IntColumn get userRating => integer().nullable()();    // 用户评分 1-5
+    BoolColumn get wasAccurate => boolean().nullable()();  // 事后验证准确性
+    TextColumn get userFeedback => text().nullable()();    // 用户反馈
+
+    // 📌 时间戳
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get updatedAt => dateTime().nullable()();
+    DateTimeColumn get deletedAt => dateTime().nullable()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+
+    @override
+    List<Index> get indexes => [
+      Index(
+        'idx_ai_divinations_divination_uuid',
+        'CREATE INDEX idx_ai_divinations_divination_uuid ON t_ai_divinations 
+  (divination_uuid)',
+      ),
+      Index(
+        'idx_ai_divinations_persona_uuid',
+        'CREATE INDEX idx_ai_divinations_persona_uuid ON t_ai_divinations 
+  (persona_uuid)',
+      ),
+      // 复合索引：按 divination 查询时同时获取 persona 信息
+      Index(
+        'idx_ai_divinations_div_persona',
+        'CREATE INDEX idx_ai_divinations_div_persona ON t_ai_divinations 
+  (divination_uuid, persona_uuid)',
+      ),
+    ];
+  }
+
+  与现有结构的关系：
+
+  t_divinations (原始占测请求)
+  ├── uuid
+  ├── question
+  ├── seeker_uuid
+  └── ...
+       │
+       │ 1:N
+       ▼
+  t_ai_divinations (AI 解读，可有多个不同 AI 人设的解读)
+  ├── uuid
+  ├── divination_uuid ──────→ t_divinations.uuid
+  ├── persona_uuid ─────────→ t_ai_personas.uuid
+  ├── provenance_uuid ──────→ t_ai_provenance.uuid
+  ├── direct_reading
+  ├── summary
+  └── ...
+
+  ---
+  2. LLM + 版本 + Prompt 的可信溯源
+
+  这是确保 AI 输出可追溯、可复现、可审计的关键。
+
+  溯源数据模型
+
+  /// AI 溯源记录表 (不可变，只增不改)
+  class AIProvenance extends Table {
+    @override
+    String get tableName => 't_ai_provenance';
+
+    TextColumn get uuid => text()();
+
+    // ═══════════════════════════════════════════
+    // 📌 LLM Provider 快照
+    // ═══════════════════════════════════════════
+    TextColumn get llmProviderUuid => text()();       // → t_llm_providers
+    TextColumn get llmProviderSnapshot => text()();   // JSON: 
+  当时的完整配置快照
+    // {
+    //   "name": "DeepSeek",
+    //   "api_base_url": "https://api.deepseek.com",
+    //   "captured_at": "2024-02-07T14:30:00Z"
+    // }
+
+    // ═══════════════════════════════════════════
+    // 📌 LLM Model 版本快照
+    // ═══════════════════════════════════════════
+    TextColumn get llmModelUuid => text()();          // → t_llm_models
+    TextColumn get llmModelSnapshot => text()();      // JSON: 当时的模型信息
+    // {
+    //   "model_id": "deepseek-chat",
+    //   "model_version": "v2024-01-15",
+    //   "max_tokens": 8192,
+    //   "api_reported_version": "deepseek-chat-v2",  // API 返回的实际版本
+    //   "captured_at": "2024-02-07T14:30:00Z"
+    // }
+
+    // ═══════════════════════════════════════════
+    // 📌 Prompt 快照
+    // ═══════════════════════════════════════════
+    TextColumn get systemPromptUuid => text()();
+    TextColumn get systemPromptSnapshot => text()();  // 完整的 system prompt 
+  内容
+    TextColumn get systemPromptVersion => integer()();
+
+    TextColumn get userPromptUuid => text().nullable()();
+    TextColumn get userPromptSnapshot => text().nullable()();
+
+    TextColumn get fewShotPromptUuid => text().nullable()();
+    TextColumn get fewShotPromptSnapshot => text().nullable()();
+
+    // ═══════════════════════════════════════════
+    // 📌 运行时参数
+    // ═══════════════════════════════════════════
+    TextColumn get runtimeParamsJson => text()();
+    // {
+    //   "temperature": 0.3,
+    //   "top_p": 0.9,
+    //   "max_tokens": 2048,
+    //   "tools_enabled": ["get_pan", "get_gong_detail"],
+    //   "persona_uuid": "xxx"
+    // }
+
+    // ═══════════════════════════════════════════
+    // 📌 输入上下文快照
+    // ═══════════════════════════════════════════
+    TextColumn get inputContextHash => text()();      // 输入数据的 SHA256 哈希
+    TextColumn get inputContextSnapshot => text()();  // 完整输入 
+  (或压缩/加密存储)
+    // {
+    //   "divination_uuid": "xxx",
+    //   "panel_data": {...},
+    //   "user_messages": [...],
+    //   "tool_results": [...]
+    // }
+
+    // ═══════════════════════════════════════════
+    // 📌 输出记录
+    // ═══════════════════════════════════════════
+    TextColumn get outputHash => text()();            // 输出的 SHA256 哈希
+    TextColumn get rawOutputSnapshot => text()();     // API 原始返回
+
+    // ═══════════════════════════════════════════
+    // 📌 元信息
+    // ═══════════════════════════════════════════
+    TextColumn get requestId => text().nullable()();  // API 返回的 request_id
+    IntColumn get totalTokens => integer().nullable()();
+    IntColumn get promptTokens => integer().nullable()();
+    IntColumn get completionTokens => integer().nullable()();
+    IntColumn get latencyMs => integer().nullable()(); // 响应延迟
+
+    DateTimeColumn get createdAt => dateTime()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  溯源服务
+
+  /// 溯源记录创建服务
+  class ProvenanceService {
+
+    /// 在每次 AI 调用时创建溯源记录
+    Future<AIProvenance> createProvenance({
+      required AIProviderConfig provider,
+      required LLMModel model,
+      required PromptTemplate systemPrompt,
+      required Map<String, dynamic> runtimeParams,
+      required Map<String, dynamic> inputContext,
+      required String rawOutput,
+      required AIResponseMetadata metadata,
+    }) async {
+      final provenance = AIProvenance(
+        uuid: _uuid.v4(),
+
+        // Provider 快照
+        llmProviderUuid: provider.uuid,
+        llmProviderSnapshot: jsonEncode({
+          'name': provider.name,
+          'api_base_url': provider.apiBaseUrl,
+          'captured_at': DateTime.now().toIso8601String(),
+        }),
+
+        // Model 快照
+        llmModelUuid: model.uuid,
+        llmModelSnapshot: jsonEncode({
+          'model_id': model.modelId,
+          'model_version': model.modelVersion,
+          'api_reported_version': metadata.modelVersion, // API 实际返回的版本
+          'captured_at': DateTime.now().toIso8601String(),
+        }),
+
+        // Prompt 快照
+        systemPromptUuid: systemPrompt.uuid,
+        systemPromptSnapshot: systemPrompt.content,
+        systemPromptVersion: systemPrompt.version,
+
+        // 运行时参数
+        runtimeParamsJson: jsonEncode(runtimeParams),
+
+        // 输入快照
+        inputContextHash: _sha256(jsonEncode(inputContext)),
+        inputContextSnapshot: jsonEncode(inputContext),
+
+        // 输出快照
+        outputHash: _sha256(rawOutput),
+        rawOutputSnapshot: rawOutput,
+
+        // 元信息
+        requestId: metadata.requestId,
+        totalTokens: metadata.totalTokens,
+        latencyMs: metadata.latencyMs,
+
+        createdAt: DateTime.now(),
+      );
+
+      await _provenanceDao.insert(provenance);
+      return provenance;
+    }
+
+    /// 验证溯源记录完整性
+    Future<ProvenanceVerification> verify(String provenanceUuid) async {
+      final provenance = await _provenanceDao.getByUuid(provenanceUuid);
+
+      return ProvenanceVerification(
+        inputHashValid: _sha256(provenance.inputContextSnapshot) ==
+  provenance.inputContextHash,
+        outputHashValid: _sha256(provenance.rawOutputSnapshot) ==
+  provenance.outputHash,
+        promptVersionMatch: await _checkPromptVersion(provenance),
+        modelStillAvailable: await _checkModelAvailability(provenance),
+      );
+    }
+
+    /// 尝试复现 AI 输出 (用于调试/审计)
+    Future<ReproductionResult> attemptReproduction(String provenanceUuid) async
+  {
+      final provenance = await _provenanceDao.getByUuid(provenanceUuid);
+
+      // 使用存储的快照重新调用
+      final newOutput = await _aiService.call(
+        provider: _parseProviderSnapshot(provenance.llmProviderSnapshot),
+        model: _parseModelSnapshot(provenance.llmModelSnapshot),
+        systemPrompt: provenance.systemPromptSnapshot,
+        input: jsonDecode(provenance.inputContextSnapshot),
+        params: jsonDecode(provenance.runtimeParamsJson),
+      );
+
+      return ReproductionResult(
+        originalOutput: provenance.rawOutputSnapshot,
+        newOutput: newOutput,
+        similarity: _calculateSimilarity(provenance.rawOutputSnapshot,
+  newOutput),
+        isDeterministic: provenance.rawOutputSnapshot == newOutput,
+      );
+    }
+  }
+
+  溯源查询示例
+
+  // 查询某次 AI 占测的完整溯源链
+  Future<AIProvenanceChain> getProvenanceChain(String aiDivinationUuid) async {
+    final aiDivination = await _aiDivinationDao.getByUuid(aiDivinationUuid);
+    final provenance = await
+  _provenanceDao.getByUuid(aiDivination.provenanceUuid);
+
+    // 获取 Prompt 历史版本
+    final promptHistory = await
+  _promptDao.getVersionHistory(provenance.systemPromptUuid);
+
+    // 获取 Model 变更历史
+    final modelHistory = await
+  _modelDao.getChangeHistory(provenance.llmModelUuid);
+
+    return AIProvenanceChain(
+      aiDivination: aiDivination,
+      provenance: provenance,
+      promptVersions: promptHistory,
+      modelChanges: modelHistory,
+    );
+  }
+
+  UI 展示溯源信息：
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │  AI 解读溯源信息                                  [验证完整性] │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │  🤖 AI 人设: 明远先生                                        │
+  │                                                             │
+  │  📡 模型信息:                                                │
+  │     Provider: DeepSeek                                      │
+  │     Model: deepseek-chat v2024-01-15                        │
+  │     API 报告版本: deepseek-chat-v2                          │
+  │                                                             │
+  │  📝 Prompt 版本:                                             │
+  │     系统提示: qimen_expert_v2 (版本 3)                       │
+  │     Few-shot: qimen_examples (版本 1)                        │
+  │                                                             │
+  │  ⚙️ 运行参数:                                                │
+  │     Temperature: 0.3                                        │
+  │     启用工具: get_pan, get_gong_detail, get_ke_ying         │
+  │                                                             │
+  │  📊 调用统计:                                                │
+  │     Token 消耗: 1,234 (prompt) + 567 (completion)           │
+  │     响应延迟: 2.3s                                          │
+  │     Request ID: req_abc123...                               │
+  │                                                             │
+  │  ✅ 完整性验证: 通过                                         │
+  │     输入哈希: 匹配                                           │
+  │     输出哈希: 匹配                                           │
+  │                                                             │
+  │                                    [查看原始输入] [查看原始输出] │
+  └─────────────────────────────────────────────────────────────┘
+
+  ---
+  3. AI Chains / Agent 间调用接口定义
+
+  3.1 Agent 调用协议
+
+  /// Agent 调用请求
+  @JsonSerializable()
+  class AgentInvocationRequest {
+    final String requestId;           // 唯一请求ID
+    final String fromAgentId;         // 发起调用的 Agent
+    final String toAgentId;           // 被调用的 Agent
+    final String toPersonaUuid;       // 被调用 Agent 使用的人设
+
+    final String purpose;             // 调用目的 (自然语言描述)
+    final String instruction;         // 具体指令
+
+    final AgentContext sharedContext; // 共享上下文
+    final Map<String, dynamic>? additionalParams;
+
+    final DateTime requestedAt;
+    final int? timeoutMs;             // 超时设置
+  }
+
+  /// Agent 上下文 (可共享给被调用 Agent)
+  @JsonSerializable()
+  class AgentContext {
+    final String originalQuestion;    // 原始占测问题
+    final DateTime divinationTime;    // 占测时间
+    final String? seekerInfo;         // 求测人信息 (可选共享)
+
+    final String callerSkillId;       // 调用方技法
+    final Map<String, dynamic>? callerPanData;  // 调用方盘面数据摘要
+    final String? callerSummary;      // 调用方已有的分析摘要
+
+    final List<AgentInvocationRecord>? previousInvocations; // 调用链历史
+  }
+
+  /// Agent 调用响应
+  @JsonSerializable()
+  class AgentInvocationResponse {
+    final String requestId;
+    final String agentId;
+    final String personaUuid;
+
+    final AgentResponseStatus status; // success, error, timeout, refused
+
+    final String? skillId;            // 被调用方使用的技法
+    final Map<String, dynamic>? panData;  // 被调用方起的盘/卦 (如有)
+
+    final String? directReading;      // 直断
+    final String? summary;            // 分析摘要
+    final String? recommendation;     // 建议
+
+    final String? provenanceUuid;     // 溯源记录
+
+    final DateTime respondedAt;
+    final int latencyMs;
+
+    final String? errorMessage;       // 错误信息 (如有)
+  }
+
+  enum AgentResponseStatus { success, error, timeout, refused,
+  needsClarification }
+
+  3.2 Agent 编排器接口
+
+  /// Agent 编排器 - 管理 Agent 间调用
+  abstract class AgentOrchestrator {
+
+    /// 调用另一个 Agent
+    Future<AgentInvocationResponse> invokeAgent(AgentInvocationRequest request);
+
+    /// 并行调用多个 Agent
+    Future<List<AgentInvocationResponse>> invokeAgentsParallel(
+      List<AgentInvocationRequest> requests,
+    );
+
+    /// 获取可用的 Agent 列表 (供主 Agent 决策)
+    Future<List<AvailableAgent>> listAvailableAgents({
+      String? forPurpose,           // 按目的筛选
+      List<String>? requiredSkills, // 按技法筛选
+    });
+
+    /// 获取推荐的 Agent (基于历史准确率)
+    Future<AgentRecommendation> recommendAgent({
+      required String purpose,
+      required String callerSkillId,
+    });
+
+    /// 获取调用链历史
+    Future<List<AgentInvocationRecord>> getInvocationChain(String
+  rootRequestId);
+  }
+
+  /// 可用 Agent 信息 (供主 Agent 决策)
+  @JsonSerializable()
+  class AvailableAgent {
+    final String agentId;
+    final String personaUuid;
+    final String personaName;         // "玄机子"
+    final String skillId;             // "daliuren"
+    final String skillName;           // "大六壬"
+
+    final List<String> capabilities;  // ["具体事件预测", "人事关系"]
+    final double accuracyRate;        // 历史准确率
+    final int usageCount;             // 使用次数
+
+    final bool isAvailable;           // 当前是否可用
+    final String? unavailableReason;  // 不可用原因
+  }
+
+  3.3 AI 调用程序接口 (Tool) 定义
+
+  /// Tool 定义基类
+  @JsonSerializable()
+  class AIToolDefinition {
+    final String name;                // 工具名称 (唯一标识)
+    final String description;         // 工具描述 (供 LLM 理解)
+    final String category;            // 分类: divination, ui_control, 
+  data_query, agent
+
+    final Map<String, ToolParameter> parameters;
+    final ToolReturnSchema? returns;
+
+    final List<String> requiredPermissions; // 所需权限
+    final bool isDestructive;         // 是否有副作用
+    final int? rateLimitPerMinute;    // 调用频率限制
+  }
+
+  @JsonSerializable()
+  class ToolParameter {
+    final String type;                // string, integer, boolean, array, object
+    final String description;
+    final bool required;
+    final List<String>? enumValues;   // 可选值列表
+    final dynamic defaultValue;
+    final Map<String, dynamic>? validation; // 验证规则
+  }
+
+  /// Tool 注册表
+  abstract class ToolRegistry {
+    /// 注册工具
+    void register(AIToolDefinition tool, ToolExecutor executor);
+
+    /// 获取所有工具定义 (供 LLM API 调用)
+    List<Map<String, dynamic>> getToolDefinitionsForLLM();
+
+    /// 执行工具调用
+    Future<ToolResult> execute(String toolName, Map<String, dynamic> params);
+
+    /// 获取指定技法可用的工具
+    List<AIToolDefinition> getToolsForSkill(String skillId);
+  }
+
+  /// Tool 执行器接口
+  typedef ToolExecutor = Future<ToolResult> Function(
+    Map<String, dynamic> params,
+    ToolExecutionContext context,
+  );
+
+  /// Tool 执行上下文
+  class ToolExecutionContext {
+    final String chatSessionUuid;
+    final String? currentPanUuid;
+    final String skillId;
+    final Map<String, dynamic> skillInterface; // 当前技法的接口实例
+  }
+
+  /// Tool 执行结果
+  @JsonSerializable()
+  class ToolResult {
+    final bool success;
+    final Map<String, dynamic>? data;
+    final String? errorMessage;
+    final String? errorCode;
+  }
+
+  3.4 标准工具分类与定义
+
+  /// 占测类工具 (每个技法模块实现)
+  class DivinationTools {
+    static const getPanOverview = AIToolDefinition(
+      name: 'get_pan_overview',
+      description: '获取当前盘/卦的概览信息',
+      category: 'divination',
+      parameters: {},
+      requiredPermissions: ['read_pan'],
+    );
+
+    static const getElementDetail = AIToolDefinition(
+      name: 'get_element_detail',
+      description: '获取盘中指定元素的详细信息',
+      category: 'divination',
+      parameters: {
+        'element_type': ToolParameter(
+          type: 'string',
+          description: '元素类型',
+          required: true,
+          enumValues: ['gong', 'star', 'door', 'god', 'gan'],
+        ),
+        'element_id': ToolParameter(
+          type: 'string',
+          description: '元素标识',
+          required: true,
+        ),
+      },
+    );
+
+    static const arrangePan = AIToolDefinition(
+      name: 'arrange_pan',
+      description: '根据指定时间起盘/起卦',
+      category: 'divination',
+      parameters: {
+        'datetime': ToolParameter(type: 'string', required: true),
+        'options': ToolParameter(type: 'object', required: false),
+      },
+      isDestructive: true,  // 会创建新数据
+      requiredPermissions: ['write_pan'],
+    );
+  }
+
+  /// Agent 调用工具
+  class AgentTools {
+    static const invokeAgent = AIToolDefinition(
+      name: 'invoke_agent',
+      description: '调用其他专业 Agent 进行辅助分析',
+      category: 'agent',
+      parameters: {
+        'agent_id': ToolParameter(
+          type: 'string',
+          description: '要调用的 Agent ID',
+          required: true,
+        ),
+        'purpose': ToolParameter(
+          type: 'string',
+          description: '调用目的',
+          required: true,
+        ),
+        'instruction': ToolParameter(
+          type: 'string',
+          description: '给被调用 Agent 的具体指令',
+          required: true,
+        ),
+        'share_context': ToolParameter(
+          type: 'boolean',
+          description: '是否共享当前上下文',
+          required: false,
+          defaultValue: true,
+        ),
+      },
+      requiredPermissions: ['invoke_agent'],
+    );
+
+    static const listAgents = AIToolDefinition(
+      name: 'list_available_agents',
+      description: '列出可用的 Agent 及其专长',
+      category: 'agent',
+      parameters: {
+        'purpose': ToolParameter(
+          type: 'string',
+          description: '筛选目的',
+          required: false,
+        ),
+      },
+    );
+  }
+
+  /// UI 控制工具 (用于教学模式)
+  class UIControlTools {
+    static const highlight = AIToolDefinition(
+      name: 'highlight_elements',
+      description: '高亮界面元素',
+      category: 'ui_control',
+      parameters: {
+        'element_ids': ToolParameter(type: 'array', required: true),
+        'style': ToolParameter(
+          type: 'string',
+          enumValues: ['glow', 'pulse', 'border'],
+          required: false,
+        ),
+      },
+      requiredPermissions: ['ui_control'],
+    );
+
+    static const showPanel = AIToolDefinition(
+      name: 'show_info_panel',
+      description: '显示信息面板',
+      category: 'ui_control',
+      parameters: {
+        'title': ToolParameter(type: 'string', required: true),
+        'content': ToolParameter(type: 'string', required: true),
+        'position': ToolParameter(
+          type: 'string',
+          enumValues: ['left', 'right', 'bottom'],
+          required: false,
+        ),
+      },
+    );
+  }
+
+  /// 数据查询工具
+  class DataQueryTools {
+    static const queryClassicText = AIToolDefinition(
+      name: 'query_classic_text',
+      description: '查询典籍记载',
+      category: 'data_query',
+      parameters: {
+        'topic': ToolParameter(type: 'string', required: true),
+        'source': ToolParameter(type: 'string', required: false),
+        'limit': ToolParameter(type: 'integer', required: false, defaultValue:
+  5),
+      },
+    );
+
+    static const getHistoricalCases = AIToolDefinition(
+      name: 'get_historical_cases',
+      description: '获取历史类似案例',
+      category: 'data_query',
+      parameters: {
+        'similarity_criteria': ToolParameter(type: 'object', required: true),
+        'limit': ToolParameter(type: 'integer', required: false),
+      },
+    );
+  }
+
+  3.5 技法模块接口实现示例
+
+  /// 技法模块必须实现的接口
+  abstract class DivinationSkillInterface {
+    /// 技法元信息
+    SkillInfo get info;
+
+    /// 获取该技法提供的所有工具
+    List<AIToolDefinition> getAvailableTools();
+
+    /// 注册工具到 ToolRegistry
+    void registerTools(ToolRegistry registry);
+
+    /// 起盘/起卦
+    Future<DivinationResult> divine({
+      required DateTime dateTime,
+      required String question,
+      Map<String, dynamic>? options,
+    });
+
+    /// 获取当前盘的结构化数据
+    Future<Map<String, dynamic>> getStructuredPanData();
+
+    /// 获取摘要 (供其他 Agent 快速了解)
+    Future<String> getSummaryForAgent();
+  }
+
+  /// 奇门遁甲模块实现
+  class QiMenSkillInterface implements DivinationSkillInterface {
+    final QiMenCalculatorRepository _calculator;
+    final QiMenDataRepository _dataRepo;
+    QiMenPan? _currentPan;
+
+    @override
+    SkillInfo get info => SkillInfo(
+      id: 'qimendunjia',
+      name: '奇门遁甲',
+      capabilities: ['时机预测', '方位选择', '事件分析'],
+    );
+
+    @override
+    List<AIToolDefinition> getAvailableTools() => [
+      _getPanOverviewTool,
+      _getGongDetailTool,
+      _getTenGanKeYingTool,
+      _getDoorStarKeYingTool,
+      _getGeJuAnalysisTool,
+      _arrangePanTool,
+    ];
+
+    @override
+    void registerTools(ToolRegistry registry) {
+      registry.register(_getPanOverviewTool, _executePanOverview);
+      registry.register(_getGongDetailTool, _executeGongDetail);
+      // ... 注册其他工具
+    }
+
+    Future<ToolResult> _executePanOverview(
+      Map<String, dynamic> params,
+      ToolExecutionContext context,
+    ) async {
+      if (_currentPan == null) {
+        return ToolResult(success: false, errorMessage: '当前没有活动的盘');
+      }
+
+      return ToolResult(
+        success: true,
+        data: {
+          'datetime': _currentPan!.panDateTime.toIso8601String(),
+          'yin_yang_dun': _currentPan!.shiJiaJu.yinYangDun.name,
+          'ju_number': _currentPan!.shiJiaJu.juNumber,
+          'zhi_fu': _currentPan!.zhiFuStar.name,
+          'zhi_shi': _currentPan!.zhiShiDoor.name,
+          // ...
+        },
+      );
+    }
+
+    @override
+    Future<String> getSummaryForAgent() async {
+      if (_currentPan == null) return '暂无盘面数据';
+
+      return '''
+  奇门盘概要:
+  - 时间: ${_currentPan!.panDateTime}
+  - ${_currentPan!.shiJiaJu.yinYangDun.name}${_currentPan!.shiJiaJu.juNumber}局
+  - 值符: ${_currentPan!.zhiFuStar.name}
+  - 值使: ${_currentPan!.zhiShiDoor.name}
+  - 格局: ${_currentPan!.panGeJuList.map((g) => g.name).join(', ')}
+  ''';
+    }
+  }
+
+  ---
+  总结这轮讨论的关键接口：
+  ┌─────────────────────────────────┬─────────────────────────────────┐
+  │             接口/表             │              用途               │
+  ├─────────────────────────────────┼─────────────────────────────────┤
+  │ t_ai_divinations                │ 独立存储 AI 解读，双索引关联    │
+  ├─────────────────────────────────┼─────────────────────────────────┤
+  │ t_ai_provenance                 │ 完整溯源记录，确保可追溯        │
+  ├─────────────────────────────────┼─────────────────────────────────┤
+  │ AgentOrchestrator               │ Agent 编排器，管理 Agent 间调用 │
+  ├─────────────────────────────────┼─────────────────────────────────┤
+  │ AgentInvocationRequest/Response │ Agent 调用协议                  │
+  ├─────────────────────────────────┼─────────────────────────────────┤
+  │ ToolRegistry                    │ 工具注册与执行                  │
+  ├─────────────────────────────────┼─────────────────────────────────┤
+  │ AIToolDefinition                │ 工具定义标准                    │
+  ├─────────────────────────────────┼─────────────────────────────────┤
+  │ DivinationSkillInterface        │ 技法模块必须实现的接口          │
+  └─────────────────────────────────┴─────────────────────────────────┘
+  您对这些接口设计有什么看法？需要调整或补充的地方吗？
+
+✻ Churned for 1m 57s
+
+❯ "UI 展示溯源信息" 中展示出一个被忽略的问题：“对AI卦师的调用，询问其解卦， 
+  不是增量的而是每一次调用都用独立的开始，也就是说每次调用都会是新的上下文  
+  （除了prompt）”。另外。prompt具体内容是否可以做到“可信回溯”。我决定所有与 
+  AI相关的存储都放在自己独立的子项目中                                      
+
+⏺ 您提出了非常关键的问题！让我深入讨论：
+
+  ---
+  1. AI 调用的"无状态"特性与上下文管理
+
+  问题本质
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │  LLM API 调用的真实情况                                      │
+  ├─────────────────────────────────────────────────────────────┤
+  │                                                             │
+  │  第1次调用:                                                  │
+  │  ┌─────────────────────────────────────────┐               │
+  │  │ System: {prompt}                         │               │
+  │  │ User: "请分析这个奇门盘"                 │ → LLM → 回复A │
+  │  └─────────────────────────────────────────┘               │
+  │                                                             │
+  │  第2次调用 (LLM 完全不记得第1次):                            │
+  │  ┌─────────────────────────────────────────┐               │
+  │  │ System: {prompt}                         │               │
+  │  │ User: "请分析这个奇门盘"                 │               │
+  │  │ Assistant: {回复A}          ← 需要重传   │               │
+  │  │ User: "乾宫情况如何？"                   │ → LLM → 回复B │
+  │  └─────────────────────────────────────────┘               │
+  │                                                             │
+  │  第3次调用 (需要传更多历史):                                 │
+  │  ┌─────────────────────────────────────────┐               │
+  │  │ System: {prompt}                         │               │
+  │  │ User: "请分析..."                        │               │
+  │  │ Assistant: {回复A}                       │               │
+  │  │ User: "乾宫情况..."                      │               │
+  │  │ Assistant: {回复B}          ← 全部重传   │               │
+  │  │ User: "那离宫呢？"                       │ → LLM → 回复C │
+  │  └─────────────────────────────────────────┘               │
+  │                                                             │
+  └─────────────────────────────────────────────────────────────┘
+
+  解决方案：完整的对话上下文管理
+
+  /// 对话会话 - 管理完整上下文
+  class AIChatSession extends Table {
+    @override
+    String get tableName => 't_ai_chat_sessions';
+
+    TextColumn get uuid => text()();
+
+    // 关联
+    TextColumn get divinationUuid => text().nullable()();
+    TextColumn get personaUuid => text()();
+
+    // 📌 上下文快照 (每次调用前的完整上下文)
+    TextColumn get systemPromptSnapshot => text()();  // 固定的 system prompt
+
+    // 状态
+    IntColumn get messageCount => integer()();
+    IntColumn get totalTokensUsed => integer()();
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get lastActiveAt => dateTime()();
+  }
+
+  /// 对话消息 - 每条消息独立存储
+  class AIChatMessages extends Table {
+    @override
+    String get tableName => 't_ai_chat_messages';
+
+    TextColumn get uuid => text()();
+    TextColumn get sessionUuid => text()();  // → t_ai_chat_sessions
+    IntColumn get sequenceNumber => integer()();  // 消息顺序号
+
+    TextColumn get role => text()();  // system, user, assistant, tool
+    TextColumn get content => text().nullable()();
+
+    // Tool 调用相关
+    TextColumn get toolCallsJson => text().nullable()();
+    TextColumn get toolResultsJson => text().nullable()();
+
+    // 📌 此消息的 API 调用溯源
+    TextColumn get provenanceUuid => text().nullable()();  // 只有 assistant 
+  消息有
+
+    DateTimeColumn get createdAt => dateTime()();
+  }
+
+  /// API 调用记录 - 记录每次实际的 LLM API 调用
+  class AIApiCalls extends Table {
+    @override
+    String get tableName => 't_ai_api_calls';
+
+    TextColumn get uuid => text()();
+    TextColumn get sessionUuid => text()();
+
+    // 📌 此次调用时传入的完整消息列表快照
+    TextColumn get messagesSnapshot => text()();  // JSON: 完整的 messages 数组
+    TextColumn get messagesHash => text()();      // SHA256 哈希
+
+    // 📌 溯源记录
+    TextColumn get provenanceUuid => text()();  // → t_ai_provenance
+
+    // 调用元信息
+    IntColumn get inputTokens => integer()();
+    IntColumn get outputTokens => integer()();
+    IntColumn get latencyMs => integer()();
+
+    DateTimeColumn get calledAt => dateTime()();
+  }
+
+  上下文构建流程
+
+  class ChatContextBuilder {
+
+    /// 构建完整的 API 调用上下文
+    Future<APICallContext> buildContext(String sessionUuid) async {
+      final session = await _sessionDao.get(sessionUuid);
+      final messages = await _messageDao.getBySession(sessionUuid);
+
+      // 构建消息数组
+      final apiMessages = <Map<String, dynamic>>[
+        // 1. System prompt (始终第一条)
+        {'role': 'system', 'content': session.systemPromptSnapshot},
+
+        // 2. 历史消息 (按顺序)
+        ...messages.map((m) => _toApiMessage(m)),
+      ];
+
+      // 计算 token 并可能截断
+      final truncated = await _truncateIfNeeded(apiMessages);
+
+      return APICallContext(
+        messages: truncated,
+        messagesHash: _sha256(jsonEncode(truncated)),
+      );
+    }
+
+    /// 处理 token 限制 - 智能截断
+    Future<List<Map<String, dynamic>>> _truncateIfNeeded(
+      List<Map<String, dynamic>> messages,
+    ) async {
+      final totalTokens = await _tokenCounter.count(messages);
+      final maxTokens = _config.maxContextTokens;
+
+      if (totalTokens <= maxTokens) return messages;
+
+      // 保留: system prompt + 最近N条消息
+      // 可选: 对早期消息做摘要压缩
+      return _smartTruncate(messages, maxTokens);
+    }
+  }
+
+  ---
+  2. Prompt 内容的可信回溯
+
+  核心问题
+
+  Prompt 模板可能被修改，如何确保：
+  1. 知道某次 AI 输出用的是哪个版本的 prompt
+  2. 即使模板被删除/修改，历史记录仍可追溯
+  3. 防止篡改
+
+  解决方案：Prompt 版本化 + 不可变快照
+
+  /// Prompt 模板 (可编辑的主表)
+  class PromptTemplates extends Table {
+    @override
+    String get tableName => 't_prompt_templates';
+
+    TextColumn get uuid => text()();
+    TextColumn get name => text()();
+    TextColumn get category => text()();
+    TextColumn get currentContent => text()();  // 当前版本内容
+    IntColumn get currentVersion => integer()();
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get updatedAt => dateTime()();
+    DateTimeColumn get deletedAt => dateTime().nullable()();
+  }
+
+  /// Prompt 版本历史 (不可变，只增不删)
+  class PromptVersions extends Table {
+    @override
+    String get tableName => 't_prompt_versions';
+
+    TextColumn get uuid => text()();
+    TextColumn get templateUuid => text()();  // → t_prompt_templates
+    IntColumn get version => integer()();
+
+    // 📌 不可变内容
+    TextColumn get content => text()();
+    TextColumn get contentHash => text()();   // SHA256(content)
+
+    // 变更信息
+    TextColumn get changeNote => text().nullable()();  // 变更说明
+    TextColumn get changedBy => text().nullable()();   // 谁修改的
+
+    DateTimeColumn get createdAt => dateTime()();
+    // 注意：没有 updatedAt 和 deletedAt，版本记录不可修改
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+
+    @override
+    List<Index> get indexes => [
+      Index(
+        'idx_prompt_versions_template_version',
+        'CREATE UNIQUE INDEX idx_prompt_versions_template_version ON 
+  t_prompt_versions (template_uuid, version)',
+      ),
+    ];
+  }
+
+  /// 溯源表中直接存储内容快照 (双重保障)
+  class AIProvenance extends Table {
+    // ... 其他字段 ...
+
+    // 📌 Prompt 溯源 (双重记录)
+    TextColumn get systemPromptVersionUuid => text()();  // → t_prompt_versions
+    TextColumn get systemPromptContent => text()();       // 内容副本
+    TextColumn get systemPromptContentHash => text()();   // 哈希验证
+
+    // 验证方法：
+    // 1. systemPromptContentHash == SHA256(systemPromptContent) ✓
+    // 2. systemPromptContent == t_prompt_versions[uuid].content ✓
+  }
+
+  Prompt 修改时自动创建版本
+
+  class PromptRepository {
+
+    Future<void> updatePrompt(String uuid, String newContent, {String?
+  changeNote}) async {
+      final current = await _templateDao.get(uuid);
+      final newVersion = current.currentVersion + 1;
+
+      // 1. 创建不可变版本记录
+      await _versionDao.insert(PromptVersion(
+        uuid: _uuid.v4(),
+        templateUuid: uuid,
+        version: newVersion,
+        content: newContent,
+        contentHash: _sha256(newContent),
+        changeNote: changeNote,
+        changedBy: _currentUser,
+        createdAt: DateTime.now(),
+      ));
+
+      // 2. 更新主表
+      await _templateDao.update(uuid,
+        currentContent: newContent,
+        currentVersion: newVersion,
+        updatedAt: DateTime.now(),
+      );
+    }
+  }
+
+  验证 Prompt 完整性
+
+  class ProvenanceVerifier {
+
+    Future<PromptVerificationResult> verifyPromptProvenance(
+      String provenanceUuid,
+    ) async {
+      final provenance = await _provenanceDao.get(provenanceUuid);
+
+      // 验证1: 自身哈希一致
+      final selfHashValid =
+        _sha256(provenance.systemPromptContent) ==
+  provenance.systemPromptContentHash;
+
+      // 验证2: 与版本表一致
+      final version = await _versionDao.get(provenance.systemPromptVersionUuid);
+      final versionMatch = version != null &&
+        version.content == provenance.systemPromptContent;
+
+      // 验证3: 版本表自身完整性
+      final versionHashValid = version != null &&
+        _sha256(version.content) == version.contentHash;
+
+      return PromptVerificationResult(
+        selfHashValid: selfHashValid,
+        versionMatch: versionMatch,
+        versionHashValid: versionHashValid,
+        isFullyTrusted: selfHashValid && versionMatch && versionHashValid,
+      );
+    }
+  }
+
+  ---
+  3. AI 存储完全独立于 ai_core 子项目
+
+  既然决定所有 AI 相关存储都在 ai_core，让我重新设计完整的表结构：
+
+  ai_core/
+  ├── lib/
+  │   ├── database/
+  │   │   ├── ai_database.dart           # AI 专属数据库
+  │   │   ├── tables/
+  │   │   │   ├── llm_providers.dart     # LLM 提供商
+  │   │   │   ├── llm_models.dart        # LLM 模型版本
+  │   │   │   ├── prompt_templates.dart  # Prompt 模板
+  │   │   │   ├── prompt_versions.dart   # Prompt 版本历史
+  │   │   │   ├── prompt_skill_bindings.dart  # Prompt-技法绑定
+  │   │   │   ├── ai_personas.dart       # AI 人设
+  │   │   │   ├── ai_chat_sessions.dart  # 对话会话
+  │   │   │   ├── ai_chat_messages.dart  # 对话消息
+  │   │   │   ├── ai_api_calls.dart      # API 调用记录
+  │   │   │   ├── ai_provenance.dart     # 溯源记录
+  │   │   │   ├── ai_divinations.dart    # AI 占测结果
+  │   │   │   ├── agent_invocations.dart # Agent 调用记录
+  │   │   │   └── usage_audits.dart      # 使用审计
+  │   │   ├── daos/
+  │   │   │   └── ...
+  │   │   └── converters/
+  │   │       └── ...
+  │   └── ...
+  └── pubspec.yaml
+
+  完整表结构汇总
+
+  // ══════════════════════════════════════════════════════════════
+  // LLM 配置层
+  // ══════════════════════════════════════════════════════════════
+
+  /// LLM 提供商
+  class LLMProviders extends Table {
+    @override
+    String get tableName => 't_llm_providers';
+
+    TextColumn get uuid => text()();
+    TextColumn get name => text()();             // "DeepSeek", "OpenAI"
+    TextColumn get apiBaseUrl => text()();
+    TextColumn get encryptedApiKey => text()();  // 加密存储
+    TextColumn get providerType => text()();     // openai_compatible, anthropic
+    BoolColumn get isActive => boolean()();
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get updatedAt => dateTime()();
+    DateTimeColumn get deletedAt => dateTime().nullable()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  /// LLM 模型
+  class LLMModels extends Table {
+    @override
+    String get tableName => 't_llm_models';
+
+    TextColumn get uuid => text()();
+    TextColumn get providerUuid => text()();     // → t_llm_providers
+    TextColumn get modelId => text()();          // deepseek-chat
+    TextColumn get modelName => text()();        // 显示名称
+    TextColumn get modelVersion => text().nullable()();
+    IntColumn get maxTokens => integer().nullable()();
+    RealColumn get defaultTemperature => real().nullable()();
+    TextColumn get capabilitiesJson => text().nullable()();  // 
+  ["function_calling"]
+    BoolColumn get isActive => boolean()();
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get updatedAt => dateTime()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  // Prompt 管理层
+  // ══════════════════════════════════════════════════════════════
+
+  /// Prompt 模板 (可编辑)
+  class PromptTemplates extends Table {
+    @override
+    String get tableName => 't_prompt_templates';
+
+    TextColumn get uuid => text()();
+    TextColumn get name => text()();
+    TextColumn get category => text()();         // system, user, few_shot
+    TextColumn get description => text().nullable()();
+    TextColumn get currentContent => text()();
+    IntColumn get currentVersion => integer()();
+    TextColumn get parentUuid => text().nullable()();  // 继承
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get updatedAt => dateTime()();
+    DateTimeColumn get deletedAt => dateTime().nullable()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  /// Prompt 版本历史 (不可变)
+  class PromptVersions extends Table {
+    @override
+    String get tableName => 't_prompt_versions';
+
+    TextColumn get uuid => text()();
+    TextColumn get templateUuid => text()();
+    IntColumn get version => integer()();
+    TextColumn get content => text()();
+    TextColumn get contentHash => text()();      // SHA256
+    TextColumn get changeNote => text().nullable()();
+    TextColumn get changedBy => text().nullable()();
+    DateTimeColumn get createdAt => dateTime()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  /// Prompt 技法绑定
+  class PromptSkillBindings extends Table {
+    @override
+    String get tableName => 't_prompt_skill_bindings';
+
+    IntColumn get id => integer().autoIncrement()();
+    TextColumn get promptUuid => text()();
+    TextColumn get skillId => text()();          // 技法ID (来自 common)
+    TextColumn get divinationTypeUuid => text().nullable()();
+    DateTimeColumn get createdAt => dateTime()();
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  // AI 人设层
+  // ══════════════════════════════════════════════════════════════
+
+  /// AI 人设 (拟人化配置)
+  class AIPersonas extends Table {
+    @override
+    String get tableName => 't_ai_personas';
+
+    TextColumn get uuid => text()();
+
+    // 拟人化信息
+    TextColumn get name => text()();             // "明远先生"
+    TextColumn get title => text()();            // "奇门遁甲专家"
+    TextColumn get avatar => text().nullable()();
+    TextColumn get bio => text()();
+    TextColumn get personality => text()();
+    TextColumn get speakingStyle => text()();
+    TextColumn get specialtiesJson => text()();  // 专长标签
+
+    // 底层配置
+    TextColumn get llmModelUuid => text()();     // → t_llm_models
+    TextColumn get systemPromptUuid => text()(); // → t_prompt_templates
+    TextColumn get fewShotPromptUuid => text().nullable()();
+    TextColumn get skillBindingsJson => text()();
+    TextColumn get toolsConfigJson => text()();
+    RealColumn get temperature => real().nullable()();
+
+    // 状态
+    BoolColumn get isPublic => boolean()();
+    BoolColumn get isOfficial => boolean()();
+    IntColumn get sortOrder => integer()();
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get updatedAt => dateTime()();
+    DateTimeColumn get deletedAt => dateTime().nullable()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  // 对话管理层
+  // ══════════════════════════════════════════════════════════════
+
+  /// 对话会话
+  class AIChatSessions extends Table {
+    @override
+    String get tableName => 't_ai_chat_sessions';
+
+    TextColumn get uuid => text()();
+    TextColumn get personaUuid => text()();      // → t_ai_personas
+    TextColumn get divinationUuid => text().nullable()();  // 来自 common
+    TextColumn get panUuid => text().nullable()();         // 来自各技法模块
+    TextColumn get skillId => text().nullable()();
+
+    // 上下文快照
+    TextColumn get systemPromptSnapshot => text()();
+    TextColumn get systemPromptVersionUuid => text()();  // → t_prompt_versions
+
+    // 统计
+    IntColumn get messageCount => integer()();
+    IntColumn get totalTokensUsed => integer()();
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get lastActiveAt => dateTime()();
+    DateTimeColumn get deletedAt => dateTime().nullable()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  /// 对话消息
+  class AIChatMessages extends Table {
+    @override
+    String get tableName => 't_ai_chat_messages';
+
+    TextColumn get uuid => text()();
+    TextColumn get sessionUuid => text()();
+    IntColumn get sequenceNumber => integer()();
+
+    TextColumn get role => text()();             // system, user, assistant, 
+  tool
+    TextColumn get content => text().nullable()();
+    TextColumn get toolCallsJson => text().nullable()();
+    TextColumn get toolResultsJson => text().nullable()();
+
+    TextColumn get apiCallUuid => text().nullable()();  // → t_ai_api_calls
+
+    DateTimeColumn get createdAt => dateTime()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+
+    @override
+    List<Index> get indexes => [
+      Index('idx_messages_session',
+        'CREATE INDEX idx_messages_session ON t_ai_chat_messages (session_uuid, 
+  sequence_number)'),
+    ];
+  }
+
+  /// API 调用记录
+  class AIApiCalls extends Table {
+    @override
+    String get tableName => 't_ai_api_calls';
+
+    TextColumn get uuid => text()();
+    TextColumn get sessionUuid => text()();
+
+    // 输入快照
+    TextColumn get messagesSnapshot => text()();  // 完整消息数组 JSON
+    TextColumn get messagesHash => text()();
+
+    // 输出
+    TextColumn get responseContent => text().nullable()();
+    TextColumn get responseToolCalls => text().nullable()();
+
+    // 溯源
+    TextColumn get provenanceUuid => text()();   // → t_ai_provenance
+
+    // 元信息
+    IntColumn get inputTokens => integer()();
+    IntColumn get outputTokens => integer()();
+    IntColumn get latencyMs => integer()();
+    TextColumn get requestId => text().nullable()();
+
+    DateTimeColumn get calledAt => dateTime()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  // 溯源层
+  // ══════════════════════════════════════════════════════════════
+
+  /// 溯源记录 (不可变)
+  class AIProvenance extends Table {
+    @override
+    String get tableName => 't_ai_provenance';
+
+    TextColumn get uuid => text()();
+
+    // LLM 配置快照
+    TextColumn get llmProviderUuid => text()();
+    TextColumn get llmProviderSnapshot => text()();
+    TextColumn get llmModelUuid => text()();
+    TextColumn get llmModelSnapshot => text()();
+
+    // Prompt 快照 (双重保障)
+    TextColumn get systemPromptVersionUuid => text()();
+    TextColumn get systemPromptContent => text()();
+    TextColumn get systemPromptContentHash => text()();
+
+    TextColumn get fewShotPromptVersionUuid => text().nullable()();
+    TextColumn get fewShotPromptContent => text().nullable()();
+
+    // 运行时参数
+    TextColumn get runtimeParamsJson => text()();
+
+    // Persona 快照
+    TextColumn get personaUuid => text()();
+    TextColumn get personaSnapshot => text()();
+
+    DateTimeColumn get createdAt => dateTime()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  // AI 占测结果层
+  // ══════════════════════════════════════════════════════════════
+
+  /// AI 占测结果
+  class AIDivinations extends Table {
+    @override
+    String get tableName => 't_ai_divinations';
+
+    TextColumn get uuid => text()();
+
+    // 📌 核心关联 (双索引)
+    TextColumn get divinationUuid => text()();   // 来自 common.t_divinations
+    TextColumn get personaUuid => text()();      // → t_ai_personas
+
+    // 关联的对话
+    TextColumn get chatSessionUuid => text()();  // → t_ai_chat_sessions
+
+    // AI 生成内容
+    TextColumn get question => text().nullable()();
+    TextColumn get tinyPredict => text().nullable()();
+    TextColumn get directReading => text().nullable()();
+    TextColumn get summary => text().nullable()();
+    TextColumn get keyPointsJson => text().nullable()();
+
+    // 溯源
+    TextColumn get provenanceUuid => text()();   // → t_ai_provenance
+
+    // 质量评估
+    RealColumn get confidenceScore => real().nullable()();
+    IntColumn get userRating => integer().nullable()();
+    BoolColumn get wasAccurate => boolean().nullable()();
+    TextColumn get userFeedback => text().nullable()();
+
+    DateTimeColumn get createdAt => dateTime()();
+    DateTimeColumn get updatedAt => dateTime().nullable()();
+    DateTimeColumn get deletedAt => dateTime().nullable()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+
+    @override
+    List<Index> get indexes => [
+      Index('idx_ai_div_divination',
+        'CREATE INDEX idx_ai_div_divination ON t_ai_divinations 
+  (divination_uuid)'),
+      Index('idx_ai_div_persona',
+        'CREATE INDEX idx_ai_div_persona ON t_ai_divinations (persona_uuid)'),
+    ];
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  // Agent 调用层
+  // ══════════════════════════════════════════════════════════════
+
+  /// Agent 调用记录
+  class AgentInvocations extends Table {
+    @override
+    String get tableName => 't_agent_invocations';
+
+    TextColumn get uuid => text()();
+    TextColumn get rootRequestId => text()();    // 调用链根ID
+    TextColumn get parentUuid => text().nullable()();  // 父调用
+    IntColumn get depth => integer()();          // 调用深度
+
+    // 调用方
+    TextColumn get fromPersonaUuid => text()();
+    TextColumn get fromSkillId => text()();
+    TextColumn get fromChatSessionUuid => text()();
+
+    // 被调用方
+    TextColumn get toPersonaUuid => text()();
+    TextColumn get toSkillId => text()();
+    TextColumn get toChatSessionUuid => text().nullable()();  // 
+  被调用方创建的会话
+
+    // 调用信息
+    TextColumn get purpose => text()();
+    TextColumn get instruction => text()();
+    TextColumn get sharedContextJson => text().nullable()();
+
+    // 响应
+    TextColumn get status => text()();           // pending, success, error, 
+  timeout
+    TextColumn get responseJson => text().nullable()();
+    TextColumn get errorMessage => text().nullable()();
+
+    // 时间
+    DateTimeColumn get requestedAt => dateTime()();
+    DateTimeColumn get respondedAt => dateTime().nullable()();
+    IntColumn get latencyMs => integer().nullable()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+
+    @override
+    List<Index> get indexes => [
+      Index('idx_invocations_root',
+        'CREATE INDEX idx_invocations_root ON t_agent_invocations 
+  (root_request_id)'),
+    ];
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  // 审计层
+  // ══════════════════════════════════════════════════════════════
+
+  /// 使用审计
+  class AIUsageAudits extends Table {
+    @override
+    String get tableName => 't_ai_usage_audits';
+
+    TextColumn get uuid => text()();
+    TextColumn get personaUuid => text()();
+    TextColumn get skillId => text()();
+    TextColumn get promptVersionUuid => text()();
+
+    DateTimeColumn get usedAt => dateTime()();
+
+    // 效果评估
+    IntColumn get userRating => integer().nullable()();
+    BoolColumn get wasHelpful => boolean().nullable()();
+    BoolColumn get wasAccurate => boolean().nullable()();
+    TextColumn get feedbackText => text().nullable()();
+
+    @override
+    Set<Column> get primaryKey => {uuid};
+
+    @override
+    List<Index> get indexes => [
+      Index('idx_audits_persona_skill',
+        'CREATE INDEX idx_audits_persona_skill ON t_ai_usage_audits 
+  (persona_uuid, skill_id)'),
+    ];
+  }
+
+  数据库关系图
+
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                          ai_core 数据库                              │
+  ├─────────────────────────────────────────────────────────────────────┤
+  │                                                                     │
+  │  ┌──────────────┐    ┌──────────────┐                              │
+  │  │ LLMProviders │───▶│  LLMModels   │                              │
+  │  └──────────────┘    └──────┬───────┘                              │
+  │                             │                                       │
+  │  ┌──────────────┐    ┌──────▼───────┐    ┌─────────────────┐       │
+  │  │PromptTemplates│◀──│  AIPersonas  │───▶│PromptVersions   │       │
+  │  └───────┬──────┘    └──────┬───────┘    └────────┬────────┘       │
+  │          │                  │                     │                 │
+  │          ▼                  ▼                     │                 │
+  │  ┌──────────────┐    ┌──────────────┐            │                 │
+  │  │PromptSkill   │    │AIChatSessions│────────────┘                 │
+  │  │  Bindings    │    └──────┬───────┘                              │
+  │  └──────────────┘           │                                       │
+  │                             ▼                                       │
+  │                      ┌──────────────┐    ┌──────────────┐          │
+  │                      │AIChatMessages│───▶│  AIApiCalls  │          │
+  │                      └──────────────┘    └──────┬───────┘          │
+  │                                                 │                   │
+  │                                                 ▼                   │
+  │  ┌──────────────┐                       ┌──────────────┐           │
+  │  │AIDivinations │◀──────────────────────│ AIProvenance │           │
+  │  └──────┬───────┘                       └──────────────┘           │
+  │         │                                                          │
+  │         │        ┌──────────────┐    ┌──────────────┐              │
+  │         └───────▶│AgentInvocations│   │AIUsageAudits│              │
+  │                  └──────────────┘    └──────────────┘              │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+             │
+             │ 跨模块引用 (UUID 关联)
+             ▼
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                        common 数据库                                 │
+  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐              │
+  │  │ Divinations  │  │   Skills     │  │    Panels    │              │
+  │  └──────────────┘  └──────────────┘  └──────────────┘              │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  ---
+  您对这个完整的存储架构有什么看法？是否需要调整或补充？
+
+✻ Cogitated for 1m 56s
+
+❯ ai 配套的"chat window" 中 history如何得到完成的保存 
+
+⏺ 这是一个关键的实现细节。让我详细设计 Chat Window 的历史保存机制：
+
+  ---
+  完整的对话保存流程
+
+  1. 对话生命周期
+
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │                     Chat Window 生命周期                             │
+  ├─────────────────────────────────────────────────────────────────────┤
+  │                                                                     │
+  │  ① 打开对话框                                                        │
+  │     ├─ 新会话: 创建 AIChatSession                                    │
+  │     └─ 恢复会话: 加载历史 AIChatMessages                             │
+  │                                                                     │
+  │  ② 用户发送消息                                                      │
+  │     ├─ 立即保存 user message → t_ai_chat_messages                   │
+  │     └─ 触发 AI 调用                                                  │
+  │                                                                     │
+  │  ③ AI 响应 (流式)                                                    │
+  │     ├─ 创建占位 assistant message (content = null)                  │
+  │     ├─ 流式接收，实时更新 UI (不保存中间态)                           │
+  │     └─ 流结束，保存完整 assistant message                            │
+  │                                                                     │
+  │  ④ Tool 调用 (如有)                                                  │
+  │     ├─ 保存 assistant message (含 tool_calls)                       │
+  │     ├─ 执行 tool，保存 tool message (含 results)                    │
+  │     └─ 继续 AI 响应                                                  │
+  │                                                                     │
+  │  ⑤ 关闭对话框                                                        │
+  │     └─ 更新 session.lastActiveAt                                    │
+  │                                                                     │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  2. 消息保存服务
+
+  /// 对话持久化服务
+  class ChatPersistenceService {
+    final AIChatSessionsDao _sessionDao;
+    final AIChatMessagesDao _messageDao;
+    final AIApiCallsDao _apiCallDao;
+    final ProvenanceService _provenanceService;
+
+    // ═══════════════════════════════════════════════════════════
+    // 会话管理
+    // ═══════════════════════════════════════════════════════════
+
+    /// 创建新会话
+    Future<AIChatSession> createSession({
+      required String personaUuid,
+      required String systemPromptContent,
+      required String systemPromptVersionUuid,
+      String? divinationUuid,
+      String? panUuid,
+      String? skillId,
+    }) async {
+      final session = AIChatSession(
+        uuid: _uuid.v4(),
+        personaUuid: personaUuid,
+        divinationUuid: divinationUuid,
+        panUuid: panUuid,
+        skillId: skillId,
+        systemPromptSnapshot: systemPromptContent,
+        systemPromptVersionUuid: systemPromptVersionUuid,
+        messageCount: 0,
+        totalTokensUsed: 0,
+        createdAt: DateTime.now(),
+        lastActiveAt: DateTime.now(),
+      );
+
+      await _sessionDao.insert(session);
+      return session;
+    }
+
+    /// 恢复会话 (加载完整历史)
+    Future<ChatSessionWithHistory> loadSession(String sessionUuid) async {
+      final session = await _sessionDao.get(sessionUuid);
+      final messages = await _messageDao.getBySession(
+        sessionUuid,
+        orderBy: 'sequence_number ASC',
+      );
+
+      return ChatSessionWithHistory(
+        session: session,
+        messages: messages,
+      );
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // 消息保存
+    // ═══════════════════════════════════════════════════════════
+
+    /// 保存用户消息 (立即持久化)
+    Future<AIChatMessage> saveUserMessage({
+      required String sessionUuid,
+      required String content,
+    }) async {
+      final nextSeq = await _getNextSequenceNumber(sessionUuid);
+
+      final message = AIChatMessage(
+        uuid: _uuid.v4(),
+        sessionUuid: sessionUuid,
+        sequenceNumber: nextSeq,
+        role: 'user',
+        content: content,
+        createdAt: DateTime.now(),
+      );
+
+      await _messageDao.insert(message);
+      await _updateSessionStats(sessionUuid);
+
+      return message;
+    }
+
+    /// 保存 AI 响应 (流式完成后调用)
+    Future<AIChatMessage> saveAssistantMessage({
+      required String sessionUuid,
+      required String content,
+      String? toolCallsJson,
+      required String apiCallUuid,
+    }) async {
+      final nextSeq = await _getNextSequenceNumber(sessionUuid);
+
+      final message = AIChatMessage(
+        uuid: _uuid.v4(),
+        sessionUuid: sessionUuid,
+        sequenceNumber: nextSeq,
+        role: 'assistant',
+        content: content,
+        toolCallsJson: toolCallsJson,
+        apiCallUuid: apiCallUuid,
+        createdAt: DateTime.now(),
+      );
+
+      await _messageDao.insert(message);
+      await _updateSessionStats(sessionUuid);
+
+      return message;
+    }
+
+    /// 保存 Tool 结果
+    Future<AIChatMessage> saveToolMessage({
+      required String sessionUuid,
+      required String toolName,
+      required String toolCallId,
+      required Map<String, dynamic> result,
+    }) async {
+      final nextSeq = await _getNextSequenceNumber(sessionUuid);
+
+      final message = AIChatMessage(
+        uuid: _uuid.v4(),
+        sessionUuid: sessionUuid,
+        sequenceNumber: nextSeq,
+        role: 'tool',
+        content: jsonEncode(result),
+        toolResultsJson: jsonEncode({
+          'tool_call_id': toolCallId,
+          'tool_name': toolName,
+          'result': result,
+        }),
+        createdAt: DateTime.now(),
+      );
+
+      await _messageDao.insert(message);
+      return message;
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // API 调用记录
+    // ═══════════════════════════════════════════════════════════
+
+    /// 记录 API 调用 (在调用前创建，调用后更新)
+    Future<AIApiCall> recordApiCall({
+      required String sessionUuid,
+      required List<Map<String, dynamic>> messages,
+      required AIProvenance provenance,
+    }) async {
+      final messagesJson = jsonEncode(messages);
+
+      final apiCall = AIApiCall(
+        uuid: _uuid.v4(),
+        sessionUuid: sessionUuid,
+        messagesSnapshot: messagesJson,
+        messagesHash: _sha256(messagesJson),
+        provenanceUuid: provenance.uuid,
+        calledAt: DateTime.now(),
+      );
+
+      await _apiCallDao.insert(apiCall);
+      return apiCall;
+    }
+
+    /// 更新 API 调用结果
+    Future<void> updateApiCallResult({
+      required String apiCallUuid,
+      required String responseContent,
+      String? responseToolCalls,
+      required int inputTokens,
+      required int outputTokens,
+      required int latencyMs,
+      String? requestId,
+    }) async {
+      await _apiCallDao.update(apiCallUuid,
+        responseContent: responseContent,
+        responseToolCalls: responseToolCalls,
+        inputTokens: inputTokens,
+        outputTokens: outputTokens,
+        latencyMs: latencyMs,
+        requestId: requestId,
+      );
+
+      // 更新 session 统计
+      final apiCall = await _apiCallDao.get(apiCallUuid);
+      await _sessionDao.incrementTokens(
+        apiCall.sessionUuid,
+        inputTokens + outputTokens,
+      );
+    }
+  }
+
+  3. Chat ViewModel 集成
+
+  /// Chat Window ViewModel
+  class AIChatViewModel extends ChangeNotifier {
+    final ChatPersistenceService _persistence;
+    final AIProviderRepository _aiProvider;
+    final ToolRegistry _toolRegistry;
+    final ProvenanceService _provenanceService;
+
+    AIChatSession? _session;
+    List<ChatMessageUI> _messages = [];
+    bool _isLoading = false;
+    String? _streamingContent;  // 流式响应的临时内容
+
+    List<ChatMessageUI> get messages => _messages;
+    bool get isLoading => _isLoading;
+    String? get streamingContent => _streamingContent;
+
+    // ═══════════════════════════════════════════════════════════
+    // 初始化
+    // ═══════════════════════════════════════════════════════════
+
+    /// 打开新对话
+    Future<void> startNewSession({
+      required AIPersona persona,
+      String? divinationUuid,
+      String? panUuid,
+    }) async {
+      // 获取 prompt 版本
+      final promptVersion = await _promptRepo.getCurrentVersion(
+        persona.systemPromptUuid,
+      );
+
+      _session = await _persistence.createSession(
+        personaUuid: persona.uuid,
+        systemPromptContent: promptVersion.content,
+        systemPromptVersionUuid: promptVersion.uuid,
+        divinationUuid: divinationUuid,
+        panUuid: panUuid,
+        skillId: persona.skillBindings.first,
+      );
+
+      _messages = [];
+      notifyListeners();
+    }
+
+    /// 恢复历史对话
+    Future<void> resumeSession(String sessionUuid) async {
+      final history = await _persistence.loadSession(sessionUuid);
+
+      _session = history.session;
+      _messages = history.messages.map(_toUIMessage).toList();
+
+      notifyListeners();
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // 发送消息
+    // ═══════════════════════════════════════════════════════════
+
+    Future<void> sendMessage(String content) async {
+      if (_session == null || content.trim().isEmpty) return;
+
+      _isLoading = true;
+      notifyListeners();
+
+      try {
+        // 1️⃣ 立即保存并显示用户消息
+        final userMessage = await _persistence.saveUserMessage(
+          sessionUuid: _session!.uuid,
+          content: content,
+        );
+        _messages.add(_toUIMessage(userMessage));
+        notifyListeners();
+
+        // 2️⃣ 构建 API 调用上下文
+        final apiMessages = _buildApiMessages();
+
+        // 3️⃣ 创建溯源记录
+        final provenance = await _provenanceService.createProvenance(
+          // ... 参数
+        );
+
+        // 4️⃣ 记录 API 调用
+        final apiCall = await _persistence.recordApiCall(
+          sessionUuid: _session!.uuid,
+          messages: apiMessages,
+          provenance: provenance,
+        );
+
+        // 5️⃣ 调用 AI (流式)
+        await _streamAIResponse(apiMessages, apiCall);
+
+      } catch (e) {
+        _handleError(e);
+      } finally {
+        _isLoading = false;
+        _streamingContent = null;
+        notifyListeners();
+      }
+    }
+
+    /// 流式接收 AI 响应
+    Future<void> _streamAIResponse(
+      List<Map<String, dynamic>> messages,
+      AIApiCall apiCall,
+    ) async {
+      final buffer = StringBuffer();
+      List<ToolCall>? pendingToolCalls;
+      int inputTokens = 0;
+      int outputTokens = 0;
+      final stopwatch = Stopwatch()..start();
+
+      await for (final chunk in _aiProvider.chatStream(
+        config: _currentConfig,
+        messages: messages,
+        tools: _toolRegistry.getToolDefinitionsForLLM(),
+      )) {
+        // 处理文本增量
+        if (chunk.contentDelta != null) {
+          buffer.write(chunk.contentDelta);
+          _streamingContent = buffer.toString();
+          notifyListeners();  // 实时更新 UI
+        }
+
+        // 处理 tool calls
+        if (chunk.toolCall != null) {
+          pendingToolCalls ??= [];
+          pendingToolCalls.add(chunk.toolCall!);
+        }
+
+        // 处理 token 统计
+        if (chunk.usage != null) {
+          inputTokens = chunk.usage!.promptTokens;
+          outputTokens = chunk.usage!.completionTokens;
+        }
+      }
+
+      stopwatch.stop();
+
+      // 6️⃣ 流结束，保存完整 assistant 消息
+      final assistantContent = buffer.toString();
+      final assistantMessage = await _persistence.saveAssistantMessage(
+        sessionUuid: _session!.uuid,
+        content: assistantContent,
+        toolCallsJson: pendingToolCalls != null
+          ? jsonEncode(pendingToolCalls.map((t) => t.toJson()).toList())
+          : null,
+        apiCallUuid: apiCall.uuid,
+      );
+
+      _messages.add(_toUIMessage(assistantMessage));
+      _streamingContent = null;
+      notifyListeners();
+
+      // 7️⃣ 更新 API 调用结果
+      await _persistence.updateApiCallResult(
+        apiCallUuid: apiCall.uuid,
+        responseContent: assistantContent,
+        responseToolCalls: assistantMessage.toolCallsJson,
+        inputTokens: inputTokens,
+        outputTokens: outputTokens,
+        latencyMs: stopwatch.elapsedMilliseconds,
+      );
+
+      // 8️⃣ 处理 tool calls (如果有)
+      if (pendingToolCalls != null && pendingToolCalls.isNotEmpty) {
+        await _handleToolCalls(pendingToolCalls);
+      }
+    }
+
+    /// 处理 Tool 调用
+    Future<void> _handleToolCalls(List<ToolCall> toolCalls) async {
+      for (final toolCall in toolCalls) {
+        // 执行工具
+        final result = await _toolRegistry.execute(
+          toolCall.name,
+          toolCall.arguments,
+        );
+
+        // 保存 tool 消息
+        final toolMessage = await _persistence.saveToolMessage(
+          sessionUuid: _session!.uuid,
+          toolName: toolCall.name,
+          toolCallId: toolCall.id,
+          result: result.toJson(),
+        );
+
+        _messages.add(_toUIMessage(toolMessage));
+        notifyListeners();
+      }
+
+      // 继续 AI 响应 (带上 tool 结果)
+      final apiMessages = _buildApiMessages();
+      final provenance = await _provenanceService.createProvenance(/*...*/);
+      final apiCall = await _persistence.recordApiCall(
+        sessionUuid: _session!.uuid,
+        messages: apiMessages,
+        provenance: provenance,
+      );
+
+      await _streamAIResponse(apiMessages, apiCall);
+    }
+
+    /// 构建 API 消息数组
+    List<Map<String, dynamic>> _buildApiMessages() {
+      return [
+        {'role': 'system', 'content': _session!.systemPromptSnapshot},
+        ..._messages.map((m) => m.toApiMessage()),
+      ];
+    }
+  }
+
+  4. 历史记录 UI
+
+  /// 历史对话列表页面
+  class ChatHistoryPage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      return Consumer<ChatHistoryViewModel>(
+        builder: (context, vm, _) {
+          return ListView.builder(
+            itemCount: vm.sessions.length,
+            itemBuilder: (context, index) {
+              final session = vm.sessions[index];
+              return ChatSessionCard(
+                session: session,
+                onTap: () => _openSession(context, session),
+                onDelete: () => vm.deleteSession(session.uuid),
+              );
+            },
+          );
+        },
+      );
+    }
+  }
+
+  /// 对话会话卡片
+  class ChatSessionCard extends StatelessWidget {
+    final AIChatSessionSummary session;
+
+    @override
+    Widget build(BuildContext context) {
+      return Card(
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundImage: session.personaAvatar != null
+              ? AssetImage(session.personaAvatar!)
+              : null,
+            child: session.personaAvatar == null
+              ? Icon(Icons.smart_toy)
+              : null,
+          ),
+          title: Text(session.personaName),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                session.lastMessagePreview ?? '无消息',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(height: 4),
+              Row(
+                children: [
+                  Text(
+                    _formatTime(session.lastActiveAt),
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    '${session.messageCount} 条消息',
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          trailing: PopupMenuButton(
+            itemBuilder: (_) => [
+              PopupMenuItem(value: 'resume', child: Text('继续对话')),
+              PopupMenuItem(value: 'view', child: Text('查看历史')),
+              PopupMenuItem(value: 'export', child: Text('导出')),
+              PopupMenuItem(value: 'delete', child: Text('删除')),
+            ],
+            onSelected: (value) => _handleAction(value, session),
+          ),
+        ),
+      );
+    }
+  }
+
+  5. 数据库查询优化
+
+  /// 对话消息 DAO
+  class AIChatMessagesDao extends DatabaseAccessor<AIDatabase> {
+
+    /// 获取会话的所有消息 (按序号排序)
+    Future<List<AIChatMessage>> getBySession(
+      String sessionUuid, {
+      int? limit,
+      int? offset,
+    }) {
+      return (select(aiChatMessages)
+        ..where((m) => m.sessionUuid.equals(sessionUuid))
+        ..orderBy([(m) => OrderingTerm.asc(m.sequenceNumber)])
+        ..limit(limit ?? 1000, offset: offset)
+      ).get();
+    }
+
+    /// 获取最后 N 条消息 (用于上下文截断)
+    Future<List<AIChatMessage>> getLastN(String sessionUuid, int n) {
+      return (select(aiChatMessages)
+        ..where((m) => m.sessionUuid.equals(sessionUuid))
+        ..orderBy([(m) => OrderingTerm.desc(m.sequenceNumber)])
+        ..limit(n)
+      ).get().then((list) => list.reversed.toList());
+    }
+
+    /// 获取下一个序号
+    Future<int> getNextSequenceNumber(String sessionUuid) async {
+      final result = await customSelect(
+        'SELECT MAX(sequence_number) as max_seq FROM t_ai_chat_messages WHERE 
+  session_uuid = ?',
+        variables: [Variable.withString(sessionUuid)],
+      ).getSingleOrNull();
+
+      return (result?.read<int?>('max_seq') ?? 0) + 1;
+    }
+  }
+
+  /// 会话摘要 DAO  
+  class AIChatSessionsDao extends DatabaseAccessor<AIDatabase> {
+
+    /// 获取会话列表 (带摘要信息)
+    Future<List<AIChatSessionSummary>> listWithSummary({
+      String? personaUuid,
+      String? divinationUuid,
+      int limit = 20,
+      int offset = 0,
+    }) async {
+      final query = '''
+        SELECT 
+          s.*,
+          p.name as persona_name,
+          p.avatar as persona_avatar,
+          (SELECT content FROM t_ai_chat_messages 
+           WHERE session_uuid = s.uuid 
+           ORDER BY sequence_number DESC LIMIT 1) as last_message_preview
+        FROM t_ai_chat_sessions s
+        LEFT JOIN t_ai_personas p ON s.persona_uuid = p.uuid
+        WHERE s.deleted_at IS NULL
+          ${personaUuid != null ? 'AND s.persona_uuid = ?' : ''}
+          ${divinationUuid != null ? 'AND s.divination_uuid = ?' : ''}
+        ORDER BY s.last_active_at DESC
+        LIMIT ? OFFSET ?
+      ''';
+
+      final variables = <Variable>[
+        if (personaUuid != null) Variable.withString(personaUuid),
+        if (divinationUuid != null) Variable.withString(divinationUuid),
+        Variable.withInt(limit),
+        Variable.withInt(offset),
+      ];
+
+      return customSelect(query, variables: variables)
+        .map(_toSessionSummary)
+        .get();
+    }
+  }
+
+  6. 完整的消息保存时序
+
+  用户点击发送
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 1. 保存 user message                                         │
+  │    INSERT INTO t_ai_chat_messages (role='user', ...)        │
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 2. 构建完整消息数组 (从数据库读取历史)                         │
+  │    [system, user1, assistant1, user2, assistant2, ...]      │
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 3. 创建溯源记录                                               │
+  │    INSERT INTO t_ai_provenance (...)                         │
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 4. 创建 API 调用记录 (保存输入快照)                           │
+  │    INSERT INTO t_ai_api_calls (messages_snapshot, ...)      │
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 5. 调用 LLM API (流式)                                       │
+  │    ├─ 实时更新 UI (不保存)                                    │
+  │    └─ 收集完整响应                                            │
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 6. 流结束，保存 assistant message                            │
+  │    INSERT INTO t_ai_chat_messages (role='assistant', ...)   │
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 7. 更新 API 调用结果                                          │
+  │    UPDATE t_ai_api_calls SET response_content=..., tokens=...│
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼ (如果有 tool calls)
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 8. 执行工具，保存 tool message                                │
+  │    INSERT INTO t_ai_chat_messages (role='tool', ...)        │
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 9. 重复步骤 2-7 (继续 AI 响应)                                │
+  └─────────────────────────────────────────────────────────────┘
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────────┐
+  │ 10. 更新会话统计                                              │
+  │     UPDATE t_ai_chat_sessions SET message_count=...,         │
+  │            total_tokens_used=..., last_active_at=...         │
+  └─────────────────────────────────────────────────────────────┘
+
+  7. 导出与恢复
+
+  /// 对话导出服务
+  class ChatExportService {
+
+    /// 导出完整对话 (含溯源信息)
+    Future<ChatExportData> exportSession(String sessionUuid) async {
+      final session = await _sessionDao.get(sessionUuid);
+      final messages = await _messageDao.getBySession(sessionUuid);
+      final apiCalls = await _apiCallDao.getBySession(sessionUuid);
+      final provenances = await _provenanceDao.getByIds(
+        apiCalls.map((c) => c.provenanceUuid).toList(),
+      );
+
+      return ChatExportData(
+        exportVersion: '1.0',
+        exportedAt: DateTime.now(),
+        session: session.toJson(),
+        messages: messages.map((m) => m.toJson()).toList(),
+        apiCalls: apiCalls.map((c) => c.toJson()).toList(),
+        provenances: provenances.map((p) => p.toJson()).toList(),
+      );
+    }
+
+    /// 导出为 Markdown (人类可读)
+    Future<String> exportAsMarkdown(String sessionUuid) async {
+      final session = await _sessionDao.get(sessionUuid);
+      final messages = await _messageDao.getBySession(sessionUuid);
+      final persona = await _personaDao.get(session.personaUuid);
+
+      final buffer = StringBuffer();
+      buffer.writeln('# AI 对话记录');
+      buffer.writeln();
+      buffer.writeln('**AI 人设**: ${persona.name} (${persona.title})');
+      buffer.writeln('**创建时间**: ${session.createdAt}');
+      buffer.writeln('**消息数量**: ${session.messageCount}');
+      buffer.writeln();
+      buffer.writeln('---');
+      buffer.writeln();
+
+      for (final message in messages) {
+        final roleLabel = switch (message.role) {
+          'user' => '👤 用户',
+          'assistant' => '🤖 ${persona.name}',
+          'tool' => '🔧 工具调用',
+          _ => message.role,
+        };
+
+        buffer.writeln('### $roleLabel');
+        buffer.writeln();
+        buffer.writeln(message.content ?? '');
+        buffer.writeln();
+      }
+
+      return buffer.toString();
+    }
+  }
+
+  ---
+  关键保存点总结：
+  ┌──────────────┬───────────────────┬─────────────────────────────┐
+  │     时机     │     保存内容      │             表              │
+  ├──────────────┼───────────────────┼─────────────────────────────┤
+  │ 用户发送消息 │ user message      │ t_ai_chat_messages          │
+  ├──────────────┼───────────────────┼─────────────────────────────┤
+  │ API 调用前   │ 完整上下文快照    │ t_ai_api_calls              │
+  ├──────────────┼───────────────────┼─────────────────────────────┤
+  │ API 调用前   │ 溯源记录          │ t_ai_provenance             │
+  ├──────────────┼───────────────────┼─────────────────────────────┤
+  │ 流式响应结束 │ assistant message │ t_ai_chat_messages          │
+  ├──────────────┼───────────────────┼─────────────────────────────┤
+  │ 流式响应结束 │ API 调用结果      │ t_ai_api_calls (update)     │
+  ├──────────────┼───────────────────┼─────────────────────────────┤
+  │ 执行工具后   │ tool message      │ t_ai_chat_messages          │
+  ├──────────────┼───────────────────┼─────────────────────────────┤
+  │ 每次消息后   │ 会话统计          │ t_ai_chat_sessions (update) │
+  └──────────────┴───────────────────┴─────────────────────────────┘
+  这样即使应用崩溃或中途关闭，也能完整恢复到最后保存的状态。您对这个保存机制有什
+  么问题或建议吗？
+
+✻ Cooked for 1m 34s
+
+❯ 很好,请刚才所有讨论的内容,调用对应agent,生成 PRDs.md以及 PLAN.md          
+  和TASKS.md 保存 根目录docs/ai 中                                          
+
+⏺ 好的，我先更新计划文件汇总所有讨论内容，然后退出计划模式来生成这些文档。
+
+⏺ Updated plan
+  ⎿  /plan to preview
+
+⏺ 计划已更新完成。现在退出计划模式以生成文档。
+  ⎿  Tool use rejected with user message: 
+     保存之前所有的聊天记录(docs/ai/chat_history.md),之后输出
+
+⏺ 好的，我需要先退出计划模式才能保存文件。
+  ⎿  Tool use rejected with user message: /export
+
+⏺ Skill(export)
+  ⎿  Initializing…
+  ⎿  Error: Skill export is not a prompt-based skill
+  ⎿  Interrupted · What should Claude do instead?

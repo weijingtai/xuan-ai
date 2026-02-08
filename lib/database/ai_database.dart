@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 
 import 'tables/tables.dart';
 import 'connection.dart' as impl;
@@ -69,32 +70,32 @@ part 'ai_database.g.dart';
 )
 class AiDatabase extends _$AiDatabase {
   AiDatabase([QueryExecutor? e])
-      : super(
-          e ??
-              driftDatabase(
-                name: 'ai_database',
-                native: const DriftNativeOptions(
-                  databaseDirectory: getApplicationSupportDirectory,
-                ),
-                web: DriftWebOptions(
-                  sqlite3Wasm: Uri.parse('sqlite3.wasm'),
-                  driftWorker: Uri.parse('drift_worker.js'),
-                  onResult: (result) {
-                    if (result.missingFeatures.isNotEmpty) {
-                      if (kDebugMode) {
-                        debugPrint(
-                          'Using ${result.chosenImplementation} due to unsupported '
-                          'browser features: ${result.missingFeatures}',
-                        );
-                      }
-                    }
-                  },
-                ),
+    : super(
+        e ??
+            driftDatabase(
+              name: 'ai_database',
+              native: const DriftNativeOptions(
+                databaseDirectory: getApplicationSupportDirectory,
               ),
-        );
+              web: DriftWebOptions(
+                sqlite3Wasm: Uri.parse('sqlite3.wasm'),
+                driftWorker: Uri.parse('drift_worker.js'),
+                onResult: (result) {
+                  if (result.missingFeatures.isNotEmpty) {
+                    if (kDebugMode) {
+                      debugPrint(
+                        'Using ${result.chosenImplementation} due to unsupported '
+                        'browser features: ${result.missingFeatures}',
+                      );
+                    }
+                  }
+                },
+              ),
+            ),
+      );
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration {
@@ -104,38 +105,76 @@ class AiDatabase extends _$AiDatabase {
         await _seedDefaultData();
       },
       onUpgrade: (Migrator m, int from, int to) async {
-        // Future migrations will be handled here
+        if (from < 3) {
+          // Schema v3: remove providerType column from LlmProviders
+          // Drop all and recreate for clean state
+          final allTables = m.database.allTables.toList().reversed;
+          for (final table in allTables) {
+            await m.deleteTable(table.actualTableName);
+          }
+          await m.createAll();
+          await _seedDefaultData();
+        }
       },
       beforeOpen: (details) async {
-        // Validate schema in debug mode
         await impl.validateDatabaseSchema(this);
+
+        // Re-seed if default data is missing (e.g., previous seed failed)
+        if (details.wasCreated || details.hadUpgrade) return;
+        final defaultPersona =
+            await (select(aiPersonas)
+                  ..where((t) => t.isDefault.equals(true))
+                  ..limit(1))
+                .getSingleOrNull();
+        if (defaultPersona == null) {
+          await _seedDefaultData();
+        }
       },
     );
   }
 
   /// Seed default data on first run
   Future<void> _seedDefaultData() async {
-    // Seed a default OpenAI-compatible provider
-    final defaultProviderUuid = 'default-openai-compatible';
+    const uuidGen = Uuid();
+
+    // Seed DeepSeek Provider (Default)
+    final deepSeekProviderUuid = uuidGen.v5(
+      Namespace.url.value,
+      'deepseek-provider',
+    );
     await into(llmProviders).insert(
       LlmProvidersCompanion.insert(
-        uuid: defaultProviderUuid,
-        name: 'OpenAI Compatible',
-        providerType: 'openai_compatible',
-        baseUrl: 'https://api.openai.com/v1',
+        uuid: deepSeekProviderUuid,
+        name: 'DeepSeek',
+        baseUrl: 'https://api.deepseek.com',
         isDefault: const Value(true),
         createdAt: DateTime.now(),
       ),
     );
 
-    // Seed a default model
-    final defaultModelUuid = 'default-gpt-4';
+    // Seed NVIDIA Provider
+    final nvidiaProviderUuid = uuidGen.v5(
+      Namespace.url.value,
+      'nvidia-provider',
+    );
+    await into(llmProviders).insert(
+      LlmProvidersCompanion.insert(
+        uuid: nvidiaProviderUuid,
+        name: 'NVIDIA NIM',
+        baseUrl: 'https://integrate.api.nvidia.com/v1',
+        isDefault: const Value(false),
+        createdAt: DateTime.now(),
+      ),
+    );
+
+    // Seed DeepSeek Model (Default)
+    final deepSeekModelUuid = uuidGen.v5(Namespace.url.value, 'deepseek-chat');
     await into(llmModels).insert(
       LlmModelsCompanion.insert(
-        uuid: defaultModelUuid,
-        providerUuid: defaultProviderUuid,
-        modelId: 'gpt-4',
-        displayName: 'GPT-4',
+        uuid: deepSeekModelUuid,
+        providerUuid: deepSeekProviderUuid,
+        modelId: 'deepseek-chat',
+        displayName: 'DeepSeek V3',
         modelType: 'chat',
         isDefault: const Value(true),
         supportsFunctionCalling: const Value(true),
@@ -143,8 +182,26 @@ class AiDatabase extends _$AiDatabase {
       ),
     );
 
+    // Seed NVIDIA Model
+    final nvidiaModelUuid = uuidGen.v5(Namespace.url.value, 'nvidia-llama3');
+    await into(llmModels).insert(
+      LlmModelsCompanion.insert(
+        uuid: nvidiaModelUuid,
+        providerUuid: nvidiaProviderUuid,
+        modelId: 'meta/llama3-70b-instruct',
+        displayName: 'Llama 3 70B (NVIDIA)',
+        modelType: 'chat',
+        isDefault: const Value(false),
+        supportsFunctionCalling: const Value(true),
+        createdAt: DateTime.now(),
+      ),
+    );
+
     // Seed a default system prompt template
-    final systemPromptUuid = 'default-divination-system-prompt';
+    final systemPromptUuid = uuidGen.v5(
+      Namespace.url.value,
+      'default-divination-system-prompt',
+    );
     await into(promptTemplates).insert(
       PromptTemplatesCompanion.insert(
         uuid: systemPromptUuid,
@@ -173,12 +230,16 @@ class AiDatabase extends _$AiDatabase {
     );
 
     // Seed a default AI persona
+    final defaultPersonaUuid = uuidGen.v5(
+      Namespace.url.value,
+      'default-master',
+    );
     await into(aiPersonas).insert(
       AiPersonasCompanion.insert(
-        uuid: 'default-master',
+        uuid: defaultPersonaUuid,
         name: '玄机子',
-        description: '一位和蔼可亲、学识渊博的占测大师，擅长将深奥的玄学知识用通俗易懂的方式讲解。',
-        modelUuid: defaultModelUuid,
+        description: const Value('一位和蔼可亲、学识渊博的占测大师，擅长将深奥的玄学知识用通俗易懂的方式讲解。'),
+        modelUuid: deepSeekModelUuid,
         systemPromptUuid: Value(systemPromptUuid),
         isDefault: const Value(true),
         createdAt: DateTime.now(),

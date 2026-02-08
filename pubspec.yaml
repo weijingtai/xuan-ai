@@ -4,7 +4,7 @@ version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=3.2.3 <4.0.0'
+  sdk: '>=3.8.0 <4.0.0'
   flutter: ">=3.0.0"
 
 dependencies:
@@ -17,7 +17,6 @@ dependencies:
   intl: ^0.20.2
   equatable: ^2.0.8
   json_annotation: ^4.10.0
-  json_serializable: ^6.12.0
   crypto: ^3.0.6
 
   # State management
@@ -33,7 +32,12 @@ dependencies:
 
   # Shared module
   common:
-    path: ../common
+    path: ../xuan-common
+
+  # AI Toolkit
+  flutter_ai_toolkit: ^0.6.8 # Updated constraint per pub output
+  flutter_ai_providers: ^0.1.0
+  google_generative_ai: ^0.4.0
 
 dev_dependencies:
   flutter_test:
@@ -42,6 +46,9 @@ dev_dependencies:
   build_runner: ^2.10.5
   drift_dev: ^2.30.1
   json_serializable: ^6.12.0
+
+dependency_overrides:
+  google_fonts: ^6.2.1
 
 flutter:
   uses-material-design: true

@@ -105,6 +105,6 @@ class AiApiCallsDao extends DatabaseAccessor<AiDatabase>
           ..where((t) => t.status.equals('success')))
         .get();
 
-    return calls.fold(0, (sum, call) => sum + (call.totalTokens ?? 0));
+    return calls.fold<int>(0, (sum, call) => sum + (call.totalTokens ?? 0));
   }
 }

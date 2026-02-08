@@ -1,6 +1,10 @@
 import 'dart:async';
 import '../../models/tool_call.dart';
-import 'tool_registry.dart';
+import 'tool_registry.dart' show ToolRegistry;
+
+/// Type alias for middleware handler function
+typedef MiddlewareHandler = Future<ToolCallResult> Function(
+    Map<String, dynamic> arguments);
 
 /// Tool executor with middleware support
 class ToolExecutor {
@@ -21,14 +25,14 @@ class ToolExecutor {
     Map<String, dynamic>? context,
   }) async {
     // Build middleware chain
-    ToolHandler handler = (args) => _registry.executeTool(name, args);
+    MiddlewareHandler handler = (args) => _registry.executeTool(name, args);
 
     for (final middleware in _middleware.reversed) {
       final next = handler;
       handler = (args) => middleware.handle(name, args, context, next);
     }
 
-    return await handler(arguments) as ToolCallResult;
+    return await handler(arguments);
   }
 
   /// Execute with confirmation requirement
@@ -71,13 +75,9 @@ abstract class ToolMiddleware {
     String toolName,
     Map<String, dynamic> arguments,
     Map<String, dynamic>? context,
-    ToolHandler next,
+    MiddlewareHandler next,
   );
 }
-
-/// Type alias
-typedef ToolHandler = Future<ToolCallResult> Function(
-    Map<String, dynamic> arguments);
 
 /// Logging middleware
 class LoggingMiddleware implements ToolMiddleware {
@@ -90,7 +90,7 @@ class LoggingMiddleware implements ToolMiddleware {
     String toolName,
     Map<String, dynamic> arguments,
     Map<String, dynamic>? context,
-    ToolHandler next,
+    MiddlewareHandler next,
   ) async {
     final startTime = DateTime.now();
     onLog?.call('Executing tool: $toolName with args: $arguments');
@@ -116,7 +116,7 @@ class ValidationMiddleware implements ToolMiddleware {
     String toolName,
     Map<String, dynamic> arguments,
     Map<String, dynamic>? context,
-    ToolHandler next,
+    MiddlewareHandler next,
   ) async {
     final definition = registry.getToolDefinition(toolName);
     if (definition == null) {
@@ -160,7 +160,7 @@ class RateLimitMiddleware implements ToolMiddleware {
     String toolName,
     Map<String, dynamic> arguments,
     Map<String, dynamic>? context,
-    ToolHandler next,
+    MiddlewareHandler next,
   ) async {
     final now = DateTime.now();
     final oneMinuteAgo = now.subtract(const Duration(minutes: 1));

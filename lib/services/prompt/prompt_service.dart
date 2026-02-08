@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:crypto/crypto.dart';
+import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../database/ai_database.dart';
@@ -94,7 +94,12 @@ class PromptService {
       throw Exception('Template not found: $templateUuid');
     }
 
-    return substituteVariables(template.content, variables);
+    return substituteTemplateVariables(template.content, variables);
+  }
+
+  /// Substitute variables in a template string
+  String substituteVariables(String template, Map<String, dynamic> variables) {
+    return substituteTemplateVariables(template, variables);
   }
 
   /// Get prompt for a skill
@@ -122,7 +127,7 @@ class PromptService {
 }
 
 /// Substitute variables in template content
-String substituteVariables(String template, Map<String, dynamic> variables) {
+String substituteTemplateVariables(String template, Map<String, dynamic> variables) {
   String result = template;
 
   // Replace {{variable}} patterns

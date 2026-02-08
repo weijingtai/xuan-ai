@@ -1,0 +1,23 @@
+name: ai_core_example
+description: Example app demonstrating the ai_core package.
+
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.8.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  ai_core:
+    path: ../
+
+  provider: ^6.1.5+1
+  shared_preferences: ^2.5.4
+
+flutter:
+  uses-material-design: true
+
+dependency_overrides:
+  google_fonts: ^6.2.1

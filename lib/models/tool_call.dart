@@ -12,6 +12,7 @@ class ToolCallResult extends Equatable {
   final dynamic result;
   final String? error;
   final bool isSuccess;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final Duration? executionTime;
 
   const ToolCallResult({

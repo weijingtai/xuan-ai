@@ -1,0 +1,9 @@
+{
+  "name": "AI Core Example",
+  "short_name": "AiCore",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0175C2",
+  "theme_color": "#0175C2",
+  "description": "Example app for ai_core package"
+}
