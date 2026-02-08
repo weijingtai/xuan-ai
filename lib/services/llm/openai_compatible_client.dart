@@ -6,40 +6,55 @@ import 'package:logger/logger.dart';
 import '../../models/llm_request_model.dart';
 import '../../models/llm_response_model.dart';
 import 'llm_client.dart';
+import 'protocol_adapter.dart';
+import 'adapters/openai_adapter.dart';
 
-/// OpenAI-compatible LLM client implementation
+/// LLM client that delegates all protocol-specific logic to a
+/// [ProtocolAdapter], keeping HTTP and SSE plumbing in one place.
+///
+/// When no adapter is provided the [OpenAIAdapter] is used, which
+/// passes requests and responses through unchanged — preserving
+/// full backwards compatibility.
 class OpenAICompatibleClient implements LlmClient {
   final LlmClientConfig config;
+  final ProtocolAdapter adapter;
   final Dio _dio;
   final Logger _logger = Logger();
 
-  OpenAICompatibleClient({required this.config})
-      : _dio = Dio(BaseOptions(
+  OpenAICompatibleClient({
+    required this.config,
+    ProtocolAdapter? adapter,
+  })  : adapter = adapter ?? OpenAIAdapter(),
+        _dio = Dio(BaseOptions(
           baseUrl: config.baseUrl,
           connectTimeout: config.timeout,
           receiveTimeout: config.timeout,
           headers: {
             'Content-Type': 'application/json',
-            if (config.apiKey != null)
-              'Authorization': 'Bearer ${config.apiKey}',
             ...?config.headers,
           },
-        ));
+          queryParameters: (adapter ?? OpenAIAdapter()).buildQueryParams(config),
+        )) {
+    // Apply adapter-specific auth headers
+    _dio.options.headers.addAll(this.adapter.buildHeaders(config));
+  }
 
   @override
   Future<LlmResponseModel> chatCompletion(LlmRequestModel request) async {
     try {
-      final requestBody = request.toJson();
-      // Ensure stream is false for non-streaming requests
-      requestBody['stream'] = false;
+      final canonicalJson = request.toJson();
+      canonicalJson['stream'] = false;
 
-      final response = await _dio.post(
-        '/chat/completions',
-        data: requestBody,
-      );
+      final wireRequest = adapter.transformRequest(canonicalJson);
+      final endpoint =
+          adapter.resolveEndpoint(adapter.chatEndpoint, canonicalJson);
+
+      final response = await _dio.post(endpoint, data: wireRequest);
 
       if (response.statusCode == 200) {
-        return LlmResponseModel.fromJson(response.data);
+        final wireResponse = response.data as Map<String, dynamic>;
+        final canonicalResponse = adapter.transformResponse(wireResponse);
+        return LlmResponseModel.fromJson(canonicalResponse);
       } else {
         throw LlmException(
           'API request failed with status ${response.statusCode}',
@@ -59,17 +74,20 @@ class OpenAICompatibleClient implements LlmClient {
   }
 
   @override
-  Stream<StreamChunkModel> streamChatCompletion(LlmRequestModel request) async* {
+  Stream<StreamChunkModel> streamChatCompletion(
+      LlmRequestModel request) async* {
     try {
-      final requestBody = request.toJson();
-      requestBody['stream'] = true;
+      final canonicalJson = request.toJson();
+      canonicalJson['stream'] = true;
+
+      final wireRequest = adapter.transformRequest(canonicalJson);
+      final endpoint =
+          adapter.resolveEndpoint(adapter.streamEndpoint, canonicalJson);
 
       final response = await _dio.post<ResponseBody>(
-        '/chat/completions',
-        data: requestBody,
-        options: Options(
-          responseType: ResponseType.stream,
-        ),
+        endpoint,
+        data: wireRequest,
+        options: Options(responseType: ResponseType.stream),
       );
 
       if (response.statusCode != 200) {
@@ -80,30 +98,27 @@ class OpenAICompatibleClient implements LlmClient {
       }
 
       final stream = response.data!.stream;
-      String buffer = '';
+      var buffer = '';
 
       await for (final chunk in stream) {
         buffer += utf8.decode(chunk);
 
-        // Process SSE lines
         while (buffer.contains('\n')) {
           final lineEnd = buffer.indexOf('\n');
           final line = buffer.substring(0, lineEnd).trim();
           buffer = buffer.substring(lineEnd + 1);
 
           if (line.isEmpty) continue;
-          if (line.startsWith('data: ')) {
-            final data = line.substring(6);
-            if (data == '[DONE]') {
-              return;
-            }
 
-            try {
-              final json = jsonDecode(data);
-              yield StreamChunkModel.fromJson(json);
-            } catch (e) {
-              _logger.w('Failed to parse SSE chunk: $data', error: e);
+          try {
+            final parsed = adapter.parseStreamLine(line);
+            if (parsed != null) {
+              yield StreamChunkModel.fromJson(parsed);
             }
+          } on StreamDoneSignal {
+            return;
+          } catch (e) {
+            _logger.w('Failed to parse SSE chunk: $line', error: e);
           }
         }
       }
@@ -130,11 +145,16 @@ class OpenAICompatibleClient implements LlmClient {
 
   @override
   Future<List<String>> listModels() async {
+    final endpoint = adapter.modelsEndpoint;
+    if (endpoint == null) {
+      throw LlmException('This provider does not support listing models');
+    }
+
     try {
-      final response = await _dio.get('/models');
+      final response = await _dio.get(endpoint);
       if (response.statusCode == 200) {
-        final data = response.data['data'] as List;
-        return data.map((m) => m['id'] as String).toList();
+        return adapter
+            .parseModelsResponse(response.data as Map<String, dynamic>);
       }
       return [];
     } on DioException catch (e) {

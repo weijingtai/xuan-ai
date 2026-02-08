@@ -5,6 +5,10 @@ library services;
 export 'llm/llm_client.dart';
 export 'llm/openai_compatible_client.dart';
 export 'llm/llm_service.dart';
+export 'llm/protocol_adapter.dart';
+export 'llm/adapters/openai_adapter.dart';
+export 'llm/adapters/anthropic_adapter.dart';
+export 'llm/adapters/gemini_adapter.dart';
 
 // Prompt Services
 export 'prompt/prompt_service.dart';

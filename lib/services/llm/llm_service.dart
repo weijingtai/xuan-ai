@@ -6,6 +6,10 @@ import '../../database/ai_database.dart';
 import '../../models/models.dart';
 import 'llm_client.dart';
 import 'openai_compatible_client.dart';
+import 'protocol_adapter.dart';
+import 'adapters/openai_adapter.dart';
+import 'adapters/anthropic_adapter.dart';
+import 'adapters/gemini_adapter.dart';
 
 /// LLM Service - manages LLM providers and executes requests
 class LlmService {
@@ -26,15 +30,48 @@ class LlmService {
       throw Exception('Provider not found: $providerUuid');
     }
 
+    final adapter = _createAdapter(provider.configJson);
+
     final client = OpenAICompatibleClient(
       config: LlmClientConfig(
         baseUrl: provider.baseUrl,
         apiKey: provider.encryptedApiKey, // TODO: Decrypt
       ),
+      adapter: adapter,
     );
 
     _clients[providerUuid] = client;
     return client;
+  }
+
+  /// Create a [ProtocolAdapter] based on the provider's `configJson`.
+  ///
+  /// Recognised adapter types:
+  /// - `"openai"` (or absent) → [OpenAIAdapter]
+  /// - `"anthropic"` → [AnthropicAdapter]
+  /// - `"gemini"` → [GeminiAdapter]
+  ProtocolAdapter _createAdapter(String? configJsonStr) {
+    if (configJsonStr == null || configJsonStr.isEmpty) {
+      return OpenAIAdapter();
+    }
+
+    final config = jsonDecode(configJsonStr) as Map<String, dynamic>;
+    final adapterType = config['adapter'] as String?;
+
+    switch (adapterType) {
+      case 'anthropic':
+        return AnthropicAdapter(
+          anthropicVersion:
+              config['anthropic_version'] as String? ?? '2023-06-01',
+        );
+      case 'gemini':
+        return GeminiAdapter(
+          useApiKeyAuth: config['use_api_key_auth'] as bool? ?? true,
+        );
+      case 'openai':
+      default:
+        return OpenAIAdapter();
+    }
   }
 
   /// Execute a chat completion request
