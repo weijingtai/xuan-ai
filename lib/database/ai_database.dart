@@ -81,13 +81,13 @@ class AiDatabase extends _$AiDatabase {
                 sqlite3Wasm: Uri.parse('sqlite3.wasm'),
                 driftWorker: Uri.parse('drift_worker.js'),
                 onResult: (result) {
+                  debugPrint(
+                    '[AiDatabase] Web storage: ${result.chosenImplementation}',
+                  );
                   if (result.missingFeatures.isNotEmpty) {
-                    if (kDebugMode) {
-                      debugPrint(
-                        'Using ${result.chosenImplementation} due to unsupported '
-                        'browser features: ${result.missingFeatures}',
-                      );
-                    }
+                    debugPrint(
+                      '[AiDatabase] Missing features: ${result.missingFeatures}',
+                    );
                   }
                 },
               ),
@@ -117,16 +117,58 @@ class AiDatabase extends _$AiDatabase {
         }
       },
       beforeOpen: (details) async {
-        await impl.validateDatabaseSchema(this);
+        debugPrint(
+          '[AiDatabase] beforeOpen: wasCreated=${details.wasCreated}, '
+          'hadUpgrade=${details.hadUpgrade}, '
+          'versionBefore=${details.versionBefore}, '
+          'versionNow=${details.versionNow}',
+        );
+
+        // Integrity check: detect corrupted database and rebuild if needed.
+        // This can happen on Web when browser storage is not flushed properly.
+        try {
+          await impl.validateDatabaseSchema(this);
+          // PRAGMA quick_check scans all tables/indices for corruption.
+          // Unlike integrity_check it skips index cross-referencing, so it's
+          // faster while still catching page-level corruption.
+          final result =
+              await customSelect('PRAGMA quick_check').get();
+          final status = result.firstOrNull?.data['quick_check'] as String?;
+          if (status != null && status != 'ok') {
+            throw Exception('quick_check failed: $status');
+          }
+        } catch (e) {
+          debugPrint('[AiDatabase] Database corruption detected: $e');
+          debugPrint('[AiDatabase] Dropping all tables and re-creating...');
+          final allTables = allSchemaEntities
+              .whereType<TableInfo>()
+              .toList()
+              .reversed;
+          for (final table in allTables) {
+            await customStatement('DROP TABLE IF EXISTS "${table.actualTableName}"');
+          }
+          final m = createMigrator();
+          await m.createAll();
+          await _seedDefaultData();
+          debugPrint('[AiDatabase] Database rebuilt successfully');
+          return;
+        }
 
         // Re-seed if default data is missing (e.g., previous seed failed)
         if (details.wasCreated || details.hadUpgrade) return;
-        final defaultPersona =
-            await (select(aiPersonas)
-                  ..where((t) => t.isDefault.equals(true))
-                  ..limit(1))
-                .getSingleOrNull();
-        if (defaultPersona == null) {
+        try {
+          final defaultPersona =
+              await (select(aiPersonas)
+                    ..where((t) => t.isDefault.equals(true))
+                    ..limit(1))
+                  .getSingleOrNull();
+          if (defaultPersona == null) {
+            debugPrint('[AiDatabase] Default persona missing, re-seeding data');
+            await _seedDefaultData();
+          }
+        } catch (e) {
+          debugPrint('[AiDatabase] Error checking seed data: $e');
+          debugPrint('[AiDatabase] Re-seeding as fallback...');
           await _seedDefaultData();
         }
       },
@@ -150,6 +192,7 @@ class AiDatabase extends _$AiDatabase {
         isDefault: const Value(true),
         createdAt: DateTime.now(),
       ),
+      mode: InsertMode.insertOrIgnore,
     );
 
     // Seed NVIDIA Provider
@@ -165,6 +208,7 @@ class AiDatabase extends _$AiDatabase {
         isDefault: const Value(false),
         createdAt: DateTime.now(),
       ),
+      mode: InsertMode.insertOrIgnore,
     );
 
     // Seed DeepSeek Model (Default)
@@ -180,6 +224,7 @@ class AiDatabase extends _$AiDatabase {
         supportsFunctionCalling: const Value(true),
         createdAt: DateTime.now(),
       ),
+      mode: InsertMode.insertOrIgnore,
     );
 
     // Seed NVIDIA Model
@@ -195,6 +240,7 @@ class AiDatabase extends _$AiDatabase {
         supportsFunctionCalling: const Value(true),
         createdAt: DateTime.now(),
       ),
+      mode: InsertMode.insertOrIgnore,
     );
 
     // Seed a default system prompt template
@@ -227,6 +273,7 @@ class AiDatabase extends _$AiDatabase {
         isBuiltin: const Value(true),
         createdAt: DateTime.now(),
       ),
+      mode: InsertMode.insertOrIgnore,
     );
 
     // Seed a default AI persona
@@ -244,6 +291,7 @@ class AiDatabase extends _$AiDatabase {
         isDefault: const Value(true),
         createdAt: DateTime.now(),
       ),
+      mode: InsertMode.insertOrIgnore,
     );
   }
 }

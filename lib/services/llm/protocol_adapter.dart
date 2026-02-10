@@ -1,3 +1,4 @@
+import '../../models/remote_model_info.dart';
 import 'llm_client.dart';
 
 /// Signal thrown by [ProtocolAdapter.parseStreamLine] to indicate
@@ -57,4 +58,30 @@ abstract class ProtocolAdapter {
   /// Parse the wire-format model list response into a simple list
   /// of model identifier strings.
   List<String> parseModelsResponse(Map<String, dynamic> wireJson);
+
+  /// Parse the wire-format model list response into detailed
+  /// [RemoteModelInfo] objects.
+  ///
+  /// Default implementation delegates to [parseModelsResponse] and
+  /// wraps each id in a minimal [RemoteModelInfo].
+  List<RemoteModelInfo> parseModelsDetailedResponse(
+      Map<String, dynamic> wireJson) {
+    return parseModelsResponse(wireJson)
+        .map((id) => RemoteModelInfo(id: id))
+        .toList();
+  }
+
+  /// REST path for retrieving a single model's details, or `null`
+  /// if not supported.  Defaults to `$modelsEndpoint/$modelId`.
+  String? modelDetailEndpoint(String modelId) {
+    final base = modelsEndpoint;
+    if (base == null) return null;
+    return '$base/$modelId';
+  }
+
+  /// Parse the wire-format single-model response into a
+  /// [RemoteModelInfo].
+  RemoteModelInfo parseModelDetailResponse(Map<String, dynamic> wireJson) {
+    return RemoteModelInfo(id: wireJson['id'] as String);
+  }
 }

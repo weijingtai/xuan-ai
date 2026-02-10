@@ -18,6 +18,25 @@ class LlmModelsDao extends DatabaseAccessor<AiDatabase>
         .get();
   }
 
+  /// Get all models for a provider (including disabled, excluding
+  /// soft-deleted), used for sync deduplication.
+  Future<List<LlmModel>> getAllByProvider(String providerUuid) {
+    return (select(llmModels)
+          ..where((t) => t.providerUuid.equals(providerUuid))
+          ..where((t) => t.deletedAt.isNull()))
+        .get();
+  }
+
+  /// Find a model by provider UUID and model ID.
+  Future<LlmModel?> getByModelId(String providerUuid, String modelId) {
+    return (select(llmModels)
+          ..where((t) => t.providerUuid.equals(providerUuid))
+          ..where((t) => t.modelId.equals(modelId))
+          ..where((t) => t.deletedAt.isNull())
+          ..limit(1))
+        .getSingleOrNull();
+  }
+
   /// Get the default model
   Future<LlmModel?> getDefault() {
     return (select(llmModels)

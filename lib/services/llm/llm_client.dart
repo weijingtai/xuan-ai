@@ -1,6 +1,7 @@
 import 'dart:async';
 import '../../models/llm_request_model.dart';
 import '../../models/llm_response_model.dart';
+import '../../models/remote_model_info.dart';
 
 /// Abstract LLM client interface
 abstract class LlmClient {
@@ -15,6 +16,12 @@ abstract class LlmClient {
 
   /// Get available models
   Future<List<String>> listModels();
+
+  /// Get available models with detailed info
+  Future<List<RemoteModelInfo>> listModelsDetailed();
+
+  /// Get details for a single model
+  Future<RemoteModelInfo> getModelDetail(String modelId);
 
   /// Dispose resources
   void dispose();

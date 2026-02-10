@@ -13,11 +13,16 @@ dependencies:
   ai_core:
     path: ../
 
+  common:
+    path: ../../xuan-common
+
   provider: ^6.1.5+1
   shared_preferences: ^2.5.4
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/sql/
 
 dependency_overrides:
   google_fonts: ^6.2.1

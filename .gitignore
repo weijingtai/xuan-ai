@@ -49,3 +49,6 @@ app.*.map.json
 *.mocks.dart
 
 **/build/
+
+# Persistent Chrome profile for web debugging
+example/.chrome-profile/

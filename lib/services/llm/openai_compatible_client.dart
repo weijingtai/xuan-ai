@@ -5,6 +5,7 @@ import 'package:logger/logger.dart';
 
 import '../../models/llm_request_model.dart';
 import '../../models/llm_response_model.dart';
+import '../../models/remote_model_info.dart';
 import 'llm_client.dart';
 import 'protocol_adapter.dart';
 import 'adapters/openai_adapter.dart';
@@ -160,6 +161,80 @@ class OpenAICompatibleClient implements LlmClient {
     } on DioException catch (e) {
       _logger.e('Failed to list models', error: e);
       return [];
+    }
+  }
+
+  @override
+  Future<List<RemoteModelInfo>> listModelsDetailed() async {
+    final endpoint = adapter.modelsEndpoint;
+    if (endpoint == null) {
+      _logger.w('[Client] listModelsDetailed: adapter has no modelsEndpoint');
+      throw LlmException('This provider does not support listing models');
+    }
+
+    _logger.d('[Client] listModelsDetailed: GET ${config.baseUrl}$endpoint');
+    try {
+      final response = await _dio.get(endpoint);
+      _logger.d('[Client] listModelsDetailed: status=${response.statusCode}');
+      if (response.statusCode == 200) {
+        final models = adapter.parseModelsDetailedResponse(
+            response.data as Map<String, dynamic>);
+        _logger.d('[Client] listModelsDetailed: parsed ${models.length} models');
+        return models;
+      }
+      throw LlmException(
+        'Failed to list models (status ${response.statusCode})',
+        statusCode: response.statusCode,
+        body: response.data?.toString(),
+      );
+    } on DioException catch (e) {
+      _logger.e('[Client] listModelsDetailed: DioException '
+          'status=${e.response?.statusCode}, message=${e.message}',
+          error: e);
+      throw LlmException(
+        e.message ?? 'Failed to list models',
+        statusCode: e.response?.statusCode,
+        body: e.response?.data?.toString(),
+        cause: e,
+      );
+    }
+  }
+
+  @override
+  Future<RemoteModelInfo> getModelDetail(String modelId) async {
+    final endpoint = adapter.modelDetailEndpoint(modelId);
+    if (endpoint == null) {
+      _logger.w('[Client] getModelDetail: adapter has no modelDetailEndpoint');
+      throw LlmException(
+          'This provider does not support model detail queries');
+    }
+
+    _logger.d('[Client] getModelDetail: GET ${config.baseUrl}$endpoint');
+    try {
+      final response = await _dio.get(endpoint);
+      _logger.d('[Client] getModelDetail: status=${response.statusCode}');
+      if (response.statusCode == 200) {
+        final detail = adapter
+            .parseModelDetailResponse(response.data as Map<String, dynamic>);
+        _logger.d('[Client] getModelDetail: parsed model id=${detail.id}, '
+            'ownedBy=${detail.ownedBy}');
+        return detail;
+      }
+      throw LlmException(
+        'Failed to get model detail (status ${response.statusCode})',
+        statusCode: response.statusCode,
+        body: response.data?.toString(),
+      );
+    } on DioException catch (e) {
+      _logger.e('[Client] getModelDetail($modelId): DioException '
+          'status=${e.response?.statusCode}, message=${e.message}',
+          error: e);
+      throw LlmException(
+        e.message ?? 'Failed to get model detail',
+        statusCode: e.response?.statusCode,
+        body: e.response?.data?.toString(),
+        cause: e,
+      );
     }
   }
 

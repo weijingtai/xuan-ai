@@ -14,6 +14,7 @@ class ProvidersScreen extends StatefulWidget {
 class _ProvidersScreenState extends State<ProvidersScreen> {
   List<LlmProvider> _providers = [];
   Map<String, List<LlmModel>> _modelsByProvider = {};
+  final Set<String> _syncingProviders = {};
   bool _isLoading = true;
 
   @override
@@ -35,6 +36,33 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
         _modelsByProvider = models;
         _isLoading = false;
       });
+    }
+  }
+
+  Future<void> _syncModels(String providerUuid) async {
+    debugPrint('[ProvidersScreen] _syncModels: starting for $providerUuid');
+    setState(() => _syncingProviders.add(providerUuid));
+    try {
+      final llmService = context.read<LlmService>();
+      final added = await llmService.syncModelsFromRemote(providerUuid);
+      debugPrint('[ProvidersScreen] _syncModels: completed, $added new model(s)');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Synced $added new model(s)')),
+        );
+        _loadData();
+      }
+    } catch (e, st) {
+      debugPrint('[ProvidersScreen] _syncModels: failed — $e\n$st');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Sync failed: $e')),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _syncingProviders.remove(providerUuid));
+      }
     }
   }
 
@@ -134,10 +162,28 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
             ...models.map((m) => _buildModelTile(context, m)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: OutlinedButton.icon(
-              onPressed: () => _openModelEditor(context, providerUuid: provider.uuid),
-              icon: const Icon(Icons.add, size: 18),
-              label: const Text('Add Model'),
+            child: Row(
+              children: [
+                OutlinedButton.icon(
+                  onPressed: () => _openModelEditor(context, providerUuid: provider.uuid),
+                  icon: const Icon(Icons.add, size: 18),
+                  label: const Text('Add Model'),
+                ),
+                const SizedBox(width: 8),
+                OutlinedButton.icon(
+                  onPressed: _syncingProviders.contains(provider.uuid)
+                      ? null
+                      : () => _syncModels(provider.uuid),
+                  icon: _syncingProviders.contains(provider.uuid)
+                      ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.sync, size: 18),
+                  label: const Text('Sync Models'),
+                ),
+              ],
             ),
           ),
         ],
@@ -190,9 +236,10 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
 
   Future<void> _openProviderEditor(BuildContext context, {LlmProvider? provider}) async {
     final db = context.read<AiDatabase>();
+    final llmService = context.read<LlmService>();
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => _ProviderEditorPage(db: db, provider: provider)),
+      MaterialPageRoute(builder: (_) => _ProviderEditorPage(db: db, llmService: llmService, provider: provider)),
     );
     _loadData();
   }
@@ -219,9 +266,10 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
 
 class _ProviderEditorPage extends StatefulWidget {
   final AiDatabase db;
+  final LlmService llmService;
   final LlmProvider? provider;
 
-  const _ProviderEditorPage({required this.db, this.provider});
+  const _ProviderEditorPage({required this.db, required this.llmService, this.provider});
 
   @override
   State<_ProviderEditorPage> createState() => _ProviderEditorPageState();
@@ -248,20 +296,41 @@ class _ProviderEditorPageState extends State<_ProviderEditorPage> {
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isSaving = true);
+    final isNew = !_isEditing;
+    debugPrint('[ProviderEditor] _save: isNew=$isNew');
     try {
       final uuid = _isEditing ? widget.provider!.uuid : const Uuid().v4();
+      debugPrint('[ProviderEditor] _save: upserting provider uuid=$uuid, '
+          'name=${_nameCtrl.text.trim()}, baseUrl=${_baseUrlCtrl.text.trim()}');
       await widget.db.llmProvidersDao.upsert(
         LlmProvidersCompanion(
           uuid: Value(uuid),
           name: Value(_nameCtrl.text.trim()),
           baseUrl: Value(_baseUrlCtrl.text.trim()),
           encryptedApiKey: Value(_apiKeyCtrl.text.trim().isEmpty ? null : _apiKeyCtrl.text.trim()),
-          createdAt: _isEditing ? const Value.absent() : Value(DateTime.now()),
+          createdAt: Value(_isEditing ? widget.provider!.createdAt : DateTime.now()),
           lastUpdatedAt: Value(DateTime.now()),
         ),
       );
+      debugPrint('[ProviderEditor] _save: provider saved successfully');
+
+      // Auto-sync models for new providers (best-effort).
+      if (isNew) {
+        debugPrint('[ProviderEditor] _save: auto-syncing models for '
+            'new provider $uuid');
+        try {
+          final added = await widget.llmService.syncModelsFromRemote(uuid);
+          debugPrint('[ProviderEditor] _save: auto-sync completed, '
+              '$added model(s) added');
+        } catch (e, st) {
+          debugPrint('[ProviderEditor] _save: auto-sync failed (non-fatal) '
+              '— $e\n$st');
+        }
+      }
+
       if (mounted) Navigator.pop(context);
-    } catch (e) {
+    } catch (e, st) {
+      debugPrint('[ProviderEditor] _save: error — $e\n$st');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
@@ -393,7 +462,7 @@ class _ModelEditorPageState extends State<_ModelEditorPage> {
           maxOutputTokens: Value(int.tryParse(_maxOutputCtrl.text) ?? 4096),
           supportsStreaming: Value(_supportsStreaming),
           supportsFunctionCalling: Value(_supportsFunctionCalling),
-          createdAt: _isEditing ? const Value.absent() : Value(DateTime.now()),
+          createdAt: Value(_isEditing ? widget.model!.createdAt : DateTime.now()),
           lastUpdatedAt: Value(DateTime.now()),
         ),
       );

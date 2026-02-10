@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import '../../../models/remote_model_info.dart';
 import '../protocol_adapter.dart';
 import '../llm_client.dart';
 
@@ -43,5 +44,30 @@ class OpenAIAdapter extends ProtocolAdapter {
     final data = wireJson['data'] as List?;
     if (data == null) return [];
     return data.map((m) => m['id'] as String).toList();
+  }
+
+  @override
+  List<RemoteModelInfo> parseModelsDetailedResponse(
+      Map<String, dynamic> wireJson) {
+    final data = wireJson['data'] as List?;
+    if (data == null) return [];
+    return data
+        .map((m) => RemoteModelInfo(
+              id: m['id'] as String,
+              object: m['object'] as String?,
+              created: m['created'] as int?,
+              ownedBy: m['owned_by'] as String?,
+            ))
+        .toList();
+  }
+
+  @override
+  RemoteModelInfo parseModelDetailResponse(Map<String, dynamic> wireJson) {
+    return RemoteModelInfo(
+      id: wireJson['id'] as String,
+      object: wireJson['object'] as String?,
+      created: wireJson['created'] as int?,
+      ownedBy: wireJson['owned_by'] as String?,
+    );
   }
 }
