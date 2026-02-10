@@ -28,3 +28,8 @@ export 'provenance/provenance_service.dart';
 
 // Agent Services
 export 'agent/agent_orchestrator.dart';
+export 'agent/agent_runner.dart';
+
+// AI Service Implementation
+export 'ai_service_impl.dart';
+export 'ai_audit_service_impl.dart';

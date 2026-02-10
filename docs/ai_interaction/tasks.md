@@ -8,67 +8,67 @@
 
 ### 1.1 通信数据模型
 
-- [ ] 创建 `lib/domain/ai/ai_entity.dart`
-  - [ ] 定义 `AiEntity` 类：`id`, `type`, `name`, `description`, `rawData`
-  - [ ] 添加 `toJson()` / `fromJson()` 序列化方法
-- [ ] 创建 `lib/domain/ai/ai_context.dart`
-  - [ ] 定义 `AiContext` 类：`intention`, `entities`, `systemPromptOverride`
-  - [ ] 添加 `toJson()` / `fromJson()` 序列化方法
+- [x] 创建 `lib/domain/ai/ai_entity.dart`
+  - [x] 定义 `AiEntity` 类：`id`, `type`, `name`, `description`, `rawData`
+  - [x] 添加 `toJson()` / `fromJson()` 序列化方法
+- [x] 创建 `lib/domain/ai/ai_context.dart`
+  - [x] 定义 `AiContext` 类：`intention`, `entities`, `systemPromptOverride`
+  - [x] 添加 `toJson()` / `fromJson()` 序列化方法
 
 ### 1.2 Link A 接口 (`AiAction`)
 
-- [ ] 创建 `lib/domain/ai/ai_action.dart`
-  - [ ] 定义 `abstract class AiAction`
-    - [ ] `String get id`
-    - [ ] `String get label`
-    - [ ] `IconData? get icon`
-    - [ ] `bool isApplicable(AiContext context)`
-    - [ ] `Future<void> execute({BuildContext context, AiContext aiContext})`
+- [x] 创建 `lib/domain/ai/ai_action.dart`
+  - [x] 定义 `abstract class AiAction`
+    - [x] `String get id`
+    - [x] `String get label`
+    - [x] `IconData? get icon`
+    - [x] `bool isApplicable(AiContext context)`
+    - [x] `Future<void> execute({BuildContext context, AiContext aiContext})`
 
 ### 1.3 Link B 接口 (`AgentTool`)
 
-- [ ] 创建 `lib/domain/ai/agent_tool.dart`
-  - [ ] 定义 `abstract class AgentTool`
-    - [ ] `String get name` — LLM 函数名
-    - [ ] `String get description` — LLM 函数描述
-    - [ ] `Map<String, dynamic> get parametersSchema` — JSON Schema
-    - [ ] `Future<Map<String, dynamic>> execute(Map<String, dynamic> args)`
-  - [ ] 添加 `toFunctionDeclaration()` 辅助方法（输出符合 OpenAI/DeepSeek 格式的 JSON）
+- [x] 创建 `lib/domain/ai/agent_tool.dart`
+  - [x] 定义 `abstract class AgentTool`
+    - [x] `String get name` — LLM 函数名
+    - [x] `String get description` — LLM 函数描述
+    - [x] `Map<String, dynamic> get parametersSchema` — JSON Schema
+    - [x] `Future<Map<String, dynamic>> execute(Map<String, dynamic> args)`
+  - [x] 添加 `toFunctionDeclaration()` 辅助方法（输出符合 OpenAI/DeepSeek 格式的 JSON）
 
 ### 1.4 服务接口
 
-- [ ] 创建 `lib/services/ai_service.dart`
-  - [ ] `Future<void> openChat({BuildContext context, AiContext? initialContext})`
-  - [ ] `Future<String> analyze({AiContext context})`
-  - [ ] `Future<String?> getSummary({String entityId})`
-  - [ ] `Stream<String?> watchSummary({String entityId})`
-  - [ ] `Future<bool> showConfigSheet({BuildContext context})`
-  - [ ] `Stream<AiConfigSummary> get activeConfig`
-  - [ ] `void registerAction(AiAction action)`
-  - [ ] `List<AiAction> getAvailableActions(AiContext context)`
-  - [ ] `void registerTool(AgentTool tool)`
-  - [ ] `List<AgentTool> getAvailableTools()`
-- [ ] 创建 `lib/domain/ai/ai_config_summary.dart`
-  - [ ] 定义 `AiConfigSummary`：`personaName`, `modelName`
+- [x] 创建 `lib/services/ai_service.dart`
+  - [x] `Future<void> openChat({BuildContext context, AiContext? initialContext})`
+  - [x] `Future<String> analyze({AiContext context})`
+  - [x] `Future<String?> getSummary({String entityId})`
+  - [x] `Stream<String?> watchSummary({String entityId})`
+  - [x] `Future<bool> showConfigSheet({BuildContext context})`
+  - [x] `Stream<AiConfigSummary> get activeConfig`
+  - [x] `void registerAction(AiAction action)`
+  - [x] `List<AiAction> getAvailableActions(AiContext context)`
+  - [x] `void registerTool(AgentTool tool)`
+  - [x] `List<AgentTool> getAvailableTools()`
+- [x] 创建 `lib/domain/ai/ai_config_summary.dart`
+  - [x] 定义 `AiConfigSummary`：`personaName`, `modelName`
 
 ### 1.5 审计接口
 
-- [ ] 创建 `lib/domain/ai/ai_audit_log.dart`
-  - [ ] 定义 `AiAuditLog` 数据模型
-    - [ ] `id` (UUID)
-    - [ ] `timestamp` (DateTime)
-    - [ ] `type` (枚举: `chat`, `actionCall`, `toolCall`, `toolResult`)
-    - [ ] `sourceModule` (String)
-    - [ ] `payload` (JSON Map)
-- [ ] 创建 `lib/services/ai_audit_service.dart`
-  - [ ] `Future<void> logInteraction(AiAuditLog log)`
-  - [ ] `Future<List<AiAuditLog>> queryLogs({String? sourceModule, DateTime? after})`
+- [x] 创建 `lib/domain/ai/ai_audit_log.dart`
+  - [x] 定义 `AiAuditLog` 数据模型
+    - [x] `id` (UUID)
+    - [x] `timestamp` (DateTime)
+    - [x] `type` (枚举: `chat`, `actionCall`, `toolCall`, `toolResult`)
+    - [x] `sourceModule` (String)
+    - [x] `payload` (JSON Map)
+- [x] 创建 `lib/services/ai_audit_service.dart`
+  - [x] `Future<void> logInteraction(AiAuditLog log)`
+  - [x] `Future<List<AiAuditLog>> queryLogs({String? sourceModule, DateTime? after})`
 
 ### 1.6 单元测试 (xuan-common)
 
-- [ ] 测试 `AiEntity` 序列化/反序列化
-- [ ] 测试 `AiContext` 序列化/反序列化
-- [ ] 测试 `AgentTool.toFunctionDeclaration()` 输出格式
+- [ ] 测试 `AiEntity` 序列化/反序列化 (待集成测试环境)
+- [ ] 测试 `AiContext` 序列化/反序列化 (待集成测试环境)
+- [ ] 测试 `AgentTool.toFunctionDeclaration()` 输出格式 (待集成测试环境)
 
 ---
 

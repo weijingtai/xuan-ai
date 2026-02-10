@@ -13,11 +13,14 @@ class AiChatView extends StatefulWidget {
     this.provider,
     this.model,
     this.systemInstruction,
+    this.initialContext,
   });
 
   final db.LlmProvider? provider;
   final db.LlmModel? model;
   final String? systemInstruction;
+  final dynamic
+  initialContext; // Types dynamic to avoid importing common if not needed, or better import common.
 
   @override
   State<AiChatView> createState() => _AiChatViewState();

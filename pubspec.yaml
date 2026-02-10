@@ -38,6 +38,7 @@ dependencies:
   flutter_ai_toolkit: ^0.6.8 # Updated constraint per pub output
   flutter_ai_providers: ^0.1.0
   google_generative_ai: ^0.4.0
+  logging: ^1.3.0
 
 dev_dependencies:
   flutter_test:
