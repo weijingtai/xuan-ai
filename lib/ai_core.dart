@@ -18,3 +18,6 @@ export 'viewmodels/viewmodels.dart';
 
 // Widgets
 export 'widgets/widgets.dart';
+
+// Utils
+export 'utils/ai_bootstrap.dart';

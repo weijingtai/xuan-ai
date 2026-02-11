@@ -6,6 +6,10 @@ import '../database/ai_database.dart';
 class PersonaSelector extends StatelessWidget {
   final List<AiPersona> personas;
   final String? selectedUuid;
+
+  /// UUID of a newly added persona to highlight.
+  final String? newPersonaUuid;
+
   final ValueChanged<AiPersona> onSelected;
   final VoidCallback? onAdd;
   final ValueChanged<AiPersona>? onDelete;
@@ -14,6 +18,7 @@ class PersonaSelector extends StatelessWidget {
     super.key,
     required this.personas,
     this.selectedUuid,
+    this.newPersonaUuid,
     required this.onSelected,
     this.onAdd,
     this.onDelete,
@@ -34,6 +39,8 @@ class PersonaSelector extends StatelessWidget {
           const SizedBox(height: 16),
           ListView.separated(
             shrinkWrap: true,
+            physics:
+                const ClampingScrollPhysics(), // Prevent nested scroll issues
             itemCount: personas.length + 1, // +1 for "Add" button
             separatorBuilder: (context, index) => const SizedBox(height: 8),
             itemBuilder: (context, index) {
@@ -53,10 +60,12 @@ class PersonaSelector extends StatelessWidget {
 
               final persona = personas[index];
               final isSelected = persona.uuid == selectedUuid;
+              final isNew = persona.uuid == newPersonaUuid;
 
               return _PersonaCard(
                 persona: persona,
                 isSelected: isSelected,
+                isNew: isNew,
                 onTap: () => onSelected(persona),
                 onDelete: onDelete != null ? () => onDelete!(persona) : null,
               );
@@ -97,12 +106,14 @@ class PersonaSelector extends StatelessWidget {
 class _PersonaCard extends StatelessWidget {
   final AiPersona persona;
   final bool isSelected;
+  final bool isNew;
   final VoidCallback onTap;
   final VoidCallback? onDelete;
 
   const _PersonaCard({
     required this.persona,
     required this.isSelected,
+    this.isNew = false,
     required this.onTap,
     this.onDelete,
   });
@@ -134,15 +145,34 @@ class _PersonaCard extends StatelessWidget {
                 backgroundColor: isSelected
                     ? Theme.of(context).primaryColor.withValues(alpha: 0.2)
                     : Colors.grey.shade200,
-                child: Text(
-                  persona.name.substring(0, 1),
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: isSelected
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey.shade700,
-                  ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Text(
+                      persona.name.substring(0, 1),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: isSelected
+                            ? Theme.of(context).primaryColor
+                            : Colors.grey.shade700,
+                      ),
+                    ),
+                    if (isNew)
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        child: Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 1.5),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ),
               const SizedBox(width: 16),

@@ -5,24 +5,23 @@ import 'package:common/domain/ai/ai_audit_log.dart';
 import 'package:common/domain/ai/ai_action.dart';
 import 'package:common/domain/ai/ai_config_summary.dart';
 import 'package:common/domain/ai/ai_context.dart';
+import 'package:common/domain/ai/resolved_persona.dart';
+import 'package:common/domain/ai/session_summary.dart';
 import 'package:common/services/ai_audit_service.dart';
 import 'package:common/services/ai_service.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-// import 'package:provider/provider.dart'; // Unused
 
 import '../widgets/ai_chat_view.dart';
-import '../widgets/persona_selector.dart'; // Added
+import '../widgets/persona_selection_sheet.dart';
 import 'ai_audit_service_impl.dart';
 import 'llm/llm_service.dart';
 import 'agent/agent_runner.dart';
-import '../database/ai_database.dart'; // Added for AiDatabase and DB AiPersona
+import '../database/ai_database.dart';
 import 'package:common/domain/ai/ai_persona.dart'
     as common; // Domain model alias
-import 'package:drift/drift.dart'; // For Value
-import 'package:uuid/uuid.dart'; // Added
-
-import '../widgets/add_persona_dialog.dart'; // Added
+import 'package:common/services/ai_registry.dart';
+import 'chat/session_manager.dart';
 
 class AiServiceImpl implements AiService {
   final _logger = Logger('AiServiceImpl');
@@ -38,6 +37,7 @@ class AiServiceImpl implements AiService {
   final AiAuditService _auditService;
   final LlmService _llmService;
   final AiDatabase _db;
+  late final SessionManager _sessionManager;
 
   AiServiceImpl({
     AiAuditService? auditService,
@@ -45,10 +45,16 @@ class AiServiceImpl implements AiService {
     required AiDatabase db,
   }) : _auditService = auditService ?? AiAuditServiceImpl(),
        _llmService = llmService,
-       _db = db;
+       _db = db {
+    _sessionManager = SessionManager(db: _db);
+  }
 
   @override
   Stream<AiConfigSummary> get activeConfig => _configController.stream;
+
+  // ============================================================
+  // 扩展注册
+  // ============================================================
 
   @override
   void registerAction(AiAction action) {
@@ -62,7 +68,14 @@ class AiServiceImpl implements AiService {
 
   @override
   List<AiAction> getAvailableActions(AiContext context) {
-    return _actions.where((a) => a.isApplicable(context)).toList();
+    final uniqueActions = <String, AiAction>{};
+    for (final a in AiRegistry.actions) {
+      uniqueActions[a.id] = a;
+    }
+    for (final a in _actions) {
+      uniqueActions[a.id] = a;
+    }
+    return uniqueActions.values.where((a) => a.isApplicable(context)).toList();
   }
 
   @override
@@ -77,8 +90,174 @@ class AiServiceImpl implements AiService {
 
   @override
   List<AgentTool> getAvailableTools() {
-    return List.unmodifiable(_tools);
+    final uniqueTools = <String, AgentTool>{};
+    for (final t in AiRegistry.tools) {
+      uniqueTools[t.name] = t;
+    }
+    for (final t in _tools) {
+      uniqueTools[t.name] = t;
+    }
+    return List.unmodifiable(uniqueTools.values);
   }
+
+  // ============================================================
+  // Persona 解析
+  // ============================================================
+
+  @override
+  Future<ResolvedPersona?> resolvePersona(String personaUuid) async {
+    final dbPersona = await _db.aiPersonasDao.getByUuid(personaUuid);
+    if (dbPersona == null) {
+      _logger.warning('Persona not found: $personaUuid');
+      return null;
+    }
+
+    // 1. Resolve System Prompt
+    String? systemInstruction;
+    if (dbPersona.systemPromptUuid != null) {
+      final template = await _db.promptTemplatesDao.getByUuid(
+        dbPersona.systemPromptUuid!,
+      );
+      systemInstruction = template?.content;
+    }
+
+    // 2. Resolve Model + Provider
+    LlmModel? model;
+    LlmProvider? provider;
+
+    if (dbPersona.modelUuid.isNotEmpty) {
+      model = await _db.llmModelsDao.getByUuid(dbPersona.modelUuid);
+    }
+    model ??= await _db.llmModelsDao.getDefault();
+
+    if (model != null) {
+      provider = await _db.llmProvidersDao.getByUuid(model.providerUuid);
+    }
+    provider ??= await _db.llmProvidersDao.getDefault();
+
+    if (provider == null) {
+      _logger.severe('No LLM provider available for persona: $personaUuid');
+      return null;
+    }
+
+    return ResolvedPersona(
+      uuid: dbPersona.uuid,
+      name: dbPersona.name,
+      description: dbPersona.description,
+      avatarUrl: dbPersona.avatarUrl,
+      providerName: provider.name,
+      apiKey: provider.encryptedApiKey ?? '',
+      baseUrl: provider.baseUrl,
+      modelId: model?.modelId ?? 'deepseek-chat',
+      temperature: dbPersona.temperature,
+      topP: dbPersona.topP,
+      maxTokens: dbPersona.maxTokens,
+      systemInstruction: systemInstruction,
+    );
+  }
+
+  // ============================================================
+  // Session 管理
+  // ============================================================
+
+  @override
+  Future<String> createSession({
+    required BuildContext context,
+    required ResolvedPersona persona,
+    AiContext? initialContext,
+  }) async {
+    _logger.info('Creating session for persona: ${persona.name}');
+
+    final sessionUuid = await _sessionManager.createSession(
+      persona: persona,
+      initialContext: initialContext,
+    );
+
+    if (context.mounted) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => AiChatView(
+            persona: persona,
+            sessionUuid: sessionUuid,
+            onSessionEnd: (history) {
+              _sessionManager.saveHistory(
+                sessionUuid: sessionUuid,
+                history: history,
+              );
+            },
+          ),
+        ),
+      );
+    }
+
+    return sessionUuid;
+  }
+
+  @override
+  Future<void> resumeChat({
+    required BuildContext context,
+    required String sessionUuid,
+  }) async {
+    _logger.info('Resuming session: $sessionUuid');
+
+    // 1. 从 DB 恢复 Session 和消息
+    final result = await _sessionManager.resumeSession(sessionUuid);
+    if (result == null) {
+      _logger.warning('Cannot resume: session not found');
+      return;
+    }
+
+    // 2. 解析 Persona
+    final persona = await resolvePersona(result.session.personaUuid);
+    if (persona == null) {
+      _logger.warning('Cannot resume: persona not found');
+      return;
+    }
+
+    // 3. 打开聊天界面（AiChatView 内部从 Persona 构造 Provider）
+    if (context.mounted) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => AiChatView(
+            persona: persona,
+            sessionUuid: sessionUuid,
+            history: result.messages,
+            onSessionEnd: (history) {
+              _sessionManager.saveHistory(
+                sessionUuid: sessionUuid,
+                history: history,
+              );
+            },
+          ),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<List<SessionSummary>> listSessions({
+    String? personaUuid,
+    String? status,
+  }) async {
+    return _sessionManager.listSessions(
+      personaUuid: personaUuid,
+      status: status,
+    );
+  }
+
+  @override
+  Future<void> archiveSession(String sessionUuid) async {
+    await _sessionManager.archiveSession(sessionUuid);
+  }
+
+  @override
+  Future<void> deleteSession(String sessionUuid) async {
+    await _sessionManager.deleteSession(sessionUuid);
+  }
+
+  // ============================================================
+  // 聊天 & 分析 (legacy + new)
+  // ============================================================
 
   @override
   Future<void> openChat({
@@ -87,10 +266,9 @@ class AiServiceImpl implements AiService {
   }) async {
     _logger.info('Opening AI Chat with context: ${initialContext?.intention}');
 
-    // Log the interaction
     await _auditService.logInteraction(
       AiAuditLog(
-        id: DateTime.now().millisecondsSinceEpoch.toString(), // TODO: Use UUID
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
         timestamp: DateTime.now(),
         type: AiAuditLogType.chat,
         sourceModule: 'ai_service',
@@ -101,15 +279,31 @@ class AiServiceImpl implements AiService {
       ),
     );
 
-    // Push the ChatView
-    // Check if we are already in a chat view? usually pushing    // Push the ChatView
-    if (context.mounted) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (ctx) => AiChatView(initialContext: initialContext),
-        ),
-      );
+    // 使用默认 Persona 打开 Session
+    final defaultPersona = await _db.aiPersonasDao.getDefault();
+    if (defaultPersona == null) {
+      _logger.warning('No default persona configured');
+      if (context.mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('未配置默认 AI 人设，请先设置。')));
+      }
+      return;
     }
+
+    final persona = await resolvePersona(defaultPersona.uuid);
+    if (persona == null) {
+      _logger.warning('Failed to resolve default persona');
+      return;
+    }
+
+    if (!context.mounted) return;
+
+    await createSession(
+      context: context,
+      persona: persona,
+      initialContext: initialContext,
+    );
   }
 
   @override
@@ -118,10 +312,12 @@ class AiServiceImpl implements AiService {
     AiContext? initialContext,
     common.AiPersona? persona,
   }) {
-    return AiChatView(
+    // buildChatView 是同步的，但我们需要异步解析。
+    // 返回一个 FutureBuilder 来处理异步初始化。
+    return _AsyncChatViewBuilder(
+      aiService: this,
       initialContext: initialContext,
-      persona: persona,
-      database: _db,
+      personaUuid: persona?.uuid,
     );
   }
 
@@ -130,143 +326,44 @@ class AiServiceImpl implements AiService {
     required BuildContext context,
     List<int>? requiredSkills,
   }) async {
-    // 1. Fetch personas from DB
-    // If strict skill filtering is needed, we would need to join with PromptSkillBindings and PromptTemplates.
-    // For now, we fetch all enabled personas and filter in memory if needed (though not implemented yet).
     final dbPersonas = await _db.aiPersonasDao.getAllEnabled();
 
-    // 2. Show Bottom Sheet
     if (!context.mounted) return null;
 
-    final selectedDbPersona = await PersonaSelector.showAsBottomSheet(
-      context,
-      personas: dbPersonas,
-      onAdd: () async {
-        // Close the bottom sheet first? Or handle on top?
-        // Better to handle on top or close and re-open.
-        // Let's try handling on top.
-        final result = await showDialog<PersonaCreationData>(
-          context: context,
-          builder: (context) => const AddPersonaDialog(),
-        );
-
-        if (result != null) {
-          if (!context.mounted) return;
-          await _createPersona(context, result);
-          // We need to refresh the list.
-          // Since showAsBottomSheet doesn't support live refresh easily without state management,
-          // we might need to close and reopen, or use a StatefulBuilder inside the sheet.
-          // For MVP, simplistic approach: close and reopen or just return null to let user re-open.
-          // BETTER: The PersonaSelector should be wrapped in a StatefulWidget that handles the list.
-          // However, we are using a static method.
-          // Let's modify showPersonaSelector to handle the refresh by closing if successful and maybe re-opening?
-          // No, that's jarring.
-          if (context.mounted) {
-            Navigator.of(context).pop(); // Close sheet
-            // Re-open sheet (hacky but works for now without rewriting Selector to be stateful controller)
-            if (context.mounted) {
-              showPersonaSelector(
-                context: context,
-                requiredSkills: requiredSkills,
-              );
-            }
-          }
-        }
-      },
-      onDelete: (persona) async {
-        final confirm = await showDialog<bool>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('删除人设'),
-            content: Text('确定要删除 "${persona.name}" 吗？'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('取消'),
-              ),
-              FilledButton(
-                onPressed: () => Navigator.of(context).pop(true),
-                child: const Text('删除'),
-              ),
-            ],
-          ),
-        );
-
-        if (confirm == true) {
+    final selectedDbPersona = await showModalBottomSheet<AiPersona>(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      isScrollControlled: true,
+      builder: (context) => PersonaSelectionSheet(
+        initialPersonas: dbPersonas,
+        selectedUuid: null,
+        aiDatabase: _db,
+        onDelete: (persona) async {
           await _db.aiPersonasDao.softDelete(persona.uuid);
-          if (context.mounted) {
-            Navigator.of(context).pop(); // Close sheet
-            // Re-open sheet to refresh
-            showPersonaSelector(
-              context: context,
-              requiredSkills: requiredSkills,
-            );
-          }
-        }
-      },
+        },
+        onRefresh: () => _db.aiPersonasDao.getAllEnabled(),
+      ),
     );
 
-    // 3. Map back to domain model
     if (selectedDbPersona != null) {
+      String? instruction;
+      if (selectedDbPersona.systemPromptUuid != null) {
+        final template = await _db.promptTemplatesDao.getByUuid(
+          selectedDbPersona.systemPromptUuid!,
+        );
+        instruction = template?.content;
+      }
+
       return common.AiPersona(
         uuid: selectedDbPersona.uuid,
         name: selectedDbPersona.name,
         description: selectedDbPersona.description,
+        instruction: instruction,
       );
     }
     return null;
-  }
-
-  Future<void> _createPersona(
-    BuildContext context,
-    PersonaCreationData data,
-  ) async {
-    try {
-      final templateUuid = const Uuid().v4();
-      final personaUuid = const Uuid().v4();
-
-      // 1. Create System Prompt Template
-      await _db.promptTemplatesDao.insertTemplate(
-        PromptTemplatesCompanion(
-          uuid: Value(templateUuid),
-          name: Value('${data.name} System Prompt'),
-          content: Value(data.systemPrompt),
-          templateType: const Value('system'),
-          createdAt: Value(DateTime.now()),
-          lastUpdatedAt: Value(DateTime.now()),
-        ),
-      );
-
-      // 2. Get Default Model (to link)
-      final defaultModel = await _db.llmModelsDao.getDefault();
-      final modelUuid = defaultModel?.uuid;
-
-      if (modelUuid == null) {
-        throw Exception('No default model found');
-      }
-
-      // 3. Create Persona
-      await _db.aiPersonasDao.insertPersona(
-        AiPersonasCompanion(
-          uuid: Value(personaUuid),
-          name: Value(data.name),
-          description: Value(data.description),
-          systemPromptUuid: Value(templateUuid),
-          modelUuid: Value(modelUuid),
-          createdAt: Value(DateTime.now()),
-          lastUpdatedAt: Value(DateTime.now()),
-        ),
-      );
-
-      _logger.info('Created persona: ${data.name} ($personaUuid)');
-    } catch (e) {
-      _logger.severe('Failed to create persona', e);
-      if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('创建失败: $e')));
-      }
-    }
   }
 
   @override
@@ -274,7 +371,6 @@ class AiServiceImpl implements AiService {
     _logger.info('Analyzing with context: ${context.intention}');
 
     try {
-      // Get default model
       final defaultModel = await _llmService.getDefaultModel();
       if (defaultModel == null) {
         throw Exception('No default LLM model configured');
@@ -321,5 +417,92 @@ class AiServiceImpl implements AiService {
 
   void dispose() {
     _configController.close();
+  }
+}
+
+/// 异步构建 AiChatView 的辅助 Widget。
+///
+/// 用于 [AiServiceImpl.buildChatView]，因为该方法是同步的，
+/// 但我们需要异步解析 Persona 和创建 Session。
+class _AsyncChatViewBuilder extends StatefulWidget {
+  const _AsyncChatViewBuilder({
+    required this.aiService,
+    this.initialContext,
+    this.personaUuid,
+  });
+
+  final AiServiceImpl aiService;
+  final AiContext? initialContext;
+  final String? personaUuid;
+
+  @override
+  State<_AsyncChatViewBuilder> createState() => _AsyncChatViewBuilderState();
+}
+
+class _AsyncChatViewBuilderState extends State<_AsyncChatViewBuilder> {
+  AiChatView? _chatView;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    try {
+      // 1. 解析 Persona
+      ResolvedPersona? persona;
+      if (widget.personaUuid != null) {
+        persona = await widget.aiService.resolvePersona(widget.personaUuid!);
+      } else {
+        final defaultPersona = await widget.aiService._db.aiPersonasDao
+            .getDefault();
+        if (defaultPersona != null) {
+          persona = await widget.aiService.resolvePersona(defaultPersona.uuid);
+        }
+      }
+
+      if (persona == null) {
+        if (mounted) setState(() => _error = '无法解析 AI 人设');
+        return;
+      }
+
+      // 2. 创建 Session
+      final sessionUuid = await widget.aiService._sessionManager.createSession(
+        persona: persona,
+        initialContext: widget.initialContext,
+      );
+
+      if (mounted) {
+        setState(() {
+          _chatView = AiChatView(
+            persona: persona!,
+            sessionUuid: sessionUuid,
+            onSessionEnd: (history) {
+              widget.aiService._sessionManager.saveHistory(
+                sessionUuid: sessionUuid,
+                history: history,
+              );
+            },
+          );
+        });
+      }
+    } catch (e) {
+      if (mounted) setState(() => _error = '初始化失败: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_error != null) {
+      return Center(
+        child: Text(_error!, style: const TextStyle(color: Colors.red)),
+      );
+    }
+    if (_chatView != null) {
+      return _chatView!;
+    }
+    return const Center(child: CircularProgressIndicator());
   }
 }

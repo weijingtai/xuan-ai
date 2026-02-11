@@ -45,19 +45,21 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
     try {
       final llmService = context.read<LlmService>();
       final added = await llmService.syncModelsFromRemote(providerUuid);
-      debugPrint('[ProvidersScreen] _syncModels: completed, $added new model(s)');
+      debugPrint(
+        '[ProvidersScreen] _syncModels: completed, $added new model(s)',
+      );
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Synced $added new model(s)')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Synced $added new model(s)')));
         _loadData();
       }
     } catch (e, st) {
       debugPrint('[ProvidersScreen] _syncModels: failed — $e\n$st');
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Sync failed: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Sync failed: $e')));
       }
     } finally {
       if (mounted) {
@@ -77,11 +79,13 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _providers.isEmpty
-              ? const Center(child: Text('No providers. Tap + to add one.'))
-              : ListView(
-                  padding: const EdgeInsets.only(bottom: 80),
-                  children: _providers.map((p) => _buildProviderSection(context, p)).toList(),
-                ),
+          ? const Center(child: Text('No providers. Tap + to add one.'))
+          : ListView(
+              padding: const EdgeInsets.only(bottom: 80),
+              children: _providers
+                  .map((p) => _buildProviderSection(context, p))
+                  .toList(),
+            ),
     );
   }
 
@@ -128,12 +132,15 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
             if (provider.isDefault)
               Chip(
                 label: const Text('Default'),
-                backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.secondaryContainer,
               ),
             PopupMenuButton<String>(
               onSelected: (v) async {
                 final db = context.read<AiDatabase>();
-                if (v == 'edit') _openProviderEditor(context, provider: provider);
+                if (v == 'edit')
+                  _openProviderEditor(context, provider: provider);
                 if (v == 'default') {
                   await db.llmProvidersDao.setDefault(provider.uuid);
                   _loadData();
@@ -146,7 +153,10 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
               itemBuilder: (_) => [
                 const PopupMenuItem(value: 'edit', child: Text('Edit')),
                 if (!provider.isDefault)
-                  const PopupMenuItem(value: 'default', child: Text('Set Default')),
+                  const PopupMenuItem(
+                    value: 'default',
+                    child: Text('Set Default'),
+                  ),
                 const PopupMenuItem(value: 'delete', child: Text('Delete')),
               ],
             ),
@@ -165,7 +175,8 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
             child: Row(
               children: [
                 OutlinedButton.icon(
-                  onPressed: () => _openModelEditor(context, providerUuid: provider.uuid),
+                  onPressed: () =>
+                      _openModelEditor(context, providerUuid: provider.uuid),
                   icon: const Icon(Icons.add, size: 18),
                   label: const Text('Add Model'),
                 ),
@@ -203,7 +214,11 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
           if (model.supportsFunctionCalling)
             Tooltip(
               message: 'Supports function calling',
-              child: Icon(Icons.build, size: 16, color: Theme.of(context).colorScheme.primary),
+              child: Icon(
+                Icons.build,
+                size: 16,
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
           if (model.isDefault)
             const Padding(
@@ -225,7 +240,11 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
             },
             itemBuilder: (_) => [
               const PopupMenuItem(value: 'edit', child: Text('Edit')),
-              if (!model.isDefault) const PopupMenuItem(value: 'default', child: Text('Set Default')),
+              if (!model.isDefault)
+                const PopupMenuItem(
+                  value: 'default',
+                  child: Text('Set Default'),
+                ),
               const PopupMenuItem(value: 'delete', child: Text('Delete')),
             ],
           ),
@@ -234,18 +253,30 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
     );
   }
 
-  Future<void> _openProviderEditor(BuildContext context, {LlmProvider? provider}) async {
+  Future<void> _openProviderEditor(
+    BuildContext context, {
+    LlmProvider? provider,
+  }) async {
     final db = context.read<AiDatabase>();
     final llmService = context.read<LlmService>();
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => _ProviderEditorPage(db: db, llmService: llmService, provider: provider)),
+      MaterialPageRoute(
+        builder: (_) => LlmProviderEditor(
+          db: db,
+          llmService: llmService,
+          provider: provider,
+        ),
+      ),
     );
     _loadData();
   }
 
-  Future<void> _openModelEditor(BuildContext context,
-      {LlmModel? model, String? providerUuid}) async {
+  Future<void> _openModelEditor(
+    BuildContext context, {
+    LlmModel? model,
+    String? providerUuid,
+  }) async {
     final db = context.read<AiDatabase>();
     await Navigator.push(
       context,
@@ -259,142 +290,6 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
       ),
     );
     _loadData();
-  }
-}
-
-// --- Provider Editor ---
-
-class _ProviderEditorPage extends StatefulWidget {
-  final AiDatabase db;
-  final LlmService llmService;
-  final LlmProvider? provider;
-
-  const _ProviderEditorPage({required this.db, required this.llmService, this.provider});
-
-  @override
-  State<_ProviderEditorPage> createState() => _ProviderEditorPageState();
-}
-
-class _ProviderEditorPageState extends State<_ProviderEditorPage> {
-  final _formKey = GlobalKey<FormState>();
-  late final TextEditingController _nameCtrl;
-  late final TextEditingController _baseUrlCtrl;
-  late final TextEditingController _apiKeyCtrl;
-  bool _isSaving = false;
-
-  bool get _isEditing => widget.provider != null;
-
-  @override
-  void initState() {
-    super.initState();
-    final p = widget.provider;
-    _nameCtrl = TextEditingController(text: p?.name ?? '');
-    _baseUrlCtrl = TextEditingController(text: p?.baseUrl ?? 'https://api.openai.com/v1');
-    _apiKeyCtrl = TextEditingController(text: p?.encryptedApiKey ?? '');
-  }
-
-  Future<void> _save() async {
-    if (!_formKey.currentState!.validate()) return;
-    setState(() => _isSaving = true);
-    final isNew = !_isEditing;
-    debugPrint('[ProviderEditor] _save: isNew=$isNew');
-    try {
-      final uuid = _isEditing ? widget.provider!.uuid : const Uuid().v4();
-      debugPrint('[ProviderEditor] _save: upserting provider uuid=$uuid, '
-          'name=${_nameCtrl.text.trim()}, baseUrl=${_baseUrlCtrl.text.trim()}');
-      await widget.db.llmProvidersDao.upsert(
-        LlmProvidersCompanion(
-          uuid: Value(uuid),
-          name: Value(_nameCtrl.text.trim()),
-          baseUrl: Value(_baseUrlCtrl.text.trim()),
-          encryptedApiKey: Value(_apiKeyCtrl.text.trim().isEmpty ? null : _apiKeyCtrl.text.trim()),
-          createdAt: Value(_isEditing ? widget.provider!.createdAt : DateTime.now()),
-          lastUpdatedAt: Value(DateTime.now()),
-        ),
-      );
-      debugPrint('[ProviderEditor] _save: provider saved successfully');
-
-      // Auto-sync models for new providers (best-effort).
-      if (isNew) {
-        debugPrint('[ProviderEditor] _save: auto-syncing models for '
-            'new provider $uuid');
-        try {
-          final added = await widget.llmService.syncModelsFromRemote(uuid);
-          debugPrint('[ProviderEditor] _save: auto-sync completed, '
-              '$added model(s) added');
-        } catch (e, st) {
-          debugPrint('[ProviderEditor] _save: auto-sync failed (non-fatal) '
-              '— $e\n$st');
-        }
-      }
-
-      if (mounted) Navigator.pop(context);
-    } catch (e, st) {
-      debugPrint('[ProviderEditor] _save: error — $e\n$st');
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
-      }
-    } finally {
-      if (mounted) setState(() => _isSaving = false);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_isEditing ? 'Edit Provider' : 'New Provider'),
-        actions: [
-          TextButton(
-            onPressed: _isSaving ? null : _save,
-            child: _isSaving
-                ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
-                : const Text('Save'),
-          ),
-        ],
-      ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            TextFormField(
-              controller: _nameCtrl,
-              decoration: const InputDecoration(labelText: 'Name', border: OutlineInputBorder()),
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
-            ),
-            const SizedBox(height: 16),
-            TextFormField(
-              controller: _baseUrlCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Base URL',
-                border: OutlineInputBorder(),
-                hintText: 'https://api.openai.com/v1',
-              ),
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
-            ),
-            const SizedBox(height: 16),
-            TextFormField(
-              controller: _apiKeyCtrl,
-              decoration: const InputDecoration(
-                labelText: 'API Key',
-                border: OutlineInputBorder(),
-                hintText: 'sk-...',
-              ),
-              obscureText: true,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _nameCtrl.dispose();
-    _baseUrlCtrl.dispose();
-    _apiKeyCtrl.dispose();
-    super.dispose();
   }
 }
 
@@ -437,8 +332,12 @@ class _ModelEditorPageState extends State<_ModelEditorPage> {
     final m = widget.model;
     _displayNameCtrl = TextEditingController(text: m?.displayName ?? '');
     _modelIdCtrl = TextEditingController(text: m?.modelId ?? '');
-    _maxContextCtrl = TextEditingController(text: (m?.maxContextLength ?? 4096).toString());
-    _maxOutputCtrl = TextEditingController(text: (m?.maxOutputTokens ?? 4096).toString());
+    _maxContextCtrl = TextEditingController(
+      text: (m?.maxContextLength ?? 4096).toString(),
+    );
+    _maxOutputCtrl = TextEditingController(
+      text: (m?.maxOutputTokens ?? 4096).toString(),
+    );
     _providerUuid = widget.initialProviderUuid ?? m?.providerUuid;
     _modelType = m?.modelType ?? 'chat';
     _supportsStreaming = m?.supportsStreaming ?? true;
@@ -462,14 +361,18 @@ class _ModelEditorPageState extends State<_ModelEditorPage> {
           maxOutputTokens: Value(int.tryParse(_maxOutputCtrl.text) ?? 4096),
           supportsStreaming: Value(_supportsStreaming),
           supportsFunctionCalling: Value(_supportsFunctionCalling),
-          createdAt: Value(_isEditing ? widget.model!.createdAt : DateTime.now()),
+          createdAt: Value(
+            _isEditing ? widget.model!.createdAt : DateTime.now(),
+          ),
           lastUpdatedAt: Value(DateTime.now()),
         ),
       );
       if (mounted) Navigator.pop(context);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     } finally {
       if (mounted) setState(() => _isSaving = false);
@@ -485,7 +388,11 @@ class _ModelEditorPageState extends State<_ModelEditorPage> {
           TextButton(
             onPressed: _isSaving ? null : _save,
             child: _isSaving
-                ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
+                ? const SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
                 : const Text('Save'),
           ),
         ],
@@ -497,18 +404,29 @@ class _ModelEditorPageState extends State<_ModelEditorPage> {
           children: [
             DropdownButtonFormField<String>(
               initialValue: _providerUuid,
-              decoration: const InputDecoration(labelText: 'Provider', border: OutlineInputBorder()),
+              decoration: const InputDecoration(
+                labelText: 'Provider',
+                border: OutlineInputBorder(),
+              ),
               items: widget.providers
-                  .map((p) => DropdownMenuItem(value: p.uuid, child: Text(p.name)))
+                  .map(
+                    (p) => DropdownMenuItem(value: p.uuid, child: Text(p.name)),
+                  )
                   .toList(),
-              onChanged: _isEditing ? null : (v) => setState(() => _providerUuid = v),
+              onChanged: _isEditing
+                  ? null
+                  : (v) => setState(() => _providerUuid = v),
               validator: (v) => v == null ? 'Required' : null,
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: _displayNameCtrl,
-              decoration: const InputDecoration(labelText: 'Display Name', border: OutlineInputBorder()),
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
+              decoration: const InputDecoration(
+                labelText: 'Display Name',
+                border: OutlineInputBorder(),
+              ),
+              validator: (v) =>
+                  (v == null || v.trim().isEmpty) ? 'Required' : null,
             ),
             const SizedBox(height: 16),
             TextFormField(
@@ -518,15 +436,22 @@ class _ModelEditorPageState extends State<_ModelEditorPage> {
                 border: OutlineInputBorder(),
                 hintText: 'e.g. gpt-4, claude-3-opus',
               ),
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'Required' : null,
+              validator: (v) =>
+                  (v == null || v.trim().isEmpty) ? 'Required' : null,
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
               initialValue: _modelType,
-              decoration: const InputDecoration(labelText: 'Model Type', border: OutlineInputBorder()),
+              decoration: const InputDecoration(
+                labelText: 'Model Type',
+                border: OutlineInputBorder(),
+              ),
               items: const [
                 DropdownMenuItem(value: 'chat', child: Text('Chat')),
-                DropdownMenuItem(value: 'completion', child: Text('Completion')),
+                DropdownMenuItem(
+                  value: 'completion',
+                  child: Text('Completion'),
+                ),
                 DropdownMenuItem(value: 'embedding', child: Text('Embedding')),
               ],
               onChanged: (v) => setState(() => _modelType = v ?? 'chat'),
@@ -537,7 +462,10 @@ class _ModelEditorPageState extends State<_ModelEditorPage> {
                 Expanded(
                   child: TextFormField(
                     controller: _maxContextCtrl,
-                    decoration: const InputDecoration(labelText: 'Max Context', border: OutlineInputBorder()),
+                    decoration: const InputDecoration(
+                      labelText: 'Max Context',
+                      border: OutlineInputBorder(),
+                    ),
                     keyboardType: TextInputType.number,
                   ),
                 ),
@@ -545,7 +473,10 @@ class _ModelEditorPageState extends State<_ModelEditorPage> {
                 Expanded(
                   child: TextFormField(
                     controller: _maxOutputCtrl,
-                    decoration: const InputDecoration(labelText: 'Max Output', border: OutlineInputBorder()),
+                    decoration: const InputDecoration(
+                      labelText: 'Max Output',
+                      border: OutlineInputBorder(),
+                    ),
                     keyboardType: TextInputType.number,
                   ),
                 ),

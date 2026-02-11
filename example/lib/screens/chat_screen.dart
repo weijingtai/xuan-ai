@@ -79,11 +79,15 @@ class _ChatScreenContentState extends State<_ChatScreenContent> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          // Use the new AiChatView
-          return AiChatView(
-            systemInstruction: vm.currentPersona?.description,
-            provider: vm.currentLlmProvider,
-            model: vm.currentLlmModel,
+          if (vm.currentLlmProvider == null || vm.currentPersona == null) {
+            return const Center(child: Text('请选择一个 AI 人设'));
+          }
+
+          // TODO: Migrate example app to use SessionManager + ProviderFactory
+          // The example app uses the deprecated ViewModel pattern.
+          // Replace with AiServiceImpl.createSession() flow.
+          return const Center(
+            child: Text('Example app needs migration to new Session API'),
           );
         },
       ),

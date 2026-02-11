@@ -1,4 +1,4 @@
-# AI 交互系统产品需求文档 (v1.0)
+# AI 交互系统产品需求文档 (v1.1)
 
 本文档正式确立了 Xuan 应用生态系统中 AI 集成的需求和规范。它响应了用户关于清晰分离“子模块访问 AI (Link A)”与“AI 访问子模块 (Link B)”的请求，并包含了审计功能的规范。
 
@@ -52,10 +52,46 @@
   * 允许用户选择适合当前任务的特定 AI 人设（例如：“奇门遁甲大师”）。
   * 支持通过所需技能筛选人设（例如：仅显示懂奇门遁甲的人设）。
   * **新增人设**: 用户可以直接在此界面创建新人设。
+* **人设解析**: `AiService.resolvePersona(personaUuid)`
+  * 通过 DB 链式查找解析人设的完整运行时配置：`AiPersona → LlmModel → LlmProvider → PromptTemplate`。
+  * 返回 `ResolvedPersona` 值对象，包含所有必要信息（apiKey, baseUrl, modelId, temperature, systemInstruction 等）。
+  * 支持在人设配置不完整时回退到默认模型/提供商。
 * **嵌入式聊天**: `AiService.buildChatView(context, initialContext)`
   * 允许将 AI 聊天界面直接嵌入到模块的 UI 中（例如：侧边栏或抽屉），而不是全屏模态窗口。
 
-### 3.2 Link B: AI 访问模块 (`AgentTool`)
+### 3.3 会话管理 (Session Management)
+
+支持聊天会话的持久化、恢复和生命周期管理。
+
+* **领域模型** (`xuan-common`):
+  * `ResolvedPersona`: 封装人设完整运行时配置的值对象。包含提供商名称、API Key、Base URL、模型 ID、温度、Top P、最大 Token、系统指令以及显示元数据（名称、描述、头像）。
+  * `SessionSummary`: 用于会话列表的轻量级元数据（UUID、标题、人设信息、消息计数、时间戳、状态）。
+
+* **SessionManager** (`xuan-ai`):
+  * `createSession(persona, initialContext?)` → 在 DB 创建新会话，返回会话 UUID。
+  * `resumeSession(sessionUuid)` → 从 DB 加载会话，将消息反序列化为 `ChatMessage` 列表。
+  * `saveHistory(sessionUuid, history)` → 将 Provider 的聊天历史持久化到 DB。
+  * `listSessions(personaUuid?, status?)` → 返回过滤后的 `SessionSummary` 列表。
+  * `archiveSession(sessionUuid)` / `deleteSession(sessionUuid)` / `resetSession(sessionUuid)`。
+
+* **AiService 接口** (`xuan-common`):
+  * `createSession(context, persona, initialContext?)` → 创建会话 + 打开聊天视图。
+  * `resumeChat(context, sessionUuid)` → 从 DB 恢复会话 + 打开带历史记录的聊天视图。
+  * `listSessions(personaUuid?, status?)` → 列出会话摘要。
+  * `archiveSession(sessionUuid)` / `deleteSession(sessionUuid)`。
+
+* **ProviderFactory** (`xuan-ai`):
+  * `createFromPersona(persona, history?)` → 根据 `ResolvedPersona` 构造相应的 `LlmProvider` (DeepSeek / NVIDIA)。
+  * 基于 `providerName` 和 `baseUrl` 自动选择 Provider 实现。
+  * 所有 Provider 参数 (apiKey, baseUrl, modelId, temperature, systemInstruction) 均完全来自 `ResolvedPersona`。
+
+* **AiChatView** (`xuan-ai`):
+  * 纯展示组件。接收 `persona` + `sessionUuid` + 可选的 `history`。
+  * 内部通过 `ProviderFactory` 构造自己的 `LlmProvider`，确保所有运行时配置来自人设。
+  * 在页面销毁时触发 `onSessionEnd(history)`，允许上层持久化聊天消息。
+  * **不**直接访问数据库。
+
+### 3.4 Link B: AI 访问模块 (`AgentTool`)
 
 这允许 AI “回调”应用以执行任务或查询数据。我们严格将其与 `AiAction` 区分开。
 
@@ -99,22 +135,27 @@
 
 ```mermaid
 graph TD
-    User([用户]) -->|点击按钮| ModuleUI[模块 UI (奇门)]
-    ModuleUI -->|执行 AiAction| AiService[AiService (xuan-ai)]
+    User([用户]) -->|点击按钮| ModuleUI["模块 UI (奇门)"]
+    ModuleUI -->|执行 AiAction| AiService["AiService (xuan-ai)"]
     
-    subgraph Link A
-    AiService -->|打开聊天| ChatWindow[聊天窗口]
+    subgraph "Link A"
+    AiService -->|resolvePersona| RP["ResolvedPersona"]
+    AiService -->|createSession / resumeChat| SM["SessionManager"]
+    SM -->|持久化| DB[("AiDatabase")]
+    RP -->|配置| AiChatView["AiChatView"]
+    AiChatView -->|ProviderFactory| Provider["LlmProvider"]
     end
     
-    ChatWindow -->|用户消息| LLM[LLM / Agent]
+    Provider -->|用户消息| LLM["LLM / Agent"]
+    AiChatView -->|onSessionEnd| SM
     
-    subgraph Link B
-    LLM -->|函数调用| AgentRunner[Agent 运行器]
-    AgentRunner -->|执行| AgentTool[AgentTool (由奇门提供)]
-    AgentTool -->|查询/计算| ModuleLogic[模块逻辑]
+    subgraph "Link B"
+    LLM -->|函数调用| AgentRunner["Agent 运行器"]
+    AgentRunner -->|执行| AgentTool["AgentTool (由奇门提供)"]
+    AgentTool -->|查询/计算| ModuleLogic["模块逻辑"]
     end
     
-    AgentRunner -->|日志| AuditSystem[AiAudit 系统]
+    AgentRunner -->|日志| AuditSystem["AiAudit 系统"]
 ```
 
 ## 5. 非功能性需求
