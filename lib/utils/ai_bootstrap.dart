@@ -6,8 +6,9 @@ const _kDeepSeekModelUuid = 'd827c19a-9426-4a4b-9e4a-188880628239';
 const _kDefaultPersonaUuid = '10000000-0000-0000-0000-000000000001';
 
 /// Ensures that the DeepSeek provider exists in the database.
-Future<void> ensureDeepSeekProvider(AiDatabase db, String apiKey) async {
+Future<void> ensureDeepSeekProvider(AiDatabase db, {String? apiKey}) async {
   final dao = db.llmProvidersDao;
+  final keyToUse = apiKey ?? '';
 
   // 1. Ensure Provider
   final existing = await dao.getByUuid(_kDeepSeekProviderUuid);
@@ -18,7 +19,7 @@ Future<void> ensureDeepSeekProvider(AiDatabase db, String apiKey) async {
         uuid: const Value(_kDeepSeekProviderUuid),
         name: const Value('DeepSeek'),
         baseUrl: const Value('https://api.deepseek.com'),
-        encryptedApiKey: Value(apiKey),
+        encryptedApiKey: Value(keyToUse),
         configJson: const Value('{"model":"deepseek-chat"}'),
         isEnabled: const Value(true),
         isDefault: const Value(true),
@@ -26,8 +27,8 @@ Future<void> ensureDeepSeekProvider(AiDatabase db, String apiKey) async {
         lastUpdatedAt: Value(DateTime.now()),
       ),
     );
-  } else {
-    // Update API Key if changed
+  } else if (apiKey != null) {
+    // Update API Key if provided
     await dao.upsert(
       LlmProvidersCompanion.insert(
         uuid: existing.uuid,

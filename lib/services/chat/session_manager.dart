@@ -194,6 +194,15 @@ class SessionManager {
     _logger.info('Reset session: $sessionUuid');
   }
 
+  /// 更新 Session 关联的 Persona。
+  Future<void> updateSessionPersona(
+    String sessionUuid,
+    String personaUuid,
+  ) async {
+    await _persistence.updateSessionPersona(sessionUuid, personaUuid);
+    _logger.info('Updated session $sessionUuid to persona $personaUuid');
+  }
+
   // ============================================================
   // 内部转换
   // ============================================================

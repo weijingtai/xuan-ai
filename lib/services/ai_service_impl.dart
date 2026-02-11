@@ -180,6 +180,8 @@ class AiServiceImpl implements AiService {
           builder: (ctx) => AiChatView(
             persona: persona,
             sessionUuid: sessionUuid,
+            db: _db,
+            aiService: this,
             history: result.initialMessages,
             onSessionEnd: (history) {
               _sessionManager.saveHistory(
@@ -223,6 +225,8 @@ class AiServiceImpl implements AiService {
           builder: (ctx) => AiChatView(
             persona: persona,
             sessionUuid: sessionUuid,
+            db: _db,
+            aiService: this,
             history: result.messages,
             onSessionEnd: (history) {
               _sessionManager.saveHistory(
@@ -245,6 +249,14 @@ class AiServiceImpl implements AiService {
       personaUuid: personaUuid,
       status: status,
     );
+  }
+
+  @override
+  Future<void> updateSessionPersona({
+    required String sessionUuid,
+    required String personaUuid,
+  }) async {
+    await _sessionManager.updateSessionPersona(sessionUuid, personaUuid);
   }
 
   @override
@@ -482,6 +494,8 @@ class _AsyncChatViewBuilderState extends State<_AsyncChatViewBuilder> {
           _chatView = AiChatView(
             persona: persona!,
             sessionUuid: sessionUuid,
+            db: widget.aiService._db,
+            aiService: widget.aiService,
             history: result.initialMessages,
             onSessionEnd: (history) {
               widget.aiService._sessionManager.saveHistory(

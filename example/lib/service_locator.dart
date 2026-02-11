@@ -33,6 +33,12 @@ class ServiceLocator {
     // Register example tool
     _registerExampleTools(toolRegistry);
 
+    // Ensure default data exists (Provider, Model, Persona)
+    // Try to load saved API key, if any
+    final prefs = await SharedPreferences.getInstance();
+    final savedKey = prefs.getString('api_key');
+    await ensureDeepSeekProvider(db, apiKey: savedKey);
+
     final chatService = ChatService(
       db: db,
       llmService: llmService,

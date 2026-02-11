@@ -95,13 +95,24 @@ class ChatPersistenceService {
   }
 
   /// Complete streaming message
-  Future<void> completeStreamingMessage(String messageUuid, {String? usageJson}) {
-    return _db.aiChatMessagesDao.completeStreaming(messageUuid, usageJson: usageJson);
+  Future<void> completeStreamingMessage(
+    String messageUuid, {
+    String? usageJson,
+  }) {
+    return _db.aiChatMessagesDao.completeStreaming(
+      messageUuid,
+      usageJson: usageJson,
+    );
   }
 
   /// Update session title
   Future<void> updateSessionTitle(String sessionUuid, String title) {
     return _db.aiChatSessionsDao.updateTitle(sessionUuid, title);
+  }
+
+  /// Update session persona
+  Future<void> updateSessionPersona(String sessionUuid, String personaUuid) {
+    return _db.aiChatSessionsDao.updatePersona(sessionUuid, personaUuid);
   }
 
   /// Archive a session

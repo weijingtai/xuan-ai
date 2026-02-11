@@ -66,6 +66,16 @@ class AiChatSessionsDao extends DatabaseAccessor<AiDatabase>
     );
   }
 
+  /// Update session persona
+  Future<void> updatePersona(String uuid, String personaUuid) {
+    return (update(aiChatSessions)..where((t) => t.uuid.equals(uuid))).write(
+      AiChatSessionsCompanion(
+        personaUuid: Value(personaUuid),
+        lastUpdatedAt: Value(DateTime.now()),
+      ),
+    );
+  }
+
   /// Update message count and last message time
   Future<void> updateMessageStats(String uuid, int messageCount) {
     return (update(aiChatSessions)..where((t) => t.uuid.equals(uuid))).write(
