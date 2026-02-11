@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ai_toolkit/flutter_ai_toolkit.dart';
+import 'package:common/domain/ai/ai_persona.dart' as common;
 
 import '../database/ai_database.dart' as db;
 import '../src/providers/deepseek_provider.dart';
@@ -14,13 +15,16 @@ class AiChatView extends StatefulWidget {
     this.model,
     this.systemInstruction,
     this.initialContext,
+    this.persona,
+    this.database,
   });
 
   final db.LlmProvider? provider;
   final db.LlmModel? model;
   final String? systemInstruction;
-  final dynamic
-  initialContext; // Types dynamic to avoid importing common if not needed, or better import common.
+  final dynamic initialContext;
+  final common.AiPersona? persona;
+  final db.AiDatabase? database;
 
   @override
   State<AiChatView> createState() => _AiChatViewState();
@@ -28,6 +32,7 @@ class AiChatView extends StatefulWidget {
 
 class _AiChatViewState extends State<AiChatView> {
   late LlmProvider _provider;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -40,13 +45,21 @@ class _AiChatViewState extends State<AiChatView> {
     super.didUpdateWidget(oldWidget);
     if (widget.systemInstruction != oldWidget.systemInstruction ||
         widget.provider != oldWidget.provider ||
-        widget.model != oldWidget.model) {
+        widget.model != oldWidget.model ||
+        widget.persona != oldWidget.persona) {
       // Re-initialize provider if config changes
       _initProvider();
     }
   }
 
-  void _initProvider() {
+  void _initProvider() async {
+    if (widget.persona != null && widget.database != null) {
+      setState(() => _isLoading = true);
+      await _initFromPersona();
+      if (mounted) setState(() => _isLoading = false);
+      return;
+    }
+
     if (widget.provider == null) {
       // Fallback or error state handling
       // For now using a dummy provider to prevent crash if data is missing
@@ -54,14 +67,79 @@ class _AiChatViewState extends State<AiChatView> {
       return;
     }
 
-    final p = widget.provider!;
+    _configureProvider(
+      widget.provider!,
+      widget.model,
+      widget.systemInstruction,
+    );
+  }
+
+  Future<void> _initFromPersona() async {
+    final database = widget.database!;
+    final commonPersona = widget.persona!;
+
+    // 1. Fetch full Persona from DB to get configuration (system prompt UUID, model UUID)
+    // database.aiPersonasDao.getByUuid returns the Drift-generated AiPersona
+    final dbPersona = await database.aiPersonasDao.getByUuid(
+      commonPersona.uuid,
+    );
+
+    if (dbPersona == null) {
+      // Should not happen if data consistency is maintained
+      _provider = DeepSeekProvider(apiKey: '');
+      return;
+    }
+
+    // 2. Fetch System Prompt
+    String? systemInstruction;
+    if (dbPersona.systemPromptUuid != null) {
+      final template = await database.promptTemplatesDao.getByUuid(
+        dbPersona.systemPromptUuid!,
+      );
+      systemInstruction = template?.content;
+    }
+
+    // 3. Fetch Model Config
+    db.LlmProvider? provider;
+    db.LlmModel? model;
+
+    // Use modelUuid from the DB entity
+    // modelUuid is not nullable in DB schema
+    model = await database.llmModelsDao.getByUuid(dbPersona.modelUuid);
+    if (model != null) {
+      provider = await database.llmProvidersDao.getByUuid(model.providerUuid);
+    }
+
+    // Fallback to default model if not found in persona
+    if (provider == null || model == null) {
+      final defaultModel = await database.llmModelsDao.getDefault();
+      if (defaultModel != null) {
+        model = defaultModel;
+        provider = await database.llmProvidersDao.getByUuid(
+          defaultModel.providerUuid,
+        );
+      }
+    }
+
+    if (provider != null) {
+      _configureProvider(provider, model, systemInstruction);
+    } else {
+      // Last resort fallback
+      _provider = DeepSeekProvider(
+        apiKey: '',
+        systemInstruction: systemInstruction,
+      );
+    }
+  }
+
+  void _configureProvider(
+    db.LlmProvider p,
+    db.LlmModel? m,
+    String? systemInstruction,
+  ) {
     final apiKey = p.encryptedApiKey ?? '';
     final baseUrl = p.baseUrl;
-    final modelId = widget.model?.modelId ?? 'deepseek-chat';
-
-    // Heuristic to choose provider implementation based on name or URL
-    // In strict Clean Architecture, we might have a factory class for this.
-    // For now, simple string matching is fine.
+    final modelId = m?.modelId ?? 'deepseek-chat';
 
     if (p.name.toLowerCase().contains('deepseek') ||
         baseUrl.contains('deepseek.com')) {
@@ -69,7 +147,7 @@ class _AiChatViewState extends State<AiChatView> {
         apiKey: apiKey,
         baseUrl: baseUrl,
         model: modelId,
-        systemInstruction: widget.systemInstruction,
+        systemInstruction: systemInstruction,
       );
     } else if (p.name.toLowerCase().contains('nvidia') ||
         baseUrl.contains('nvidia.com')) {
@@ -77,17 +155,14 @@ class _AiChatViewState extends State<AiChatView> {
         apiKey: apiKey,
         baseUrl: baseUrl,
         model: modelId,
-        systemInstruction: widget.systemInstruction,
+        systemInstruction: systemInstruction,
       );
     } else {
-      // Default to OpenAI-compatible provider (which DeepSeek/Nvidia are)
-      // We can reuse DeepSeekProvider as a generic OpenAI-compatible one
-      // since the implementation is basically standard.
       _provider = DeepSeekProvider(
         apiKey: apiKey,
         baseUrl: baseUrl,
         model: modelId,
-        systemInstruction: widget.systemInstruction,
+        systemInstruction: systemInstruction,
       );
     }
   }
@@ -105,6 +180,13 @@ class _AiChatViewState extends State<AiChatView> {
         icon: Icons.psychology,
       ),
     );
+
+    if (_isLoading) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('AI 占测助手')),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(title: const Text('AI 占测助手'), actions: []),

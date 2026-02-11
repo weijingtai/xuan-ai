@@ -25,6 +25,10 @@ Currently, communication flows in two directions, which must be clearly distingu
 
 * `AiEntity`: Represents a domain object (e.g., a Qimen chart) with structured data and natural language description.
 * `AiContext`: A container for `AiEntity` objects and user intentions.
+  * `moduleName` (String, Required): The identifier of the calling module (e.g., `xuan-qimendunjia`). Used for auditing and routing.
+  * `intention` (String): User's goal or question.
+  * `entities` (List<AiEntity>): Structured data relevant to the context.
+  * `systemPromptOverride` (String?): Optional override for system instructions.
 
 ## 3. Detailed Specifications
 
@@ -39,6 +43,17 @@ This allows sub-modules to extend the AI Chat interface with custom buttons or c
   * `execute(context)`: Handler logic.
 * **Registry**: `AiService.registerAction(AiAction action)`
 * **UI Integration**: The Chat Window dynamically renders applicable actions based on the current context.
+
+### 3.2 Link A+: Advanced Interactions (`Persona` & `ChatView`)
+
+Beyond simple actions, sub-modules can request more complex AI interactions:
+
+* **Persona Selection**: `AiService.showPersonaSelector(context, requiredSkills)`
+  * Allows users to select a specific AI Persona (e.g., "Grandmaster of Qimen") suitable for the current task.
+  * Supports filtering personalities by required skills (e.g., only show personas that know Qimen Dunjia).
+  * **Add Persona**: Users can create new personas directly from this interface.
+* **Embedded Chat**: `AiService.buildChatView(context, initialContext)`
+  * Allows embedding the AI Chat interface directly into a module's UI (e.g., a side panel or drawer) instead of a full-screen modal.
 
 ### 3.2 Link B: AI Accessing Modules (`AgentTool`)
 

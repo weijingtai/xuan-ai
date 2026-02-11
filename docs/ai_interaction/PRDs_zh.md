@@ -25,6 +25,10 @@
 
 * `AiEntity`: 代表一个业务对象（如奇门局），包含结构化数据和自然语言描述。
 * `AiContext`: `AiEntity` 对象和用户意图的容器。
+  * `moduleName` (String, 必填): 调用模块的标识符（例如 `xuan-qimendunjia`）。用于审计和路由。
+  * `intention` (String): 用户的目标或问题。
+  * `entities` (List<AiEntity>): 与上下文相关的结构化数据。
+  * `systemPromptOverride` (String?): 可选的系统指令覆盖。
 
 ## 3. 详细规格
 
@@ -39,6 +43,17 @@
   * `execute(context)`: 处理逻辑。
 * **注册**: `AiService.registerAction(AiAction action)`
 * **UI 集成**: 聊天窗口根据当前上下文动态渲染适用的动作。
+
+### 3.2 Link A+: 高级交互 (`Persona` & `ChatView`)
+
+除了简单的动作，子模块还可以请求更复杂的 AI 交互：
+
+* **人设选择**: `AiService.showPersonaSelector(context, requiredSkills)`
+  * 允许用户选择适合当前任务的特定 AI 人设（例如：“奇门遁甲大师”）。
+  * 支持通过所需技能筛选人设（例如：仅显示懂奇门遁甲的人设）。
+  * **新增人设**: 用户可以直接在此界面创建新人设。
+* **嵌入式聊天**: `AiService.buildChatView(context, initialContext)`
+  * 允许将 AI 聊天界面直接嵌入到模块的 UI 中（例如：侧边栏或抽屉），而不是全屏模态窗口。
 
 ### 3.2 Link B: AI 访问模块 (`AgentTool`)
 

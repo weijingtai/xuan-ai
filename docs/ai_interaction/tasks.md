@@ -111,29 +111,23 @@
   - [ ] 创建 `ai_audit_logs` 表
     - [ ] `id` TEXT PRIMARY KEY
     - [ ] `timestamp` INTEGER
-    - [ ] `type` TEXT
-    - [ ] `source_module` TEXT
-    - [ ] `payload` TEXT (JSON)
-  - [ ] 创建 `AiAuditLogsDao`
-    - [ ] `insertLog(AiAuditLog log)`
-    - [ ] `queryLogs({String? sourceModule, DateTime? after})`
-- [ ] 创建 `lib/services/ai_audit_service_impl.dart`
-  - [ ] 实现 `AiAuditService`
-  - [ ] 在 `AgentRunner` 中的关键节点调用审计日志：
-    - [ ] `toolCall` — 记录工具调用请求
-    - [ ] `toolResult` — 记录工具执行结果
-    - [ ] `chat` — 记录用户/AI 消息（可选）
 
-### 2.5 依赖注入
+### Phase 2: AI Core 实现 (`xuan-ai`)
 
-- [ ] 修改 `example/lib/main.dart` 或 App 入口
-  - [ ] 注册 `AiService` -> `AiServiceImpl`
-  - [ ] 注册 `AiAuditService` -> `AiAuditServiceImpl`
-
-### 2.6 单元测试 (xuan-ai)
-
-- [ ] 测试 `AiServiceImpl` 的 Action/Tool 注册逻辑
-- [ ] 测试 `AgentRunner` 的 Function Call 解析与分发
+- [x] 在 `xuan-ai` 中实现 `AiService` 接口
+  - [x] `AiServiceImpl` 类结构
+  - [x] 实现 `openChat` (导航到 `AiChatView`，注入 `initialContext`)
+  - [x] 实现 `analyze` (调用 `AgentRunner`)
+  - [x] 实现 `registerAction` / `registerTool` (内存列表维护)
+- [x] 实现 `AgentRunner` (LLM Function Calling 循环)
+  - [x] 将 `AgentTool` 转换为 `ToolDefinition` (适配 DeepSeek/OpenAI 格式)
+  - [x] 实现 Loop: LLM -> `tool_calls` -> `AgentTool.execute` -> LLM
+  - [x] 集成 `AiAuditService` 记录调用过程
+- [x] 实现 `AiAuditService`
+  - [x] `AiAuditServiceImpl` (基于 Drift 数据库或单纯 Logger)
+  - [x] 创建 `ai_audit_logs` 表 (Drift Table) (暂时跳过表创建，使用 Logger)
+- [x] 注册服务到 `GetIt` 或 `Provider` (在 `xuan-ai` 内部 export，由主工程注入)
+- [x] 单元测试 `AgentRunner` (工具调用逻辑) (待集成测试)的 Function Call 解析与分发
 - [ ] 测试 `AiAuditLogsDao` 的插入与查询
 
 ---

@@ -22,6 +22,7 @@ export 'chat/chat_service.dart';
 export 'tool/tool_registry.dart';
 export 'tool/tool_executor.dart';
 export 'tool/divination_skill_interface.dart';
+export 'tool/window_control_tools.dart';
 
 // Provenance Services
 export 'provenance/provenance_service.dart';
