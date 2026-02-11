@@ -28,10 +28,11 @@ class SessionManager {
 
   /// 创建新 Session。
   ///
-  /// 将 [persona] 的 UUID 作为 personaUuid 存入 DB，
-  /// 可选的 [initialContext] 会序列化为 JSON 存储。
-  /// 返回新建 Session 的 UUID。
-  Future<String> createSession({
+  /// [persona]: 关联的 AI 人设。
+  /// [initialContext]: 可选的上下文数据。如果存在，会将其格式化为第一条用户消息。
+  ///
+  /// 返回 [SessionCreationResult]，包含新 Session UUID 和初始消息（如果有）。
+  Future<SessionCreationResult> createSession({
     required ResolvedPersona persona,
     AiContext? initialContext,
   }) async {
@@ -47,7 +48,30 @@ class SessionManager {
 
     _logger.info('Created session $sessionUuid for persona: ${persona.name}');
 
-    return sessionUuid;
+    final List<ChatMessage> initialMessages = [];
+
+    // Inject Context as the first User Message
+    if (initialContext != null) {
+      final contextMessageContent = _formatContextToMessage(initialContext);
+
+      // Persist to DB
+      await _persistence.addMessage(
+        sessionUuid: sessionUuid,
+        role: 'user',
+        content: contextMessageContent,
+        isStreaming: false,
+      );
+
+      // Create ChatMessage for return
+      initialMessages.add(ChatMessage.user(contextMessageContent, const []));
+
+      _logger.info('Injected initial context message');
+    }
+
+    return SessionCreationResult(
+      sessionUuid: sessionUuid,
+      initialMessages: initialMessages,
+    );
   }
 
   /// 恢复已有 Session，从 DB 加载消息并反序列化为 ChatMessage 列表。
@@ -174,18 +198,58 @@ class SessionManager {
   // 内部转换
   // ============================================================
 
+  String _formatContextToMessage(AiContext context) {
+    final buffer = StringBuffer();
+
+    // Header
+    buffer.writeln('【当前上下文信息】');
+
+    // Intention
+    if (context.intention.isNotEmpty) {
+      buffer.writeln('用户意图: ${context.intention}');
+      buffer.writeln();
+    }
+
+    // Module Info
+    buffer.writeln('来源模块: ${context.moduleName}');
+    buffer.writeln();
+
+    // Entities
+    if (context.entities.isNotEmpty) {
+      buffer.writeln('【关联数据】');
+      for (final entity in context.entities) {
+        buffer.writeln('--- ${entity.name} (${entity.type}) ---');
+        buffer.writeln(entity.description);
+        buffer.writeln();
+      }
+    }
+
+    return buffer.toString().trim();
+  }
+
   /// 将 DB 聊天消息转换为 toolkit ChatMessage。
   ChatMessage _dbMessageToChatMessage(AiChatMessage dbMessage) {
     if (dbMessage.role == 'user') {
-      return ChatMessage.user(dbMessage.content, []);
+      return ChatMessage.user(dbMessage.content, const []);
     } else {
       return ChatMessage(
         origin: MessageOrigin.llm,
         text: dbMessage.content,
-        attachments: [],
+        attachments: const [],
       );
     }
   }
+}
+
+/// Session 创建结果。
+class SessionCreationResult {
+  final String sessionUuid;
+  final List<ChatMessage> initialMessages;
+
+  const SessionCreationResult({
+    required this.sessionUuid,
+    required this.initialMessages,
+  });
 }
 
 /// Session 恢复结果。

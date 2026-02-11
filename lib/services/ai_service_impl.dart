@@ -168,10 +168,11 @@ class AiServiceImpl implements AiService {
   }) async {
     _logger.info('Creating session for persona: ${persona.name}');
 
-    final sessionUuid = await _sessionManager.createSession(
+    final result = await _sessionManager.createSession(
       persona: persona,
       initialContext: initialContext,
     );
+    final sessionUuid = result.sessionUuid;
 
     if (context.mounted) {
       Navigator.of(context).push(
@@ -179,6 +180,7 @@ class AiServiceImpl implements AiService {
           builder: (ctx) => AiChatView(
             persona: persona,
             sessionUuid: sessionUuid,
+            history: result.initialMessages,
             onSessionEnd: (history) {
               _sessionManager.saveHistory(
                 sessionUuid: sessionUuid,
@@ -469,16 +471,18 @@ class _AsyncChatViewBuilderState extends State<_AsyncChatViewBuilder> {
       }
 
       // 2. 创建 Session
-      final sessionUuid = await widget.aiService._sessionManager.createSession(
+      final result = await widget.aiService._sessionManager.createSession(
         persona: persona,
         initialContext: widget.initialContext,
       );
+      final sessionUuid = result.sessionUuid;
 
       if (mounted) {
         setState(() {
           _chatView = AiChatView(
             persona: persona!,
             sessionUuid: sessionUuid,
+            history: result.initialMessages,
             onSessionEnd: (history) {
               widget.aiService._sessionManager.saveHistory(
                 sessionUuid: sessionUuid,
