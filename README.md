@@ -1,161 +1,206 @@
 # AI Core Module
 
-AI 核心模块，为玄学占测应用提供 AI 大语言模型能力集成。
+AI 核心模块，为玄学占测应用提供完整的 AI 大语言模型能力集成，包括流式对话、动态人设、Function Calling、多 Agent 协作与完整溯源审计。
 
-## 功能特性
+## 🎯 功能特性
 
-- **LLM Provider**: OpenAI 兼容的 LLM 接入层，支持流式响应
-- **Prompt 管理**: Prompt 模板的版本化管理与技法绑定
-- **AI Persona**: 拟人化 AI 配置，支持不同风格的占测解读
-- **对话系统**: 完整的对话持久化与会话管理
-- **工具系统**: Function Calling 支持，允许 AI 调用占测工具
-- **溯源系统**: 完整的 API 调用记录与可信回溯
-- **Agent 编排**: 多 Agent 协作，支持跨技法调用
+- **完整 AI 服务** (`AiService`): 提供开箱即用的会话管理、对话流程、人设加载等高级 API
+- **LLM Provider 管理**: OpenAI 兼容的 LLM 接入层，支持流式响应、多模型切换
+- **动态 Persona 系统**: 拟人化 AI 配置，支持在线编辑和即时应用，无需重启
+- **智能会话管理** (`SessionManager`): 完整的对话持久化、历史恢复、上下文注入
+- **Function Calling**: 完整的工具系统，允许 AI 自主调用占测工具
+- **多 Agent 编排** (`AgentRunner`): 支持 Agent 递归调用与深度限制，实现跨技法协作
+- **完整溯源审计**: 不可变的 SHA-256 审计链，可信的 API 调用与 Agent 调用记录
+- **实时 UI 更新**: 基于 Provider 的流式数据推送，完美集成 Flutter 响应式 UI
 
-## 架构
+## 📐 系统架构
 
-```text
-ai_core/
-├── lib/
-│   ├── ai_core.dart              # 导出文件
-│   ├── database/                  # Drift 数据库
-│   │   ├── ai_database.dart      # 数据库定义
-│   │   ├── tables/               # 表定义
-│   │   └── daos/                 # DAO 层
-│   ├── models/                    # 数据模型
-│   ├── services/                  # 业务服务
-│   │   ├── llm/                  # LLM 服务
-│   │   ├── prompt/               # Prompt 管理
-│   │   ├── chat/                 # 对话服务
-│   │   ├── tool/                 # 工具系统
-│   │   ├── provenance/           # 溯源服务
-│   │   └── agent/                # Agent 编排
-│   ├── viewmodels/               # ViewModel 层
-│   └── widgets/                  # UI 组件
-└── assets/
-    └── prompts/                  # 默认 Prompt 模板
+```
+┌─────────────────────────────────────┐
+│         Flutter UI Widgets          │
+│ (AiChatView, SettingsDialog, etc)   │
+└────────────┬────────────────────────┘
+             │
+┌────────────▼────────────────────────┐
+│      AiService (Main API)           │
+│  • createSession()                  │
+│  • resumeChat()                     │
+│  • listSessions()                   │
+│  • editPersona()                    │
+└────────────┬────────────────────────┘
+             │
+    ┌────────┼────────┬──────────┐
+    │        │        │          │
+┌───▼──┐ ┌──▼───┐ ┌──▼─────┐ ┌─▼─────────────┐
+│Chat  │ │LLM   │ │Session │ │ProviderFactory│
+│Service│ │Service│ │Manager │ │& Tool Registry│
+└───┬──┘ └──┬───┘ └──┬─────┘ └─┬─────────────┘
+    │       │        │         │
+    └───────┼────────┼─────────┘
+            │        │
+    ┌───────▼────────▼────────┐
+    │    Drift ORM Database   │
+    │  (14 Tables, 14 DAOs)   │
+    │                         │
+    │ • Personas & Models     │
+    │ • Sessions & Messages   │
+    │ • LLM Providers Config  │
+    │ • Immutable Provenance  │
+    │ • Usage Audits          │
+    └─────────────────────────┘
 ```
 
-## 核心调用方案 (Session Management)
+### 关键服务说明
 
-本模块提供了完整的会话管理能力，包括会话的创建、恢复、持久化以及 UI 的展示。
+| 服务 | 职责 |
+|-----|------|
+| **AiService** | 高级 API，对外暴露的主要接口 |
+| **ChatService** | 对话流程编排，消息处理与 Function Calling |
+| **LlmService** | LLM 提供商管理，流式响应处理 |
+| **SessionManager** | 会话持久化，历史消息加载与恢复 |
+| **ToolRegistry** | 工具注册与 Function Calling 执行 |
+| **AgentRunner** | 多 Agent 协作，递归调用管理 |
+| **ProvenanceService** | 不可变审计链，SHA-256 完整性验证 |
+| **ProviderFactory** | 动态配置工厂，支持运行时切换 |
 
-### 1. 依赖注入
+## 🚀 快速开始
 
-首先确保 `AiService` 和 `AiDatabase` 已正确初始化并注入到你的应用中（通常使用 `Provider` 或 `GetIt`）。
+### 1. 初始化 AI 系统
+
+使用 `ai_bootstrap` 工具一键初始化，确保数据库、LLM Provider、默认 Persona 等全部就绪：
 
 ```dart
+import 'package:ai_core/utils/ai_bootstrap.dart';
+import 'package:ai_core/database/ai_database.dart';
+import 'package:ai_core/services/ai_service_impl.dart';
+import 'package:get_it/get_it.dart';
+
+// 应用启动时
 final aiDatabase = AiDatabase();
+await ensureDeepSeekProvider(aiDatabase, apiKey: 'sk-xxx');
+
 final aiService = AiServiceImpl(
-  llmService: LlmServiceImpl(db: aiDatabase),
   db: aiDatabase,
+  // ... 其他必要的服务
+);
+
+// 注入到 GetIt 或 Provider
+GetIt.I.registerSingleton<AiService>(aiService);
+```
+
+### 2. 创建新会话（一行代码跳转到聊天界面）
+
+```dart
+// 最简单的方式：使用默认人设创建会话
+await aiService.createSession(
+  context: context,
+  initialContext: AiContext(
+    moduleName: 'xuan-qimen',
+    intention: '请帮我分析这个奇门局',
+  ),
 );
 ```
 
-### 2. 创建新会话 (createSession)
-
-创建一个新的聊天会话，并自动跳转到聊天界面。
+或者手动选择人设：
 
 ```dart
-// 1. 获取/解析目标 Persona
-// 这里的 personaUuid 可以来自用户选择，或者使用默认人设
-final personaUuid = '...'; 
-final persona = await aiService.resolvePersona(personaUuid);
+// 显示人设选择器
+final selectedPersona = await showModalBottomSheet<ResolvedPersona>(
+  context: context,
+  builder: (ctx) => PersonaSelectionSheet(
+    onSelected: (persona) => Navigator.pop(ctx, persona),
+  ),
+);
 
-if (persona != null) {
-  // 2. 创建会话并打开 UI
-  final sessionUuid = await aiService.createSession(
+if (selectedPersona != null) {
+  await aiService.createSession(
     context: context,
-    persona: persona,
+    persona: selectedPersona,
     initialContext: AiContext(
       moduleName: 'xuan-qimen',
       intention: '请帮我分析这个奇门局',
-      entities: [/* ... */],
+      entities: [/* 动态实体 */],
     ),
   );
-  
-  print('Session created: $sessionUuid');
 }
 ```
 
-### 3. 恢复历史会话 (resumeChat)
-
-从数据库恢复已有的会话，加载历史消息并跳转到聊天界面。
+### 3. 恢复历史会话
 
 ```dart
-// 传入已有的 Session UUID
+// 传入已有的 Session UUID 即可恢复，历史消息自动加载
 await aiService.resumeChat(
   context: context,
   sessionUuid: 'existing-session-uuid',
 );
 ```
 
-### 4. 列出会话 (listSessions)
-
-获取会话列表，用于展示历史记录。
+### 4. 列出所有会话
 
 ```dart
 final sessions = await aiService.listSessions(
-  // 可选：过滤特定人设
-  personaUuid: '...', 
-  // 可选：过滤状态 (active, archived)
-  status: 'active',
+  personaUuid: 'optional-filter',
+  status: 'active', // 或 'archived'
 );
 
+// 使用 ListView.builder 展示历史会话列表
 for (final summary in sessions) {
-  print('${summary.title} - ${summary.updatedAt}');
+  print('${summary.title} - ${summary.messageCount} 条消息');
 }
 ```
 
-### 5. 自定义嵌入聊天视图 (AiChatView)
+### 5. 自定义聊天 UI（高级用法）
 
-如果需要将聊天界面嵌入到自己的 UI 中（而不是使用 `AiService` 提供的全屏跳转），可以直接使用 `AiChatView`。
-
-**注意**：`AiChatView` 是纯展示组件，不直接访问数据库。它需要上层提供 `ResolvedPersona` 和 `Session UUID`，并在会话结束时负责保存历史。
+如需将聊天界面嵌入自己的 UI 中（而不是全屏跳转），直接使用 `AiChatView`。它提供完整的流式对话、实时消息更新、Person 动态切换等功能：
 
 ```dart
-class MyEmbeddedChat extends StatefulWidget {
-  final ResolvedPersona persona;
-  final String sessionUuid;
-  final List<ChatMessage>? history; // 如果是恢复会话，传入历史消息
-
-  // ...
-}
-
-class _MyEmbeddedChatState extends State<MyEmbeddedChat> {
-  // ...
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: AiChatView(
-        // 必填：人设配置（Provider/Model/Prompt 信息来源）
-        persona: widget.persona,
-        
-        // 必填：Session ID（用于关联）
-        sessionUuid: widget.sessionUuid,
-        
-        // 可选：历史消息（用于恢复上下文）
-        history: widget.history,
-        
-        // 可选：欢迎语
-        welcomeMessage: '您好，我是${widget.persona.name}，请问有什么可以帮您？',
-        
-        // 必填：会话结束/页面销毁时的回调
-        // 必须在此处调用 SessionManager 保存历史记录
-        onSessionEnd: (history) {
-          GetIt.I<SessionManager>().saveHistory(
-            sessionUuid: widget.sessionUuid,
-            history: history,
-          );
-        },
-      ),
-    );
-  }
+@override
+Widget build(BuildContext context) {
+  return AiChatView(
+    persona: resolvedPersona,          // 动态 Persona 配置
+    sessionUuid: sessionUuid,           // 会话 ID
+    history: previousMessages,          // 历史消息（可选）
+    welcomeMessage: '欢迎使用 AI',       // 欢迎语
+    onPersonaChanged: (newPersona) {
+      // 人设动态切换时触发
+      print('Persona changed to: ${newPersona.name}');
+    },
+    onSessionEnd: (finalHistory) {
+      // 对话结束或页面销毁时保存历史
+      sessionManager.saveHistory(
+        sessionUuid: sessionUuid,
+        messages: finalHistory,
+      );
+    },
+  );
 }
 ```
 
-## 数据库表结构
+## 🏗️ 核心概念
+
+### Persona（人设）
+一个完整的 AI 人设包含：
+- **基本信息**: 名称、描述、风格特征
+- **LLM 提供商**: 如 DeepSeek API
+- **模型版本**: 如 deepseek-chat
+- **System Prompt**: 个性化的系统提示词
+- **Tool Bindings**: 可用的工具列表
+
+Persona 是 **不可变的**，创建后不能修改。修改后会生成新的版本，旧版本保留用于审计追溯。
+
+### Session（会话）
+- 一个独立的对话会话
+- 包含完整的消息历史（用户消息 + AI 响应）
+- 绑定到一个特定的 Persona
+- 支持上下文注入（`AiContext`）：包含模块名、用户意图、动态实体等
+
+### Provider Factory 与动态切换
+`ProviderFactory` 提供了一套工厂方法，允许在运行时动态地：
+- 切换 LLM 提供商（如从 DeepSeek 切换到 OpenAI）
+- 修改 Persona 配置
+- 重新加载配置而无需重启应用
+
+在 `AiChatView` 中点击"设置"按钮可打开 `AiChatSettingsDialog`，即时更改这些配置。
 
 ### LLM 配置层
 
