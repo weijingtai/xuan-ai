@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:common/domain/ai/agent_tool.dart';
 import 'package:common/domain/ai/ai_audit_log.dart';
 import 'package:common/domain/ai/ai_action.dart';
+import 'package:common/domain/ai/ai_chat_event.dart';
 import 'package:common/domain/ai/ai_config_summary.dart';
 import 'package:common/domain/ai/ai_context.dart';
 import 'package:common/domain/ai/resolved_persona.dart';
 import 'package:common/domain/ai/session_summary.dart';
 import 'package:common/services/ai_audit_service.dart';
 import 'package:common/services/ai_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
@@ -22,6 +24,8 @@ import 'package:common/domain/ai/ai_persona.dart'
     as common; // Domain model alias
 import 'package:common/services/ai_registry.dart';
 import 'chat/session_manager.dart';
+import 'tool/tool_registry.dart';
+import '../models/tool_definition.dart';
 
 class AiServiceImpl implements AiService {
   final _logger = Logger('AiServiceImpl');
@@ -33,6 +37,12 @@ class AiServiceImpl implements AiService {
   // Active configuration stream (mock for now)
   final _configController = StreamController<AiConfigSummary>.broadcast();
 
+  // Chat event broadcast stream (Phase 1)
+  final _chatEventController = StreamController<AiChatEvent>.broadcast();
+
+  // Tool Registry for DeepSeekProvider tool calling
+  final ToolRegistry _toolRegistry;
+
   // Services
   final AiAuditService _auditService;
   final LlmService _llmService;
@@ -43,14 +53,39 @@ class AiServiceImpl implements AiService {
     AiAuditService? auditService,
     required LlmService llmService,
     required AiDatabase db,
+    ToolRegistry? toolRegistry,
   }) : _auditService = auditService ?? AiAuditServiceImpl(),
        _llmService = llmService,
-       _db = db {
+       _db = db,
+       _toolRegistry = toolRegistry ?? ToolRegistry() {
     _sessionManager = SessionManager(db: _db);
   }
 
   @override
   Stream<AiConfigSummary> get activeConfig => _configController.stream;
+
+  @override
+  Stream<AiChatEvent> get chatEvents => _chatEventController.stream;
+
+  /// Emit a chat event to all subscribers.
+  void emitChatEvent(AiChatEvent event) {
+    if (event is ToolResultEvent) {
+      _logger.info('[emitChatEvent] ToolResultEvent: '
+          'tool="${event.toolName}", session=${event.sessionUuid}, '
+          'hasError=${event.resultData.containsKey("error")}');
+      debugPrint('📢 [AiServiceImpl] emitChatEvent: ToolResultEvent tool="${event.toolName}", '
+          'listeners=${_chatEventController.hasListener}');
+    } else {
+      _logger.info('[emitChatEvent] ${event.runtimeType}: session=${event.sessionUuid}');
+    }
+    _chatEventController.add(event);
+  }
+
+  /// Access the tool registry (for registering tools from external modules).
+  ToolRegistry get toolRegistry => _toolRegistry;
+
+  /// Access the session manager (for session CRUD within AiChatView).
+  SessionManager get sessionManager => _sessionManager;
 
   // ============================================================
   // 扩展注册
@@ -85,7 +120,15 @@ class AiServiceImpl implements AiService {
       _tools.removeWhere((t) => t.name == tool.name);
     }
     _tools.add(tool);
-    _logger.info('Registered Tool: ${tool.name}');
+    _logger.info('Registered Tool: ${tool.name} (description: ${tool.description})');
+
+    // Also register in ToolRegistry for DeepSeekProvider tool calling
+    _logger.fine('Registering "${tool.name}" in ToolRegistry for provider tool calling');
+    _toolRegistry.registerTool(
+      name: tool.name,
+      definition: _agentToolToDefinition(tool),
+      handler: (args) => tool.execute(args),
+    );
   }
 
   @override
@@ -182,6 +225,7 @@ class AiServiceImpl implements AiService {
             sessionUuid: sessionUuid,
             db: _db,
             aiService: this,
+            toolRegistry: _toolRegistry,
             history: result.initialMessages,
             onSessionEnd: (history) {
               _sessionManager.saveHistory(
@@ -204,21 +248,18 @@ class AiServiceImpl implements AiService {
   }) async {
     _logger.info('Resuming session: $sessionUuid');
 
-    // 1. 从 DB 恢复 Session 和消息
     final result = await _sessionManager.resumeSession(sessionUuid);
     if (result == null) {
       _logger.warning('Cannot resume: session not found');
       return;
     }
 
-    // 2. 解析 Persona
     final persona = await resolvePersona(result.session.personaUuid);
     if (persona == null) {
       _logger.warning('Cannot resume: persona not found');
       return;
     }
 
-    // 3. 打开聊天界面（AiChatView 内部从 Persona 构造 Provider）
     if (context.mounted) {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -227,6 +268,7 @@ class AiServiceImpl implements AiService {
             sessionUuid: sessionUuid,
             db: _db,
             aiService: this,
+            toolRegistry: _toolRegistry,
             history: result.messages,
             onSessionEnd: (history) {
               _sessionManager.saveHistory(
@@ -293,7 +335,6 @@ class AiServiceImpl implements AiService {
       ),
     );
 
-    // 使用默认 Persona 打开 Session
     final defaultPersona = await _db.aiPersonasDao.getDefault();
     if (defaultPersona == null) {
       _logger.warning('No default persona configured');
@@ -326,8 +367,6 @@ class AiServiceImpl implements AiService {
     AiContext? initialContext,
     common.AiPersona? persona,
   }) {
-    // buildChatView 是同步的，但我们需要异步解析。
-    // 返回一个 FutureBuilder 来处理异步初始化。
     return _AsyncChatViewBuilder(
       aiService: this,
       initialContext: initialContext,
@@ -410,19 +449,16 @@ class AiServiceImpl implements AiService {
 
   @override
   Future<String?> getSummary({required String entityId}) async {
-    // TODO: Implement persistence lookup
     return null;
   }
 
   @override
   Stream<String?> watchSummary({required String entityId}) {
-    // TODO: Implement persistence stream
     return Stream.value(null);
   }
 
   @override
   Future<bool> showConfigSheet({required BuildContext context}) async {
-    // TODO: Implement Config Sheet
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('AI Configuration Sheet not implemented')),
     );
@@ -431,13 +467,23 @@ class AiServiceImpl implements AiService {
 
   void dispose() {
     _configController.close();
+    _chatEventController.close();
+  }
+
+  /// Convert an [AgentTool] to a [ToolDefinition] for the ToolRegistry.
+  static ToolDefinition _agentToolToDefinition(AgentTool tool) {
+    return ToolDefinition(
+      type: 'function',
+      function: FunctionDefinition(
+        name: tool.name,
+        description: tool.description,
+        parameters: tool.parametersSchema,
+      ),
+    );
   }
 }
 
 /// 异步构建 AiChatView 的辅助 Widget。
-///
-/// 用于 [AiServiceImpl.buildChatView]，因为该方法是同步的，
-/// 但我们需要异步解析 Persona 和创建 Session。
 class _AsyncChatViewBuilder extends StatefulWidget {
   const _AsyncChatViewBuilder({
     required this.aiService,
@@ -465,7 +511,6 @@ class _AsyncChatViewBuilderState extends State<_AsyncChatViewBuilder> {
 
   Future<void> _init() async {
     try {
-      // 1. 解析 Persona
       ResolvedPersona? persona;
       if (widget.personaUuid != null) {
         persona = await widget.aiService.resolvePersona(widget.personaUuid!);
@@ -482,7 +527,6 @@ class _AsyncChatViewBuilderState extends State<_AsyncChatViewBuilder> {
         return;
       }
 
-      // 2. 创建 Session
       final result = await widget.aiService._sessionManager.createSession(
         persona: persona,
         initialContext: widget.initialContext,
@@ -496,6 +540,7 @@ class _AsyncChatViewBuilderState extends State<_AsyncChatViewBuilder> {
             sessionUuid: sessionUuid,
             db: widget.aiService._db,
             aiService: widget.aiService,
+            toolRegistry: widget.aiService._toolRegistry,
             history: result.initialMessages,
             onSessionEnd: (history) {
               widget.aiService._sessionManager.saveHistory(

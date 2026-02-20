@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'package:logging/logging.dart';
 import '../../models/tool_definition.dart';
 import '../../models/tool_call.dart';
 import 'divination_skill_interface.dart';
 
 /// Tool registry for managing and executing AI tools
 class ToolRegistry {
+  static final _log = Logger('ToolRegistry');
   final Map<String, ToolHandler> _handlers = {};
   final Map<String, ToolDefinition> _definitions = {};
   final Map<int, DivinationSkillInterface> _skillInterfaces = {};
@@ -15,12 +17,14 @@ class ToolRegistry {
     required ToolDefinition definition,
     required ToolHandler handler,
   }) {
+    _log.info('[registerTool] name="$name", description="${definition.function.description}"');
     _handlers[name] = handler;
     _definitions[name] = definition;
   }
 
   /// Register a divination skill interface
   void registerSkill(int skillId, DivinationSkillInterface interface) {
+    _log.info('[registerSkill] skillId=$skillId, tools=${interface.getTools().map((t) => t.function.name).toList()}');
     _skillInterfaces[skillId] = interface;
 
     // Auto-register tools from the skill
@@ -39,8 +43,17 @@ class ToolRegistry {
     _definitions.remove(name);
   }
 
-  /// Get all tool definitions for LLM
+  /// Get all tool definitions for LLM (async, for compatibility)
   Future<List<ToolDefinition>?> getToolDefinitions() async {
+    if (_definitions.isEmpty) return null;
+    return _definitions.values.toList();
+  }
+
+  /// Get all tool definitions synchronously.
+  ///
+  /// Used by [ProviderFactory] when constructing providers, since
+  /// definitions are already loaded in memory.
+  List<ToolDefinition>? getToolDefinitionsSync() {
     if (_definitions.isEmpty) return null;
     return _definitions.values.toList();
   }
@@ -63,9 +76,12 @@ class ToolRegistry {
     final toolCallId = DateTime.now().millisecondsSinceEpoch.toString();
     final stopwatch = Stopwatch()..start();
 
+    _log.info('[executeTool] name="$name", args keys=${arguments.keys.toList()}');
+
     try {
       final handler = _handlers[name];
       if (handler == null) {
+        _log.warning('[executeTool] tool not found: "$name", registered=${_handlers.keys.toList()}');
         return ToolCallResult.failure(
           toolCallId: toolCallId,
           toolName: name,
@@ -77,6 +93,7 @@ class ToolRegistry {
       final result = await handler(arguments);
       stopwatch.stop();
 
+      _log.info('[executeTool] "$name" succeeded in ${stopwatch.elapsedMilliseconds}ms');
       return ToolCallResult.success(
         toolCallId: toolCallId,
         toolName: name,
@@ -86,6 +103,7 @@ class ToolRegistry {
       );
     } catch (e) {
       stopwatch.stop();
+      _log.severe('[executeTool] "$name" failed in ${stopwatch.elapsedMilliseconds}ms: $e');
       return ToolCallResult.failure(
         toolCallId: toolCallId,
         toolName: name,
