@@ -31,8 +31,10 @@ dependencies:
   dio: ^5.9.1
 
   # Shared module
-  common:
-    path: ../xuan-common
+  xuan_common:
+    git:
+      url: http://xuan:***@192.168.0.165:3000/xuan/xuan-common.git
+      ref: main
 
   # AI Toolkit
   flutter_ai_toolkit: ^0.9.1
