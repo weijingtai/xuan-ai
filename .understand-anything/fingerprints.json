@@ -1,0 +1,6923 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-05-21T22:41:47.452Z",
+  "files": {
+    "AGENTS.md": {
+      "sizeLines": 106,
+      "sha256": "9d699a7c47cb9d1d76a4b590b16893835f66b0985c9eec546ed918c37ce7a9ef",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "CLAUDE.md": {
+      "sizeLines": 106,
+      "sha256": "c8a963cbd42319452c4cf6bb349fd6a63581e5edaaec52615e5db9f95c559754",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "README.md": {
+      "sizeLines": 240,
+      "sha256": "6eae758d9b59308419fb592d49bbef71c6211d8e0cbaffd41aea15240bec6713",
+      "symbols": {
+        "functions": [
+          {
+            "name": "build",
+            "startLine": 158,
+            "endLine": 176,
+            "params": []
+          }
+        ],
+        "classes": [],
+        "exports": [
+          {
+            "name": "build",
+            "line": 158,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "analysis_options.yaml": {
+      "sizeLines": 9,
+      "sha256": "5f79c578c38d277c941f9419eb027b11baf494fa1971b3f00b1c4abee52dd4e9",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "build.yaml": {
+      "sizeLines": 10,
+      "sha256": "ecee13c738b235199c0f458737e8a8c54f65bdc11a86493aa6d909806e04137b",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai/PLAN.md": {
+      "sizeLines": 107,
+      "sha256": "1adc5dc502259185b8a34bbd86f05c1a8ebf0376efaede07f46960a003aa3449",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai/PRDs.md": {
+      "sizeLines": 91,
+      "sha256": "8ae6c98a7c087634fed2e4dd95cf0ef27c67c8d5607945705b240bc4437f0014",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai/TASKS.md": {
+      "sizeLines": 72,
+      "sha256": "7e75713fd3924666939dbdda2c008ea7aba9ac0e0facd1efa93b3c2be799cb25",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai_chains.txt": {
+      "sizeLines": 40,
+      "sha256": "f0774a0f32f228b808a4610cdc4244dca0b1bec980e8a218397266371cd18dc0",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai_interaction/PRDs.md": {
+      "sizeLines": 166,
+      "sha256": "320a1bafd8de2c88a46ce0b7f9d9bf731adee0e1c2c03b12e9b18ba0df668710",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai_interaction/PRDs_zh.md": {
+      "sizeLines": 166,
+      "sha256": "36644e7dd6df88c5709a40ed895f632d44e2e09df9ad61dc9ed4e60c813777c8",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai_interaction/Plans.md": {
+      "sizeLines": 98,
+      "sha256": "2063190dca6af2ceb5c390b39051eac317070eee7b0b0e5e1c94298463e1d4ce",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai_interaction/Plans_zh.md": {
+      "sizeLines": 98,
+      "sha256": "c08a537016b93668d4a158d8c3b0f914cf8d0a3371d232a2c0914a61b2ebdc9e",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/ai_interaction/integration_guide_zh.md": {
+      "sizeLines": 213,
+      "sha256": "a04bb766f84bb0615a446de8a71f724ef90c12d9a9f7c2b9e1d2106d868d9516",
+      "symbols": {
+        "functions": [
+          {
+            "name": "buildBaziContext",
+            "startLine": 17,
+            "endLine": 31,
+            "params": []
+          },
+          {
+            "name": "onAnalyzeButtonPressed",
+            "startLine": 39,
+            "endLine": 61,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 79,
+            "endLine": 82,
+            "params": []
+          },
+          {
+            "name": "_initSession",
+            "startLine": 84,
+            "endLine": 101,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 104,
+            "endLine": 117,
+            "params": []
+          },
+          {
+            "name": "execute",
+            "startLine": 152,
+            "endLine": 162,
+            "params": []
+          },
+          {
+            "name": "execute",
+            "startLine": 193,
+            "endLine": 199,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "BaziAnalysisPanel",
+            "startLine": 69,
+            "endLine": 72,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "_BaziAnalysisPanelState",
+            "startLine": 74,
+            "endLine": 118,
+            "methods": [
+              "initState",
+              "_initSession",
+              "build",
+              "CircularProgressIndicator",
+              "AiChatView"
+            ],
+            "properties": []
+          },
+          {
+            "name": "ReplotBaziTool",
+            "startLine": 132,
+            "endLine": 163,
+            "methods": [
+              "execute"
+            ],
+            "properties": []
+          },
+          {
+            "name": "CheckStructureAction",
+            "startLine": 185,
+            "endLine": 200,
+            "methods": [
+              "execute"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "buildBaziContext",
+            "line": 17,
+            "isDefault": false
+          },
+          {
+            "name": "onAnalyzeButtonPressed",
+            "line": 39,
+            "isDefault": false
+          },
+          {
+            "name": "BaziAnalysisPanel",
+            "line": 69,
+            "isDefault": false
+          },
+          {
+            "name": "_BaziAnalysisPanelState",
+            "line": 74,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 79,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 104,
+            "isDefault": false
+          },
+          {
+            "name": "ReplotBaziTool",
+            "line": 132,
+            "isDefault": false
+          },
+          {
+            "name": "execute",
+            "line": 152,
+            "isDefault": false
+          },
+          {
+            "name": "CheckStructureAction",
+            "line": 185,
+            "isDefault": false
+          },
+          {
+            "name": "execute",
+            "line": 193,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "docs/ai_interaction/tasks.md": {
+      "sizeLines": 217,
+      "sha256": "f37a24dd8c1e5ca97dfea9ec21ff2f8b6bdb24e89951852c4d216465848840ff",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/gemini/code_review_v1.md": {
+      "sizeLines": 95,
+      "sha256": "d75f81c1a9945e8a8fd54704e9caae42ea097a0b93004b76785321a8a996e049",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "docs/gemini/integration_architecture_v1.md": {
+      "sizeLines": 638,
+      "sha256": "19a15928a3d31612f50a4e9945942ae394512b21790f980c7ba7bd212e2639fb",
+      "symbols": {
+        "functions": [
+          {
+            "name": "analyze",
+            "startLine": 128,
+            "endLine": 130,
+            "params": []
+          },
+          {
+            "name": "_onAskAiPressed",
+            "startLine": 145,
+            "endLine": 173,
+            "params": []
+          },
+          {
+            "name": "setupLocator",
+            "startLine": 184,
+            "endLine": 191,
+            "params": []
+          },
+          {
+            "name": "buildHistoryItem",
+            "startLine": 347,
+            "endLine": 360,
+            "params": []
+          },
+          {
+            "name": "isApplicable",
+            "startLine": 441,
+            "endLine": 441,
+            "params": []
+          },
+          {
+            "name": "execute",
+            "startLine": 488,
+            "endLine": 492,
+            "params": []
+          },
+          {
+            "name": "execute",
+            "startLine": 544,
+            "endLine": 553,
+            "params": []
+          },
+          {
+            "name": "execute",
+            "startLine": 610,
+            "endLine": 622,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiEntity",
+            "startLine": 27,
+            "endLine": 42,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiContext",
+            "startLine": 45,
+            "endLine": 55,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiService",
+            "startLine": 66,
+            "endLine": 80,
+            "methods": [
+              "openChat",
+              "analyze"
+            ],
+            "properties": []
+          },
+          {
+            "name": "AiServiceImpl",
+            "startLine": 96,
+            "endLine": 131,
+            "methods": [
+              "openChat",
+              "analyze"
+            ],
+            "properties": []
+          },
+          {
+            "name": "AiService",
+            "startLine": 203,
+            "endLine": 217,
+            "methods": [
+              "showConfigSheet"
+            ],
+            "properties": []
+          },
+          {
+            "name": "AiConfigSummary",
+            "startLine": 219,
+            "endLine": 224,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiService",
+            "startLine": 281,
+            "endLine": 288,
+            "methods": [
+              "openChat"
+            ],
+            "properties": []
+          },
+          {
+            "name": "AiKnowledgeService",
+            "startLine": 290,
+            "endLine": 293,
+            "methods": [
+              "explainTerm",
+              "findSimilarCases"
+            ],
+            "properties": []
+          },
+          {
+            "name": "AiCommand",
+            "startLine": 302,
+            "endLine": 305,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiService",
+            "startLine": 307,
+            "endLine": 311,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiService",
+            "startLine": 368,
+            "endLine": 376,
+            "methods": [
+              "getSummary",
+              "watchSummary"
+            ],
+            "properties": []
+          },
+          {
+            "name": "AiAction",
+            "startLine": 396,
+            "endLine": 410,
+            "methods": [
+              "isApplicable",
+              "execute"
+            ],
+            "properties": []
+          },
+          {
+            "name": "AiService",
+            "startLine": 418,
+            "endLine": 426,
+            "methods": [
+              "registerAction",
+              "getAvailableActions"
+            ],
+            "properties": []
+          },
+          {
+            "name": "SummarizeAction",
+            "startLine": 434,
+            "endLine": 453,
+            "methods": [
+              "isApplicable",
+              "execute"
+            ],
+            "properties": []
+          },
+          {
+            "name": "QimenAnalysisAction",
+            "startLine": 483,
+            "endLine": 493,
+            "methods": [
+              "execute"
+            ],
+            "properties": []
+          },
+          {
+            "name": "CreateLiurenTool",
+            "startLine": 537,
+            "endLine": 554,
+            "methods": [
+              "execute"
+            ],
+            "properties": []
+          },
+          {
+            "name": "SearchQimenHistoryTool",
+            "startLine": 593,
+            "endLine": 623,
+            "methods": [
+              "execute"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiEntity",
+            "line": 27,
+            "isDefault": false
+          },
+          {
+            "name": "AiContext",
+            "line": 45,
+            "isDefault": false
+          },
+          {
+            "name": "AiService",
+            "line": 66,
+            "isDefault": false
+          },
+          {
+            "name": "AiServiceImpl",
+            "line": 96,
+            "isDefault": false
+          },
+          {
+            "name": "analyze",
+            "line": 128,
+            "isDefault": false
+          },
+          {
+            "name": "setupLocator",
+            "line": 184,
+            "isDefault": false
+          },
+          {
+            "name": "AiService",
+            "line": 203,
+            "isDefault": false
+          },
+          {
+            "name": "AiConfigSummary",
+            "line": 219,
+            "isDefault": false
+          },
+          {
+            "name": "AiService",
+            "line": 281,
+            "isDefault": false
+          },
+          {
+            "name": "AiKnowledgeService",
+            "line": 290,
+            "isDefault": false
+          },
+          {
+            "name": "AiCommand",
+            "line": 302,
+            "isDefault": false
+          },
+          {
+            "name": "AiService",
+            "line": 307,
+            "isDefault": false
+          },
+          {
+            "name": "buildHistoryItem",
+            "line": 347,
+            "isDefault": false
+          },
+          {
+            "name": "AiService",
+            "line": 368,
+            "isDefault": false
+          },
+          {
+            "name": "AiAction",
+            "line": 396,
+            "isDefault": false
+          },
+          {
+            "name": "AiService",
+            "line": 418,
+            "isDefault": false
+          },
+          {
+            "name": "SummarizeAction",
+            "line": 434,
+            "isDefault": false
+          },
+          {
+            "name": "isApplicable",
+            "line": 441,
+            "isDefault": false
+          },
+          {
+            "name": "QimenAnalysisAction",
+            "line": 483,
+            "isDefault": false
+          },
+          {
+            "name": "execute",
+            "line": 488,
+            "isDefault": false
+          },
+          {
+            "name": "CreateLiurenTool",
+            "line": 537,
+            "isDefault": false
+          },
+          {
+            "name": "execute",
+            "line": 544,
+            "isDefault": false
+          },
+          {
+            "name": "SearchQimenHistoryTool",
+            "line": 593,
+            "isDefault": false
+          },
+          {
+            "name": "execute",
+            "line": 610,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/ai_core.dart": {
+      "sizeLines": 23,
+      "sha256": "70c86c49a0c0980178ab8566bb0be75e0eca27aed8d1636f1a04bbfdccad8f2e",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "lib/database/ai_database.dart": {
+      "sizeLines": 297,
+      "sha256": "d48115f6c4fb8a1528b3e08c0b01373e5305b98cf187e4c0164e701cef3d891f",
+      "symbols": {
+        "functions": [
+          {
+            "name": "_seedDefaultData",
+            "startLine": 179,
+            "endLine": 296,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiDatabase",
+            "startLine": 71,
+            "endLine": 297,
+            "methods": [
+              "driftDatabase",
+              "MigrationStrategy",
+              "_seedDefaultData",
+              "customSelect",
+              "Exception",
+              "customStatement",
+              "into"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiDatabase",
+            "line": 71,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/connection.dart": {
+      "sizeLines": 3,
+      "sha256": "1ab1af2ef724bbe16a61b4dba6ef74a1230ae6a1e95abe06f4a7bb730a7fc6b4",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/agent_invocations_dao.dart": {
+      "sizeLines": 121,
+      "sha256": "5e52beb2e5cb1f71200455b90b0c2a6e91f5d415be7c9175c7c39c07da6f0336",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getBySession",
+            "startLine": 13,
+            "endLine": 18,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 21,
+            "endLine": 24,
+            "params": []
+          },
+          {
+            "name": "getChildren",
+            "startLine": 27,
+            "endLine": 32,
+            "params": []
+          },
+          {
+            "name": "getChain",
+            "startLine": 35,
+            "endLine": 46,
+            "params": []
+          },
+          {
+            "name": "markRunning",
+            "startLine": 76,
+            "endLine": 79,
+            "params": []
+          },
+          {
+            "name": "complete",
+            "startLine": 82,
+            "endLine": 90,
+            "params": []
+          },
+          {
+            "name": "markFailed",
+            "startLine": 93,
+            "endLine": 101,
+            "params": []
+          },
+          {
+            "name": "markTimeout",
+            "startLine": 104,
+            "endLine": 112,
+            "params": []
+          },
+          {
+            "name": "getPending",
+            "startLine": 115,
+            "endLine": 120,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AgentInvocationsDao",
+            "startLine": 8,
+            "endLine": 121,
+            "methods": [
+              "getBySession",
+              "getByUuid",
+              "getChildren",
+              "getChain",
+              "createInvocation",
+              "into",
+              "markRunning",
+              "complete",
+              "markFailed",
+              "markTimeout",
+              "getPending"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AgentInvocationsDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getBySession",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "getChildren",
+            "line": 27,
+            "isDefault": false
+          },
+          {
+            "name": "getChain",
+            "line": 35,
+            "isDefault": false
+          },
+          {
+            "name": "markRunning",
+            "line": 76,
+            "isDefault": false
+          },
+          {
+            "name": "complete",
+            "line": 82,
+            "isDefault": false
+          },
+          {
+            "name": "markFailed",
+            "line": 93,
+            "isDefault": false
+          },
+          {
+            "name": "markTimeout",
+            "line": 104,
+            "isDefault": false
+          },
+          {
+            "name": "getPending",
+            "line": 115,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/ai_api_calls_dao.dart": {
+      "sizeLines": 110,
+      "sha256": "c0ef39f2479d50f91e74e14535cf510edfcc6c3b2a4d7039f9d9fb674a51d39d",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getBySession",
+            "startLine": 13,
+            "endLine": 18,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 21,
+            "endLine": 24,
+            "params": []
+          },
+          {
+            "name": "getRecent",
+            "startLine": 27,
+            "endLine": 32,
+            "params": []
+          },
+          {
+            "name": "getFailed",
+            "startLine": 35,
+            "endLine": 41,
+            "params": []
+          },
+          {
+            "name": "markError",
+            "startLine": 90,
+            "endLine": 98,
+            "params": []
+          },
+          {
+            "name": "getTotalTokens",
+            "startLine": 101,
+            "endLine": 109,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiApiCallsDao",
+            "startLine": 8,
+            "endLine": 110,
+            "methods": [
+              "getBySession",
+              "getByUuid",
+              "getRecent",
+              "getFailed",
+              "createCall",
+              "into",
+              "updateWithResponse",
+              "markError",
+              "getTotalTokens"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiApiCallsDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getBySession",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "getRecent",
+            "line": 27,
+            "isDefault": false
+          },
+          {
+            "name": "getFailed",
+            "line": 35,
+            "isDefault": false
+          },
+          {
+            "name": "markError",
+            "line": 90,
+            "isDefault": false
+          },
+          {
+            "name": "getTotalTokens",
+            "line": 101,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/ai_chat_messages_dao.dart": {
+      "sizeLines": 113,
+      "sha256": "ff07674abe90ac86c6ee08cba5d2cab68df2f4daa39f2d20153b46b251699c41",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getBySession",
+            "startLine": 13,
+            "endLine": 18,
+            "params": []
+          },
+          {
+            "name": "getLastN",
+            "startLine": 21,
+            "endLine": 27,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 30,
+            "endLine": 33,
+            "params": []
+          },
+          {
+            "name": "getNextSequence",
+            "startLine": 36,
+            "endLine": 43,
+            "params": []
+          },
+          {
+            "name": "updateContent",
+            "startLine": 75,
+            "endLine": 78,
+            "params": []
+          },
+          {
+            "name": "appendContent",
+            "startLine": 81,
+            "endLine": 86,
+            "params": []
+          },
+          {
+            "name": "completeStreaming",
+            "startLine": 89,
+            "endLine": 97,
+            "params": []
+          },
+          {
+            "name": "deleteBySession",
+            "startLine": 100,
+            "endLine": 104,
+            "params": []
+          },
+          {
+            "name": "watchBySession",
+            "startLine": 107,
+            "endLine": 112,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiChatMessagesDao",
+            "startLine": 8,
+            "endLine": 113,
+            "methods": [
+              "getBySession",
+              "getLastN",
+              "getByUuid",
+              "getNextSequence",
+              "insertMessage",
+              "into",
+              "updateContent",
+              "appendContent",
+              "completeStreaming",
+              "deleteBySession",
+              "watchBySession"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiChatMessagesDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getBySession",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getLastN",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 30,
+            "isDefault": false
+          },
+          {
+            "name": "getNextSequence",
+            "line": 36,
+            "isDefault": false
+          },
+          {
+            "name": "updateContent",
+            "line": 75,
+            "isDefault": false
+          },
+          {
+            "name": "appendContent",
+            "line": 81,
+            "isDefault": false
+          },
+          {
+            "name": "completeStreaming",
+            "line": 89,
+            "isDefault": false
+          },
+          {
+            "name": "deleteBySession",
+            "line": 100,
+            "isDefault": false
+          },
+          {
+            "name": "watchBySession",
+            "line": 107,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/ai_chat_sessions_dao.dart": {
+      "sizeLines": 126,
+      "sha256": "a153141cdfbc264f1ddd06c651774b0a1a1aa09496acdcc4691b98cc8056bb51",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getAllActive",
+            "startLine": 13,
+            "endLine": 19,
+            "params": []
+          },
+          {
+            "name": "getByDivination",
+            "startLine": 22,
+            "endLine": 28,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 31,
+            "endLine": 36,
+            "params": []
+          },
+          {
+            "name": "updateTitle",
+            "startLine": 60,
+            "endLine": 67,
+            "params": []
+          },
+          {
+            "name": "updatePersona",
+            "startLine": 70,
+            "endLine": 77,
+            "params": []
+          },
+          {
+            "name": "updateMessageStats",
+            "startLine": 80,
+            "endLine": 88,
+            "params": []
+          },
+          {
+            "name": "incrementMessageCount",
+            "startLine": 91,
+            "endLine": 96,
+            "params": []
+          },
+          {
+            "name": "archive",
+            "startLine": 99,
+            "endLine": 106,
+            "params": []
+          },
+          {
+            "name": "softDelete",
+            "startLine": 109,
+            "endLine": 116,
+            "params": []
+          },
+          {
+            "name": "watchActive",
+            "startLine": 119,
+            "endLine": 125,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiChatSessionsDao",
+            "startLine": 8,
+            "endLine": 126,
+            "methods": [
+              "getAllActive",
+              "getByDivination",
+              "getByUuid",
+              "createSession",
+              "into",
+              "updateTitle",
+              "updatePersona",
+              "updateMessageStats",
+              "incrementMessageCount",
+              "archive",
+              "softDelete",
+              "watchActive"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiChatSessionsDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getAllActive",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getByDivination",
+            "line": 22,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 31,
+            "isDefault": false
+          },
+          {
+            "name": "updateTitle",
+            "line": 60,
+            "isDefault": false
+          },
+          {
+            "name": "updatePersona",
+            "line": 70,
+            "isDefault": false
+          },
+          {
+            "name": "updateMessageStats",
+            "line": 80,
+            "isDefault": false
+          },
+          {
+            "name": "incrementMessageCount",
+            "line": 91,
+            "isDefault": false
+          },
+          {
+            "name": "archive",
+            "line": 99,
+            "isDefault": false
+          },
+          {
+            "name": "softDelete",
+            "line": 109,
+            "isDefault": false
+          },
+          {
+            "name": "watchActive",
+            "line": 119,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/ai_divinations_dao.dart": {
+      "sizeLines": 105,
+      "sha256": "fcefb4bda1de67bc71aaed62217161cb46509141524d2550ccd68e0924b3f7e8",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getByDivination",
+            "startLine": 13,
+            "endLine": 19,
+            "params": []
+          },
+          {
+            "name": "getByPersona",
+            "startLine": 22,
+            "endLine": 28,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 31,
+            "endLine": 36,
+            "params": []
+          },
+          {
+            "name": "updateRating",
+            "startLine": 80,
+            "endLine": 88,
+            "params": []
+          },
+          {
+            "name": "softDelete",
+            "startLine": 91,
+            "endLine": 94,
+            "params": []
+          },
+          {
+            "name": "getWithRatings",
+            "startLine": 97,
+            "endLine": 104,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiDivinationsDao",
+            "startLine": 8,
+            "endLine": 105,
+            "methods": [
+              "getByDivination",
+              "getByPersona",
+              "getByUuid",
+              "getByDivinationAndPersona",
+              "createDivination",
+              "into",
+              "updateRating",
+              "softDelete",
+              "getWithRatings"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiDivinationsDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getByDivination",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getByPersona",
+            "line": 22,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 31,
+            "isDefault": false
+          },
+          {
+            "name": "updateRating",
+            "line": 80,
+            "isDefault": false
+          },
+          {
+            "name": "softDelete",
+            "line": 91,
+            "isDefault": false
+          },
+          {
+            "name": "getWithRatings",
+            "line": 97,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/ai_personas_dao.dart": {
+      "sizeLines": 84,
+      "sha256": "0041240a22479dbb9eb767e26d3c459913f1c48d5161d78610ffb8799ea0b7e6",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getAllEnabled",
+            "startLine": 13,
+            "endLine": 19,
+            "params": []
+          },
+          {
+            "name": "getDefault",
+            "startLine": 22,
+            "endLine": 28,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 31,
+            "endLine": 36,
+            "params": []
+          },
+          {
+            "name": "insertPersona",
+            "startLine": 39,
+            "endLine": 41,
+            "params": []
+          },
+          {
+            "name": "updatePersona",
+            "startLine": 44,
+            "endLine": 48,
+            "params": []
+          },
+          {
+            "name": "setDefault",
+            "startLine": 51,
+            "endLine": 59,
+            "params": []
+          },
+          {
+            "name": "transaction",
+            "startLine": 52,
+            "endLine": 58,
+            "params": []
+          },
+          {
+            "name": "updateTemperature",
+            "startLine": 62,
+            "endLine": 69,
+            "params": []
+          },
+          {
+            "name": "softDelete",
+            "startLine": 72,
+            "endLine": 75,
+            "params": []
+          },
+          {
+            "name": "watchAll",
+            "startLine": 78,
+            "endLine": 83,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiPersonasDao",
+            "startLine": 8,
+            "endLine": 84,
+            "methods": [
+              "getAllEnabled",
+              "getDefault",
+              "getByUuid",
+              "insertPersona",
+              "into",
+              "updatePersona",
+              "setDefault",
+              "transaction",
+              "updateTemperature",
+              "softDelete",
+              "watchAll"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiPersonasDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getAllEnabled",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getDefault",
+            "line": 22,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 31,
+            "isDefault": false
+          },
+          {
+            "name": "insertPersona",
+            "line": 39,
+            "isDefault": false
+          },
+          {
+            "name": "updatePersona",
+            "line": 44,
+            "isDefault": false
+          },
+          {
+            "name": "setDefault",
+            "line": 51,
+            "isDefault": false
+          },
+          {
+            "name": "transaction",
+            "line": 52,
+            "isDefault": false
+          },
+          {
+            "name": "updateTemperature",
+            "line": 62,
+            "isDefault": false
+          },
+          {
+            "name": "softDelete",
+            "line": 72,
+            "isDefault": false
+          },
+          {
+            "name": "watchAll",
+            "line": 78,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/ai_provenances_dao.dart": {
+      "sizeLines": 128,
+      "sha256": "02b25f1dcffb2ee02f04b4e02f2a1f3ce614988f6ac61c272ec5792aa19b43f1",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getByUuid",
+            "startLine": 15,
+            "endLine": 18,
+            "params": []
+          },
+          {
+            "name": "getChain",
+            "startLine": 21,
+            "endLine": 36,
+            "params": []
+          },
+          {
+            "name": "verifyIntegrity",
+            "startLine": 80,
+            "endLine": 94,
+            "params": []
+          },
+          {
+            "name": "verifyChain",
+            "startLine": 97,
+            "endLine": 105,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiProvenancesDao",
+            "startLine": 10,
+            "endLine": 128,
+            "methods": [
+              "getByUuid",
+              "getChain",
+              "createProvenance",
+              "into",
+              "verifyIntegrity",
+              "verifyChain",
+              "_computeIntegrityHash"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiProvenancesDao",
+            "line": 10,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 15,
+            "isDefault": false
+          },
+          {
+            "name": "getChain",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "verifyIntegrity",
+            "line": 80,
+            "isDefault": false
+          },
+          {
+            "name": "verifyChain",
+            "line": 97,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/ai_tools_dao.dart": {
+      "sizeLines": 89,
+      "sha256": "e0c49dc9a730e76b64e670535165109724bc44736a20af1e9b891178fe29bb3c",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getAllEnabled",
+            "startLine": 12,
+            "endLine": 18,
+            "params": []
+          },
+          {
+            "name": "getByType",
+            "startLine": 21,
+            "endLine": 27,
+            "params": []
+          },
+          {
+            "name": "getBySkill",
+            "startLine": 30,
+            "endLine": 36,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 39,
+            "endLine": 44,
+            "params": []
+          },
+          {
+            "name": "getByName",
+            "startLine": 47,
+            "endLine": 52,
+            "params": []
+          },
+          {
+            "name": "registerTool",
+            "startLine": 55,
+            "endLine": 57,
+            "params": []
+          },
+          {
+            "name": "updateTool",
+            "startLine": 60,
+            "endLine": 64,
+            "params": []
+          },
+          {
+            "name": "toggleEnabled",
+            "startLine": 67,
+            "endLine": 74,
+            "params": []
+          },
+          {
+            "name": "softDelete",
+            "startLine": 77,
+            "endLine": 80,
+            "params": []
+          },
+          {
+            "name": "watchAll",
+            "startLine": 83,
+            "endLine": 88,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiToolsDao",
+            "startLine": 8,
+            "endLine": 89,
+            "methods": [
+              "getAllEnabled",
+              "getByType",
+              "getBySkill",
+              "getByUuid",
+              "getByName",
+              "registerTool",
+              "into",
+              "updateTool",
+              "toggleEnabled",
+              "softDelete",
+              "watchAll"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiToolsDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getAllEnabled",
+            "line": 12,
+            "isDefault": false
+          },
+          {
+            "name": "getByType",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "getBySkill",
+            "line": 30,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 39,
+            "isDefault": false
+          },
+          {
+            "name": "getByName",
+            "line": 47,
+            "isDefault": false
+          },
+          {
+            "name": "registerTool",
+            "line": 55,
+            "isDefault": false
+          },
+          {
+            "name": "updateTool",
+            "line": 60,
+            "isDefault": false
+          },
+          {
+            "name": "toggleEnabled",
+            "line": 67,
+            "isDefault": false
+          },
+          {
+            "name": "softDelete",
+            "line": 77,
+            "isDefault": false
+          },
+          {
+            "name": "watchAll",
+            "line": 83,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/ai_usage_audits_dao.dart": {
+      "sizeLines": 135,
+      "sha256": "3b852b17f74afa40565dcf20bcd05f24132f54dcfa0c919473d2a38a11f29b8a",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getByType",
+            "startLine": 13,
+            "endLine": 19,
+            "params": []
+          },
+          {
+            "name": "getByEntity",
+            "startLine": 35,
+            "endLine": 41,
+            "params": []
+          },
+          {
+            "name": "getTotalTokens",
+            "startLine": 115,
+            "endLine": 123,
+            "params": []
+          },
+          {
+            "name": "getEstimatedCost",
+            "startLine": 126,
+            "endLine": 134,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiUsageAuditsDao",
+            "startLine": 8,
+            "endLine": 135,
+            "methods": [
+              "getByType",
+              "getByTimeRange",
+              "getByEntity",
+              "createAudit",
+              "into",
+              "logApiCall",
+              "logSecurity",
+              "getTotalTokens",
+              "getEstimatedCost"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiUsageAuditsDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getByType",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getByEntity",
+            "line": 35,
+            "isDefault": false
+          },
+          {
+            "name": "getTotalTokens",
+            "line": 115,
+            "isDefault": false
+          },
+          {
+            "name": "getEstimatedCost",
+            "line": 126,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/llm_models_dao.dart": {
+      "sizeLines": 87,
+      "sha256": "b322fd1823b5cc9608fa35c9766e9aa4db61104aa04e858cba05bf57a848d130",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getByProvider",
+            "startLine": 13,
+            "endLine": 19,
+            "params": []
+          },
+          {
+            "name": "getAllByProvider",
+            "startLine": 23,
+            "endLine": 28,
+            "params": []
+          },
+          {
+            "name": "getByModelId",
+            "startLine": 31,
+            "endLine": 38,
+            "params": []
+          },
+          {
+            "name": "getDefault",
+            "startLine": 41,
+            "endLine": 47,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 50,
+            "endLine": 55,
+            "params": []
+          },
+          {
+            "name": "getWithFunctionCalling",
+            "startLine": 58,
+            "endLine": 64,
+            "params": []
+          },
+          {
+            "name": "upsert",
+            "startLine": 67,
+            "endLine": 69,
+            "params": []
+          },
+          {
+            "name": "setDefault",
+            "startLine": 72,
+            "endLine": 80,
+            "params": []
+          },
+          {
+            "name": "transaction",
+            "startLine": 73,
+            "endLine": 79,
+            "params": []
+          },
+          {
+            "name": "softDelete",
+            "startLine": 83,
+            "endLine": 86,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "LlmModelsDao",
+            "startLine": 8,
+            "endLine": 87,
+            "methods": [
+              "getByProvider",
+              "getAllByProvider",
+              "getByModelId",
+              "getDefault",
+              "getByUuid",
+              "getWithFunctionCalling",
+              "upsert",
+              "into",
+              "setDefault",
+              "transaction",
+              "softDelete"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "LlmModelsDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getByProvider",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getAllByProvider",
+            "line": 23,
+            "isDefault": false
+          },
+          {
+            "name": "getByModelId",
+            "line": 31,
+            "isDefault": false
+          },
+          {
+            "name": "getDefault",
+            "line": 41,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 50,
+            "isDefault": false
+          },
+          {
+            "name": "getWithFunctionCalling",
+            "line": 58,
+            "isDefault": false
+          },
+          {
+            "name": "upsert",
+            "line": 67,
+            "isDefault": false
+          },
+          {
+            "name": "setDefault",
+            "line": 72,
+            "isDefault": false
+          },
+          {
+            "name": "transaction",
+            "line": 73,
+            "isDefault": false
+          },
+          {
+            "name": "softDelete",
+            "line": 83,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/llm_providers_dao.dart": {
+      "sizeLines": 69,
+      "sha256": "c93a0eb2a7921c6e84e7afa2bb94496fae96b626fb7f213eb4be00f1a8215534",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getAllEnabled",
+            "startLine": 13,
+            "endLine": 18,
+            "params": []
+          },
+          {
+            "name": "getDefault",
+            "startLine": 21,
+            "endLine": 27,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 30,
+            "endLine": 35,
+            "params": []
+          },
+          {
+            "name": "upsert",
+            "startLine": 38,
+            "endLine": 40,
+            "params": []
+          },
+          {
+            "name": "setDefault",
+            "startLine": 43,
+            "endLine": 54,
+            "params": []
+          },
+          {
+            "name": "transaction",
+            "startLine": 44,
+            "endLine": 53,
+            "params": []
+          },
+          {
+            "name": "softDelete",
+            "startLine": 57,
+            "endLine": 60,
+            "params": []
+          },
+          {
+            "name": "updateApiKey",
+            "startLine": 63,
+            "endLine": 68,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "LlmProvidersDao",
+            "startLine": 8,
+            "endLine": 69,
+            "methods": [
+              "getAllEnabled",
+              "getDefault",
+              "getByUuid",
+              "upsert",
+              "into",
+              "setDefault",
+              "transaction",
+              "softDelete",
+              "updateApiKey"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "LlmProvidersDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getAllEnabled",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getDefault",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 30,
+            "isDefault": false
+          },
+          {
+            "name": "upsert",
+            "line": 38,
+            "isDefault": false
+          },
+          {
+            "name": "setDefault",
+            "line": 43,
+            "isDefault": false
+          },
+          {
+            "name": "transaction",
+            "line": 44,
+            "isDefault": false
+          },
+          {
+            "name": "softDelete",
+            "line": 57,
+            "isDefault": false
+          },
+          {
+            "name": "updateApiKey",
+            "line": 63,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/prompt_skill_bindings_dao.dart": {
+      "sizeLines": 72,
+      "sha256": "2d7cc2884e7a9476a994a75609cd9435168bcd925e7d80145b925fc9ac204953",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getBySkill",
+            "startLine": 13,
+            "endLine": 20,
+            "params": []
+          },
+          {
+            "name": "getByTemplate",
+            "startLine": 23,
+            "endLine": 28,
+            "params": []
+          },
+          {
+            "name": "createBinding",
+            "startLine": 43,
+            "endLine": 45,
+            "params": []
+          },
+          {
+            "name": "updatePriority",
+            "startLine": 48,
+            "endLine": 55,
+            "params": []
+          },
+          {
+            "name": "toggleEnabled",
+            "startLine": 58,
+            "endLine": 65,
+            "params": []
+          },
+          {
+            "name": "softDelete",
+            "startLine": 68,
+            "endLine": 71,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "PromptSkillBindingsDao",
+            "startLine": 8,
+            "endLine": 72,
+            "methods": [
+              "getBySkill",
+              "getByTemplate",
+              "getBySkillAndType",
+              "createBinding",
+              "into",
+              "updatePriority",
+              "toggleEnabled",
+              "softDelete"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "PromptSkillBindingsDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getBySkill",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getByTemplate",
+            "line": 23,
+            "isDefault": false
+          },
+          {
+            "name": "createBinding",
+            "line": 43,
+            "isDefault": false
+          },
+          {
+            "name": "updatePriority",
+            "line": 48,
+            "isDefault": false
+          },
+          {
+            "name": "toggleEnabled",
+            "line": 58,
+            "isDefault": false
+          },
+          {
+            "name": "softDelete",
+            "line": 68,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/prompt_templates_dao.dart": {
+      "sizeLines": 75,
+      "sha256": "9ad3707f3e4afbf1e5e03e765779df6cbf82d9b37e222c50a16907e1f94d0b00",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getAllEnabled",
+            "startLine": 13,
+            "endLine": 18,
+            "params": []
+          },
+          {
+            "name": "getByType",
+            "startLine": 21,
+            "endLine": 27,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 30,
+            "endLine": 35,
+            "params": []
+          },
+          {
+            "name": "getSystemPrompts",
+            "startLine": 38,
+            "endLine": 40,
+            "params": []
+          },
+          {
+            "name": "insertTemplate",
+            "startLine": 43,
+            "endLine": 45,
+            "params": []
+          },
+          {
+            "name": "softDelete",
+            "startLine": 63,
+            "endLine": 66,
+            "params": []
+          },
+          {
+            "name": "watchAll",
+            "startLine": 69,
+            "endLine": 74,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "PromptTemplatesDao",
+            "startLine": 8,
+            "endLine": 75,
+            "methods": [
+              "getAllEnabled",
+              "getByType",
+              "getByUuid",
+              "getSystemPrompts",
+              "insertTemplate",
+              "into",
+              "updateContent",
+              "softDelete",
+              "watchAll"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "PromptTemplatesDao",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "getAllEnabled",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "getByType",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 30,
+            "isDefault": false
+          },
+          {
+            "name": "getSystemPrompts",
+            "line": 38,
+            "isDefault": false
+          },
+          {
+            "name": "insertTemplate",
+            "line": 43,
+            "isDefault": false
+          },
+          {
+            "name": "softDelete",
+            "line": 63,
+            "isDefault": false
+          },
+          {
+            "name": "watchAll",
+            "line": 69,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/daos/prompt_versions_dao.dart": {
+      "sizeLines": 87,
+      "sha256": "577413d20970af43ca6f264ba673a7454d2edee10a8eb232f5a77b70d1f7a3c3",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getByTemplate",
+            "startLine": 50,
+            "endLine": 55,
+            "params": []
+          },
+          {
+            "name": "getByUuid",
+            "startLine": 58,
+            "endLine": 61,
+            "params": []
+          },
+          {
+            "name": "getLatest",
+            "startLine": 64,
+            "endLine": 70,
+            "params": []
+          },
+          {
+            "name": "verifyIntegrity",
+            "startLine": 73,
+            "endLine": 79,
+            "params": []
+          },
+          {
+            "name": "_computeHash",
+            "startLine": 82,
+            "endLine": 86,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "PromptVersionsDao",
+            "startLine": 10,
+            "endLine": 87,
+            "methods": [
+              "createVersion",
+              "Exception",
+              "into",
+              "getByTemplate",
+              "getByUuid",
+              "getLatest",
+              "verifyIntegrity",
+              "_computeHash"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "PromptVersionsDao",
+            "line": 10,
+            "isDefault": false
+          },
+          {
+            "name": "getByTemplate",
+            "line": 50,
+            "isDefault": false
+          },
+          {
+            "name": "getByUuid",
+            "line": 58,
+            "isDefault": false
+          },
+          {
+            "name": "getLatest",
+            "line": 64,
+            "isDefault": false
+          },
+          {
+            "name": "verifyIntegrity",
+            "line": 73,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/native.dart": {
+      "sizeLines": 6,
+      "sha256": "053582cf6ebf55d859adff830afae62473a4fbe613d2ce0b646136c14b001ff8",
+      "symbols": {
+        "functions": [
+          {
+            "name": "validateDatabaseSchema",
+            "startLine": 3,
+            "endLine": 6,
+            "params": []
+          }
+        ],
+        "classes": [],
+        "exports": [
+          {
+            "name": "validateDatabaseSchema",
+            "line": 3,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/tables/tables.dart": {
+      "sizeLines": 665,
+      "sha256": "82921cf5e9a778fe356932daf3f3dcc66104a02fe846b1bc9de333524424a5ee",
+      "symbols": {
+        "functions": [],
+        "classes": [
+          {
+            "name": "LlmProviders",
+            "startLine": 32,
+            "endLine": 56,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "LlmModels",
+            "startLine": 61,
+            "endLine": 108,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "PromptTemplates",
+            "startLine": 117,
+            "endLine": 148,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "PromptVersions",
+            "startLine": 153,
+            "endLine": 179,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "PromptSkillBindings",
+            "startLine": 184,
+            "endLine": 207,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiPersonas",
+            "startLine": 216,
+            "endLine": 263,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiChatSessions",
+            "startLine": 271,
+            "endLine": 299,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiChatMessages",
+            "startLine": 303,
+            "endLine": 344,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiApiCalls",
+            "startLine": 348,
+            "endLine": 398,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiProvenances",
+            "startLine": 407,
+            "endLine": 449,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiDivinations",
+            "startLine": 458,
+            "endLine": 506,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AgentInvocations",
+            "startLine": 514,
+            "endLine": 561,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiUsageAudits",
+            "startLine": 569,
+            "endLine": 618,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "AiTools",
+            "startLine": 626,
+            "endLine": 665,
+            "methods": [],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "LlmProviders",
+            "line": 32,
+            "isDefault": false
+          },
+          {
+            "name": "LlmModels",
+            "line": 61,
+            "isDefault": false
+          },
+          {
+            "name": "PromptTemplates",
+            "line": 117,
+            "isDefault": false
+          },
+          {
+            "name": "PromptVersions",
+            "line": 153,
+            "isDefault": false
+          },
+          {
+            "name": "PromptSkillBindings",
+            "line": 184,
+            "isDefault": false
+          },
+          {
+            "name": "AiPersonas",
+            "line": 216,
+            "isDefault": false
+          },
+          {
+            "name": "AiChatSessions",
+            "line": 271,
+            "isDefault": false
+          },
+          {
+            "name": "AiChatMessages",
+            "line": 303,
+            "isDefault": false
+          },
+          {
+            "name": "AiApiCalls",
+            "line": 348,
+            "isDefault": false
+          },
+          {
+            "name": "AiProvenances",
+            "line": 407,
+            "isDefault": false
+          },
+          {
+            "name": "AiDivinations",
+            "line": 458,
+            "isDefault": false
+          },
+          {
+            "name": "AgentInvocations",
+            "line": 514,
+            "isDefault": false
+          },
+          {
+            "name": "AiUsageAudits",
+            "line": 569,
+            "isDefault": false
+          },
+          {
+            "name": "AiTools",
+            "line": 626,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/unsupported.dart": {
+      "sizeLines": 10,
+      "sha256": "db420a180d7f5e928bb934dd3ea4ab59071631e4e04de3559854ac6ae02594e1",
+      "symbols": {
+        "functions": [
+          {
+            "name": "_unsupported",
+            "startLine": 3,
+            "endLine": 6,
+            "params": []
+          },
+          {
+            "name": "validateDatabaseSchema",
+            "startLine": 8,
+            "endLine": 10,
+            "params": []
+          }
+        ],
+        "classes": [],
+        "exports": [
+          {
+            "name": "validateDatabaseSchema",
+            "line": 8,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/database/web.dart": {
+      "sizeLines": 6,
+      "sha256": "b97488c7be2601c9d6f35bd091bfed4ec2e05cdd6dbabff8f13f0af6b4678462",
+      "symbols": {
+        "functions": [
+          {
+            "name": "validateDatabaseSchema",
+            "startLine": 3,
+            "endLine": 6,
+            "params": []
+          }
+        ],
+        "classes": [],
+        "exports": [
+          {
+            "name": "validateDatabaseSchema",
+            "line": 3,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/models/chat_message_model.dart": {
+      "sizeLines": 111,
+      "sha256": "4e0472d44f684695e87a2161c7d4766c833e5a7eb655ef8187f7f936a81cdb68",
+      "symbols": {
+        "functions": [
+          {
+            "name": "toJson",
+            "startLine": 40,
+            "endLine": 40,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 87,
+            "endLine": 87,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 107,
+            "endLine": 107,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "MessageRole",
+            "startLine": 7,
+            "endLine": 18,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "ChatMessageModel",
+            "startLine": 22,
+            "endLine": 69,
+            "methods": [
+              "ChatMessageModel",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "ToolCallModel",
+            "startLine": 73,
+            "endLine": 91,
+            "methods": [
+              "ToolCallModel",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "FunctionCallModel",
+            "startLine": 95,
+            "endLine": 111,
+            "methods": [
+              "FunctionCallModel",
+              "toJson"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "MessageRole",
+            "line": 7,
+            "isDefault": false
+          },
+          {
+            "name": "ChatMessageModel",
+            "line": 22,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 40,
+            "isDefault": false
+          },
+          {
+            "name": "ToolCallModel",
+            "line": 73,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 87,
+            "isDefault": false
+          },
+          {
+            "name": "FunctionCallModel",
+            "line": 95,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 107,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/models/llm_request_model.dart": {
+      "sizeLines": 83,
+      "sha256": "67fb095751574d19fada1bef8540dd87c3efd31559402229bbd96bc606cb38a7",
+      "symbols": {
+        "functions": [
+          {
+            "name": "toJson",
+            "startLine": 42,
+            "endLine": 42,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "LlmRequestModel",
+            "startLine": 10,
+            "endLine": 83,
+            "methods": [
+              "LlmRequestModel",
+              "toJson",
+              "copyWith"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "LlmRequestModel",
+            "line": 10,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 42,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/models/llm_response_model.dart": {
+      "sizeLines": 221,
+      "sha256": "c1232a369676f8d26cbdc82452d3e05e72bc0f6ec84454cda26246227daf3673",
+      "symbols": {
+        "functions": [
+          {
+            "name": "toJson",
+            "startLine": 32,
+            "endLine": 32,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 71,
+            "endLine": 71,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 94,
+            "endLine": 94,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 118,
+            "endLine": 118,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 138,
+            "endLine": 138,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 163,
+            "endLine": 163,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 179,
+            "endLine": 179,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 208,
+            "endLine": 208,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "LlmResponseModel",
+            "startLine": 9,
+            "endLine": 48,
+            "methods": [
+              "LlmResponseModel",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "ChoiceModel",
+            "startLine": 52,
+            "endLine": 75,
+            "methods": [
+              "ChoiceModel",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "DeltaModel",
+            "startLine": 79,
+            "endLine": 98,
+            "methods": [
+              "DeltaModel",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "ToolCallDelta",
+            "startLine": 102,
+            "endLine": 122,
+            "methods": [
+              "ToolCallDelta",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "FunctionCallDelta",
+            "startLine": 126,
+            "endLine": 142,
+            "methods": [
+              "FunctionCallDelta",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "UsageModel",
+            "startLine": 146,
+            "endLine": 167,
+            "methods": [
+              "UsageModel",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "LogprobsModel",
+            "startLine": 171,
+            "endLine": 183,
+            "methods": [
+              "LogprobsModel",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "StreamChunkModel",
+            "startLine": 187,
+            "endLine": 221,
+            "methods": [
+              "StreamChunkModel",
+              "toJson"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "LlmResponseModel",
+            "line": 9,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 32,
+            "isDefault": false
+          },
+          {
+            "name": "ChoiceModel",
+            "line": 52,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 71,
+            "isDefault": false
+          },
+          {
+            "name": "DeltaModel",
+            "line": 79,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 94,
+            "isDefault": false
+          },
+          {
+            "name": "ToolCallDelta",
+            "line": 102,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 118,
+            "isDefault": false
+          },
+          {
+            "name": "FunctionCallDelta",
+            "line": 126,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 138,
+            "isDefault": false
+          },
+          {
+            "name": "UsageModel",
+            "line": 146,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 163,
+            "isDefault": false
+          },
+          {
+            "name": "LogprobsModel",
+            "line": 171,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 179,
+            "isDefault": false
+          },
+          {
+            "name": "StreamChunkModel",
+            "line": 187,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 208,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/models/models.dart": {
+      "sizeLines": 9,
+      "sha256": "15b1f55cdde64e58fba148d2ac489e26196b169e2c0ca56411df0b80caac3df4",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "lib/models/remote_model_info.dart": {
+      "sizeLines": 15,
+      "sha256": "b20bc92c5638057a3d2cd9b93274a58d9fe28dfd58797acb5d769c8981dcc394",
+      "symbols": {
+        "functions": [],
+        "classes": [
+          {
+            "name": "RemoteModelInfo",
+            "startLine": 3,
+            "endLine": 15,
+            "methods": [
+              "RemoteModelInfo"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "RemoteModelInfo",
+            "line": 3,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/models/tool_call.dart": {
+      "sizeLines": 92,
+      "sha256": "16f647472582d7fd572ff1e5a88da8d85e8b153552c59f78749205db1deaf098",
+      "symbols": {
+        "functions": [
+          {
+            "name": "toJson",
+            "startLine": 63,
+            "endLine": 63,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 88,
+            "endLine": 88,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ToolCallResult",
+            "startLine": 8,
+            "endLine": 68,
+            "methods": [
+              "ToolCallResult",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "PendingToolCall",
+            "startLine": 72,
+            "endLine": 92,
+            "methods": [
+              "PendingToolCall",
+              "toJson"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ToolCallResult",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 63,
+            "isDefault": false
+          },
+          {
+            "name": "PendingToolCall",
+            "line": 72,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 88,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/models/tool_definition.dart": {
+      "sizeLines": 144,
+      "sha256": "a444de6ea6cf3bbbe9f58dcb7caf1907ab0e0443daee6c46cfeeaaf84d99b542",
+      "symbols": {
+        "functions": [
+          {
+            "name": "toJson",
+            "startLine": 20,
+            "endLine": 20,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 44,
+            "endLine": 44,
+            "params": []
+          },
+          {
+            "name": "toJson",
+            "startLine": 95,
+            "endLine": 95,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ToolDefinition",
+            "startLine": 8,
+            "endLine": 24,
+            "methods": [
+              "ToolDefinition",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "FunctionDefinition",
+            "startLine": 28,
+            "endLine": 70,
+            "methods": [
+              "FunctionDefinition",
+              "toJson"
+            ],
+            "properties": []
+          },
+          {
+            "name": "ParameterDefinition",
+            "startLine": 74,
+            "endLine": 144,
+            "methods": [
+              "ParameterDefinition",
+              "toJson"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ToolDefinition",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 20,
+            "isDefault": false
+          },
+          {
+            "name": "FunctionDefinition",
+            "line": 28,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 44,
+            "isDefault": false
+          },
+          {
+            "name": "ParameterDefinition",
+            "line": 74,
+            "isDefault": false
+          },
+          {
+            "name": "toJson",
+            "line": 95,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/agent/agent_orchestrator.dart": {
+      "sizeLines": 212,
+      "sha256": "e6e7630f124a4e5b18da76ee2e989a1316501a78eef6d8e71dd37203b4d7fad5",
+      "symbols": {
+        "functions": [
+          {
+            "name": "_buildAgentPrompt",
+            "startLine": 130,
+            "endLine": 151,
+            "params": []
+          },
+          {
+            "name": "getInvocationChain",
+            "startLine": 154,
+            "endLine": 156,
+            "params": []
+          },
+          {
+            "name": "getChildInvocations",
+            "startLine": 159,
+            "endLine": 161,
+            "params": []
+          },
+          {
+            "name": "cancelInvocation",
+            "startLine": 164,
+            "endLine": 169,
+            "params": []
+          },
+          {
+            "name": "getPendingInvocations",
+            "startLine": 172,
+            "endLine": 174,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AgentOrchestrator",
+            "startLine": 10,
+            "endLine": 175,
+            "methods": [
+              "invokeAgent",
+              "_buildAgentPrompt",
+              "getInvocationChain",
+              "getChildInvocations",
+              "cancelInvocation",
+              "getPendingInvocations"
+            ],
+            "properties": []
+          },
+          {
+            "name": "AgentCallResult",
+            "startLine": 178,
+            "endLine": 212,
+            "methods": [],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AgentOrchestrator",
+            "line": 10,
+            "isDefault": false
+          },
+          {
+            "name": "getInvocationChain",
+            "line": 154,
+            "isDefault": false
+          },
+          {
+            "name": "getChildInvocations",
+            "line": 159,
+            "isDefault": false
+          },
+          {
+            "name": "cancelInvocation",
+            "line": 164,
+            "isDefault": false
+          },
+          {
+            "name": "getPendingInvocations",
+            "line": 172,
+            "isDefault": false
+          },
+          {
+            "name": "AgentCallResult",
+            "line": 178,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/agent/agent_runner.dart": {
+      "sizeLines": 168,
+      "sha256": "000dac6b61823477c8438e6c533e0fdcdc2298a65f6592cc623a29cbc08104fa",
+      "symbols": {
+        "functions": [
+          {
+            "name": "_buildSystemPrompt",
+            "startLine": 151,
+            "endLine": 167,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AgentRunner",
+            "startLine": 12,
+            "endLine": 168,
+            "methods": [
+              "run",
+              "_buildSystemPrompt"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AgentRunner",
+            "line": 12,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/ai_audit_service_impl.dart": {
+      "sizeLines": 38,
+      "sha256": "002c0e5fb81e2a195608171087677fcc24fab6612552b8bb294235de0d6c3ea0",
+      "symbols": {
+        "functions": [
+          {
+            "name": "logInteraction",
+            "startLine": 16,
+            "endLine": 20,
+            "params": []
+          },
+          {
+            "name": "cleanupBefore",
+            "startLine": 34,
+            "endLine": 37,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiAuditServiceImpl",
+            "startLine": 8,
+            "endLine": 38,
+            "methods": [
+              "logInteraction",
+              "queryLogs",
+              "cleanupBefore"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiAuditServiceImpl",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "logInteraction",
+            "line": 16,
+            "isDefault": false
+          },
+          {
+            "name": "cleanupBefore",
+            "line": 34,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/ai_service_impl.dart": {
+      "sizeLines": 571,
+      "sha256": "2a02444e356decf42832b26876a1ce1d064d0ac0e9dc43d6b552fce864228b3d",
+      "symbols": {
+        "functions": [
+          {
+            "name": "emitChatEvent",
+            "startLine": 71,
+            "endLine": 82,
+            "params": []
+          },
+          {
+            "name": "registerAction",
+            "startLine": 95,
+            "endLine": 102,
+            "params": []
+          },
+          {
+            "name": "getAvailableActions",
+            "startLine": 105,
+            "endLine": 114,
+            "params": []
+          },
+          {
+            "name": "registerTool",
+            "startLine": 117,
+            "endLine": 132,
+            "params": []
+          },
+          {
+            "name": "getAvailableTools",
+            "startLine": 135,
+            "endLine": 144,
+            "params": []
+          },
+          {
+            "name": "resolvePersona",
+            "startLine": 151,
+            "endLine": 200,
+            "params": []
+          },
+          {
+            "name": "archiveSession",
+            "startLine": 305,
+            "endLine": 307,
+            "params": []
+          },
+          {
+            "name": "deleteSession",
+            "startLine": 310,
+            "endLine": 312,
+            "params": []
+          },
+          {
+            "name": "analyze",
+            "startLine": 423,
+            "endLine": 448,
+            "params": []
+          },
+          {
+            "name": "getSummary",
+            "startLine": 451,
+            "endLine": 453,
+            "params": []
+          },
+          {
+            "name": "watchSummary",
+            "startLine": 456,
+            "endLine": 458,
+            "params": []
+          },
+          {
+            "name": "showConfigSheet",
+            "startLine": 461,
+            "endLine": 466,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 468,
+            "endLine": 471,
+            "params": []
+          },
+          {
+            "name": "_agentToolToDefinition",
+            "startLine": 474,
+            "endLine": 483,
+            "params": []
+          },
+          {
+            "name": "createState",
+            "startLine": 499,
+            "endLine": 499,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 507,
+            "endLine": 510,
+            "params": []
+          },
+          {
+            "name": "_init",
+            "startLine": 512,
+            "endLine": 557,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 560,
+            "endLine": 570,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiServiceImpl",
+            "startLine": 30,
+            "endLine": 484,
+            "methods": [
+              "emitChatEvent",
+              "registerAction",
+              "getAvailableActions",
+              "registerTool",
+              "getAvailableTools",
+              "resolvePersona",
+              "ResolvedPersona",
+              "createSession",
+              "resumeChat",
+              "listSessions",
+              "updateSessionPersona",
+              "archiveSession",
+              "deleteSession",
+              "openChat",
+              "buildChatView",
+              "_AsyncChatViewBuilder",
+              "showPersonaSelector",
+              "analyze",
+              "Exception",
+              "getSummary",
+              "watchSummary",
+              "showConfigSheet",
+              "SnackBar",
+              "dispose",
+              "_agentToolToDefinition",
+              "ToolDefinition"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_AsyncChatViewBuilder",
+            "startLine": 487,
+            "endLine": 500,
+            "methods": [
+              "_AsyncChatViewBuilder",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_AsyncChatViewBuilderState",
+            "startLine": 502,
+            "endLine": 571,
+            "methods": [
+              "initState",
+              "_init",
+              "build",
+              "Center"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiServiceImpl",
+            "line": 30,
+            "isDefault": false
+          },
+          {
+            "name": "emitChatEvent",
+            "line": 71,
+            "isDefault": false
+          },
+          {
+            "name": "registerAction",
+            "line": 95,
+            "isDefault": false
+          },
+          {
+            "name": "getAvailableActions",
+            "line": 105,
+            "isDefault": false
+          },
+          {
+            "name": "registerTool",
+            "line": 117,
+            "isDefault": false
+          },
+          {
+            "name": "getAvailableTools",
+            "line": 135,
+            "isDefault": false
+          },
+          {
+            "name": "resolvePersona",
+            "line": 151,
+            "isDefault": false
+          },
+          {
+            "name": "archiveSession",
+            "line": 305,
+            "isDefault": false
+          },
+          {
+            "name": "deleteSession",
+            "line": 310,
+            "isDefault": false
+          },
+          {
+            "name": "analyze",
+            "line": 423,
+            "isDefault": false
+          },
+          {
+            "name": "getSummary",
+            "line": 451,
+            "isDefault": false
+          },
+          {
+            "name": "watchSummary",
+            "line": 456,
+            "isDefault": false
+          },
+          {
+            "name": "showConfigSheet",
+            "line": 461,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 468,
+            "isDefault": false
+          },
+          {
+            "name": "_AsyncChatViewBuilder",
+            "line": 487,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 499,
+            "isDefault": false
+          },
+          {
+            "name": "_AsyncChatViewBuilderState",
+            "line": 502,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 507,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 560,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/chat/chat_persistence_service.dart": {
+      "sizeLines": 138,
+      "sha256": "99c4f6511e585faedf645b53c0717dc47867c4b64378ae67c92b08dff1bf51de",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getSession",
+            "startLine": 32,
+            "endLine": 34,
+            "params": []
+          },
+          {
+            "name": "getActiveSessions",
+            "startLine": 37,
+            "endLine": 39,
+            "params": []
+          },
+          {
+            "name": "getSessionsForDivination",
+            "startLine": 42,
+            "endLine": 44,
+            "params": []
+          },
+          {
+            "name": "getMessages",
+            "startLine": 78,
+            "endLine": 80,
+            "params": []
+          },
+          {
+            "name": "getLastMessages",
+            "startLine": 83,
+            "endLine": 85,
+            "params": []
+          },
+          {
+            "name": "updateMessageContent",
+            "startLine": 88,
+            "endLine": 90,
+            "params": []
+          },
+          {
+            "name": "appendToMessage",
+            "startLine": 93,
+            "endLine": 95,
+            "params": []
+          },
+          {
+            "name": "updateSessionTitle",
+            "startLine": 109,
+            "endLine": 111,
+            "params": []
+          },
+          {
+            "name": "updateSessionPersona",
+            "startLine": 114,
+            "endLine": 116,
+            "params": []
+          },
+          {
+            "name": "archiveSession",
+            "startLine": 119,
+            "endLine": 121,
+            "params": []
+          },
+          {
+            "name": "deleteSession",
+            "startLine": 124,
+            "endLine": 127,
+            "params": []
+          },
+          {
+            "name": "watchMessages",
+            "startLine": 130,
+            "endLine": 132,
+            "params": []
+          },
+          {
+            "name": "watchActiveSessions",
+            "startLine": 135,
+            "endLine": 137,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ChatPersistenceService",
+            "startLine": 7,
+            "endLine": 138,
+            "methods": [
+              "createSession",
+              "getSession",
+              "getActiveSessions",
+              "getSessionsForDivination",
+              "addMessage",
+              "getMessages",
+              "getLastMessages",
+              "updateMessageContent",
+              "appendToMessage",
+              "completeStreamingMessage",
+              "updateSessionTitle",
+              "updateSessionPersona",
+              "archiveSession",
+              "deleteSession",
+              "watchMessages",
+              "watchActiveSessions"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ChatPersistenceService",
+            "line": 7,
+            "isDefault": false
+          },
+          {
+            "name": "getSession",
+            "line": 32,
+            "isDefault": false
+          },
+          {
+            "name": "getActiveSessions",
+            "line": 37,
+            "isDefault": false
+          },
+          {
+            "name": "getSessionsForDivination",
+            "line": 42,
+            "isDefault": false
+          },
+          {
+            "name": "getMessages",
+            "line": 78,
+            "isDefault": false
+          },
+          {
+            "name": "getLastMessages",
+            "line": 83,
+            "isDefault": false
+          },
+          {
+            "name": "updateMessageContent",
+            "line": 88,
+            "isDefault": false
+          },
+          {
+            "name": "appendToMessage",
+            "line": 93,
+            "isDefault": false
+          },
+          {
+            "name": "updateSessionTitle",
+            "line": 109,
+            "isDefault": false
+          },
+          {
+            "name": "updateSessionPersona",
+            "line": 114,
+            "isDefault": false
+          },
+          {
+            "name": "archiveSession",
+            "line": 119,
+            "isDefault": false
+          },
+          {
+            "name": "deleteSession",
+            "line": 124,
+            "isDefault": false
+          },
+          {
+            "name": "watchMessages",
+            "line": 130,
+            "isDefault": false
+          },
+          {
+            "name": "watchActiveSessions",
+            "line": 135,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/chat/chat_service.dart": {
+      "sizeLines": 265,
+      "sha256": "dc50cae5fa6bc027263befe172f0c44f7d2a2b1b3861960401e2968fdfb9627c",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getHistory",
+            "startLine": 257,
+            "endLine": 259,
+            "params": []
+          },
+          {
+            "name": "watchMessages",
+            "startLine": 262,
+            "endLine": 264,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ChatService",
+            "startLine": 12,
+            "endLine": 265,
+            "methods": [
+              "startSession",
+              "sendMessage",
+              "Exception",
+              "_streamResponse",
+              "_nonStreamResponse",
+              "_handleToolCalls",
+              "getHistory",
+              "watchMessages"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ChatService",
+            "line": 12,
+            "isDefault": false
+          },
+          {
+            "name": "getHistory",
+            "line": 257,
+            "isDefault": false
+          },
+          {
+            "name": "watchMessages",
+            "line": 262,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/chat/provider_factory.dart": {
+      "sizeLines": 92,
+      "sha256": "d891e413bedb6dcaecfc14a22542bcaf243443cecbc253700f8ab6542738a9fd",
+      "symbols": {
+        "functions": [],
+        "classes": [
+          {
+            "name": "ProviderFactory",
+            "startLine": 13,
+            "endLine": 92,
+            "methods": [
+              "createFromPersona",
+              "Function",
+              "NvidiaProvider",
+              "DeepSeekProvider"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ProviderFactory",
+            "line": 13,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/chat/session_manager.dart": {
+      "sizeLines": 270,
+      "sha256": "c6173bec14deba5259e91bef6de6cd036e6078b9fb0c4c7183f6bff4a3e386c0",
+      "symbols": {
+        "functions": [
+          {
+            "name": "resumeSession",
+            "startLine": 81,
+            "endLine": 102,
+            "params": []
+          },
+          {
+            "name": "archiveSession",
+            "startLine": 177,
+            "endLine": 180,
+            "params": []
+          },
+          {
+            "name": "deleteSession",
+            "startLine": 183,
+            "endLine": 186,
+            "params": []
+          },
+          {
+            "name": "resetSession",
+            "startLine": 189,
+            "endLine": 195,
+            "params": []
+          },
+          {
+            "name": "_formatContextToMessage",
+            "startLine": 210,
+            "endLine": 237,
+            "params": []
+          },
+          {
+            "name": "_dbMessageToChatMessage",
+            "startLine": 240,
+            "endLine": 250,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "SessionManager",
+            "startLine": 16,
+            "endLine": 251,
+            "methods": [
+              "createSession",
+              "SessionCreationResult",
+              "resumeSession",
+              "SessionRestoreResult",
+              "saveHistory",
+              "listSessions",
+              "archiveSession",
+              "deleteSession",
+              "resetSession",
+              "updateSessionPersona",
+              "_formatContextToMessage",
+              "_dbMessageToChatMessage",
+              "ChatMessage"
+            ],
+            "properties": []
+          },
+          {
+            "name": "SessionCreationResult",
+            "startLine": 254,
+            "endLine": 262,
+            "methods": [
+              "SessionCreationResult"
+            ],
+            "properties": []
+          },
+          {
+            "name": "SessionRestoreResult",
+            "startLine": 265,
+            "endLine": 270,
+            "methods": [
+              "SessionRestoreResult"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "SessionManager",
+            "line": 16,
+            "isDefault": false
+          },
+          {
+            "name": "resumeSession",
+            "line": 81,
+            "isDefault": false
+          },
+          {
+            "name": "archiveSession",
+            "line": 177,
+            "isDefault": false
+          },
+          {
+            "name": "deleteSession",
+            "line": 183,
+            "isDefault": false
+          },
+          {
+            "name": "resetSession",
+            "line": 189,
+            "isDefault": false
+          },
+          {
+            "name": "SessionCreationResult",
+            "line": 254,
+            "isDefault": false
+          },
+          {
+            "name": "SessionRestoreResult",
+            "line": 265,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/llm/adapters/anthropic_adapter.dart": {
+      "sizeLines": 329,
+      "sha256": "19937c72a294ae50b0a74057b1103e2baafd475ebd55f78acad92d4950b9f9c5",
+      "symbols": {
+        "functions": [
+          {
+            "name": "buildHeaders",
+            "startLine": 32,
+            "endLine": 37,
+            "params": []
+          },
+          {
+            "name": "transformRequest",
+            "startLine": 42,
+            "endLine": 86,
+            "params": []
+          },
+          {
+            "name": "_transformMessage",
+            "startLine": 88,
+            "endLine": 133,
+            "params": []
+          },
+          {
+            "name": "_transformToolDef",
+            "startLine": 135,
+            "endLine": 142,
+            "params": []
+          },
+          {
+            "name": "transformResponse",
+            "startLine": 147,
+            "endLine": 203,
+            "params": []
+          },
+          {
+            "name": "_mapStopReason",
+            "startLine": 205,
+            "endLine": 218,
+            "params": []
+          },
+          {
+            "name": "parseStreamLine",
+            "startLine": 225,
+            "endLine": 295,
+            "params": []
+          },
+          {
+            "name": "parseModelsResponse",
+            "startLine": 324,
+            "endLine": 328,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AnthropicAdapter",
+            "startLine": 18,
+            "endLine": 329,
+            "methods": [
+              "buildHeaders",
+              "transformRequest",
+              "_transformMessage",
+              "_transformToolDef",
+              "transformResponse",
+              "_mapStopReason",
+              "parseStreamLine",
+              "_buildStreamChunk",
+              "StreamDoneSignal",
+              "parseModelsResponse"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AnthropicAdapter",
+            "line": 18,
+            "isDefault": false
+          },
+          {
+            "name": "buildHeaders",
+            "line": 32,
+            "isDefault": false
+          },
+          {
+            "name": "transformRequest",
+            "line": 42,
+            "isDefault": false
+          },
+          {
+            "name": "transformResponse",
+            "line": 147,
+            "isDefault": false
+          },
+          {
+            "name": "parseStreamLine",
+            "line": 225,
+            "isDefault": false
+          },
+          {
+            "name": "parseModelsResponse",
+            "line": 324,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/llm/adapters/gemini_adapter.dart": {
+      "sizeLines": 345,
+      "sha256": "4cb44a95262684a3ca507c29d2e75cacecb885aaca7e219182e93ca7c07f25f9",
+      "symbols": {
+        "functions": [
+          {
+            "name": "buildHeaders",
+            "startLine": 35,
+            "endLine": 40,
+            "params": []
+          },
+          {
+            "name": "buildQueryParams",
+            "startLine": 43,
+            "endLine": 48,
+            "params": []
+          },
+          {
+            "name": "resolveEndpoint",
+            "startLine": 53,
+            "endLine": 56,
+            "params": []
+          },
+          {
+            "name": "transformRequest",
+            "startLine": 61,
+            "endLine": 118,
+            "params": []
+          },
+          {
+            "name": "_transformMessage",
+            "startLine": 120,
+            "endLine": 172,
+            "params": []
+          },
+          {
+            "name": "_transformToolDef",
+            "startLine": 174,
+            "endLine": 181,
+            "params": []
+          },
+          {
+            "name": "transformResponse",
+            "startLine": 186,
+            "endLine": 249,
+            "params": []
+          },
+          {
+            "name": "_mapFinishReason",
+            "startLine": 251,
+            "endLine": 264,
+            "params": []
+          },
+          {
+            "name": "parseStreamLine",
+            "startLine": 269,
+            "endLine": 332,
+            "params": []
+          },
+          {
+            "name": "parseModelsResponse",
+            "startLine": 337,
+            "endLine": 344,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "GeminiAdapter",
+            "startLine": 17,
+            "endLine": 345,
+            "methods": [
+              "buildHeaders",
+              "buildQueryParams",
+              "resolveEndpoint",
+              "transformRequest",
+              "_transformMessage",
+              "_transformToolDef",
+              "transformResponse",
+              "_mapFinishReason",
+              "parseStreamLine",
+              "parseModelsResponse"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "GeminiAdapter",
+            "line": 17,
+            "isDefault": false
+          },
+          {
+            "name": "buildHeaders",
+            "line": 35,
+            "isDefault": false
+          },
+          {
+            "name": "buildQueryParams",
+            "line": 43,
+            "isDefault": false
+          },
+          {
+            "name": "resolveEndpoint",
+            "line": 53,
+            "isDefault": false
+          },
+          {
+            "name": "transformRequest",
+            "line": 61,
+            "isDefault": false
+          },
+          {
+            "name": "transformResponse",
+            "line": 186,
+            "isDefault": false
+          },
+          {
+            "name": "parseStreamLine",
+            "line": 269,
+            "isDefault": false
+          },
+          {
+            "name": "parseModelsResponse",
+            "line": 337,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/llm/adapters/openai_adapter.dart": {
+      "sizeLines": 73,
+      "sha256": "b14889bc289ace425c5851113e121440e50dd175917a7d1af321fc5d6612db61",
+      "symbols": {
+        "functions": [
+          {
+            "name": "buildHeaders",
+            "startLine": 20,
+            "endLine": 24,
+            "params": []
+          },
+          {
+            "name": "transformRequest",
+            "startLine": 27,
+            "endLine": 27,
+            "params": []
+          },
+          {
+            "name": "transformResponse",
+            "startLine": 31,
+            "endLine": 31,
+            "params": []
+          },
+          {
+            "name": "parseStreamLine",
+            "startLine": 35,
+            "endLine": 40,
+            "params": []
+          },
+          {
+            "name": "parseModelsResponse",
+            "startLine": 43,
+            "endLine": 47,
+            "params": []
+          },
+          {
+            "name": "parseModelDetailResponse",
+            "startLine": 65,
+            "endLine": 72,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "OpenAIAdapter",
+            "startLine": 12,
+            "endLine": 73,
+            "methods": [
+              "buildHeaders",
+              "transformRequest",
+              "transformResponse",
+              "parseStreamLine",
+              "jsonDecode",
+              "parseModelsResponse",
+              "parseModelsDetailedResponse",
+              "parseModelDetailResponse",
+              "RemoteModelInfo"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "OpenAIAdapter",
+            "line": 12,
+            "isDefault": false
+          },
+          {
+            "name": "buildHeaders",
+            "line": 20,
+            "isDefault": false
+          },
+          {
+            "name": "transformRequest",
+            "line": 27,
+            "isDefault": false
+          },
+          {
+            "name": "transformResponse",
+            "line": 31,
+            "isDefault": false
+          },
+          {
+            "name": "parseStreamLine",
+            "line": 35,
+            "isDefault": false
+          },
+          {
+            "name": "parseModelsResponse",
+            "line": 43,
+            "isDefault": false
+          },
+          {
+            "name": "parseModelDetailResponse",
+            "line": 65,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/llm/llm_client.dart": {
+      "sizeLines": 57,
+      "sha256": "5366be1f1738d051c0ea880421c914a57a2abde52696106f1207e8797560b30c",
+      "symbols": {
+        "functions": [],
+        "classes": [
+          {
+            "name": "LlmClient",
+            "startLine": 7,
+            "endLine": 28,
+            "methods": [
+              "chatCompletion",
+              "streamChatCompletion",
+              "testConnection",
+              "listModels",
+              "listModelsDetailed",
+              "getModelDetail",
+              "dispose"
+            ],
+            "properties": []
+          },
+          {
+            "name": "LlmClientConfig",
+            "startLine": 31,
+            "endLine": 57,
+            "methods": [
+              "LlmClientConfig",
+              "copyWith"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "LlmClient",
+            "line": 7,
+            "isDefault": false
+          },
+          {
+            "name": "LlmClientConfig",
+            "line": 31,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/llm/llm_service.dart": {
+      "sizeLines": 458,
+      "sha256": "bc37af0440dc01d3761cbfcbd03100d87324954a643f265baf525dae18e15fdc",
+      "symbols": {
+        "functions": [
+          {
+            "name": "_getClient",
+            "startLine": 26,
+            "endLine": 53,
+            "params": []
+          },
+          {
+            "name": "_createAdapter",
+            "startLine": 61,
+            "endLine": 83,
+            "params": []
+          },
+          {
+            "name": "getDefaultModel",
+            "startLine": 222,
+            "endLine": 224,
+            "params": []
+          },
+          {
+            "name": "testConnection",
+            "startLine": 227,
+            "endLine": 230,
+            "params": []
+          },
+          {
+            "name": "syncModelsFromRemote",
+            "startLine": 279,
+            "endLine": 325,
+            "params": []
+          },
+          {
+            "name": "_isMultiCatalogProvider",
+            "startLine": 341,
+            "endLine": 345,
+            "params": []
+          },
+          {
+            "name": "_isChatModel",
+            "startLine": 437,
+            "endLine": 449,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 452,
+            "endLine": 457,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "LlmService",
+            "startLine": 17,
+            "endLine": 458,
+            "methods": [
+              "_getClient",
+              "Exception",
+              "_createAdapter",
+              "OpenAIAdapter",
+              "AnthropicAdapter",
+              "GeminiAdapter",
+              "chatCompletion",
+              "streamChatCompletion",
+              "getDefaultModel",
+              "testConnection",
+              "fetchRemoteModels",
+              "fetchModelDetail",
+              "syncModelsFromRemote",
+              "_isMultiCatalogProvider",
+              "_isChatModel",
+              "dispose"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "LlmService",
+            "line": 17,
+            "isDefault": false
+          },
+          {
+            "name": "getDefaultModel",
+            "line": 222,
+            "isDefault": false
+          },
+          {
+            "name": "testConnection",
+            "line": 227,
+            "isDefault": false
+          },
+          {
+            "name": "syncModelsFromRemote",
+            "line": 279,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 452,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/llm/openai_compatible_client.dart": {
+      "sizeLines": 263,
+      "sha256": "2548008e8f3cc045c970ab4c56cd9e32844f86bf789bbcde1315d37569f57966",
+      "symbols": {
+        "functions": [
+          {
+            "name": "chatCompletion",
+            "startLine": 44,
+            "endLine": 75,
+            "params": []
+          },
+          {
+            "name": "testConnection",
+            "startLine": 137,
+            "endLine": 145,
+            "params": []
+          },
+          {
+            "name": "listModels",
+            "startLine": 148,
+            "endLine": 165,
+            "params": []
+          },
+          {
+            "name": "listModelsDetailed",
+            "startLine": 168,
+            "endLine": 201,
+            "params": []
+          },
+          {
+            "name": "getModelDetail",
+            "startLine": 204,
+            "endLine": 239,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 242,
+            "endLine": 244,
+            "params": []
+          },
+          {
+            "name": "toString",
+            "startLine": 257,
+            "endLine": 262,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "OpenAICompatibleClient",
+            "startLine": 19,
+            "endLine": 245,
+            "methods": [
+              "chatCompletion",
+              "LlmException",
+              "streamChatCompletion",
+              "testConnection",
+              "listModels",
+              "listModelsDetailed",
+              "getModelDetail",
+              "dispose"
+            ],
+            "properties": []
+          },
+          {
+            "name": "LlmException",
+            "startLine": 248,
+            "endLine": 263,
+            "methods": [
+              "toString"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "OpenAICompatibleClient",
+            "line": 19,
+            "isDefault": false
+          },
+          {
+            "name": "chatCompletion",
+            "line": 44,
+            "isDefault": false
+          },
+          {
+            "name": "testConnection",
+            "line": 137,
+            "isDefault": false
+          },
+          {
+            "name": "listModels",
+            "line": 148,
+            "isDefault": false
+          },
+          {
+            "name": "listModelsDetailed",
+            "line": 168,
+            "isDefault": false
+          },
+          {
+            "name": "getModelDetail",
+            "line": 204,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 242,
+            "isDefault": false
+          },
+          {
+            "name": "LlmException",
+            "line": 248,
+            "isDefault": false
+          },
+          {
+            "name": "toString",
+            "line": 257,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/llm/protocol_adapter.dart": {
+      "sizeLines": 87,
+      "sha256": "3959716d975c4e1a23c404c1fa84e7003539e1ca55fe2a0c6a0db49dbe642f48",
+      "symbols": {
+        "functions": [
+          {
+            "name": "buildQueryParams",
+            "startLine": 34,
+            "endLine": 34,
+            "params": []
+          },
+          {
+            "name": "resolveEndpoint",
+            "startLine": 41,
+            "endLine": 41,
+            "params": []
+          },
+          {
+            "name": "modelDetailEndpoint",
+            "startLine": 76,
+            "endLine": 80,
+            "params": []
+          },
+          {
+            "name": "parseModelDetailResponse",
+            "startLine": 84,
+            "endLine": 86,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "StreamDoneSignal",
+            "startLine": 6,
+            "endLine": 8,
+            "methods": [
+              "StreamDoneSignal"
+            ],
+            "properties": []
+          },
+          {
+            "name": "ProtocolAdapter",
+            "startLine": 16,
+            "endLine": 87,
+            "methods": [
+              "buildHeaders",
+              "buildQueryParams",
+              "resolveEndpoint",
+              "transformRequest",
+              "transformResponse",
+              "parseStreamLine",
+              "parseModelsResponse",
+              "parseModelsDetailedResponse",
+              "modelDetailEndpoint",
+              "parseModelDetailResponse",
+              "RemoteModelInfo"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "StreamDoneSignal",
+            "line": 6,
+            "isDefault": false
+          },
+          {
+            "name": "ProtocolAdapter",
+            "line": 16,
+            "isDefault": false
+          },
+          {
+            "name": "buildQueryParams",
+            "line": 34,
+            "isDefault": false
+          },
+          {
+            "name": "resolveEndpoint",
+            "line": 41,
+            "isDefault": false
+          },
+          {
+            "name": "modelDetailEndpoint",
+            "line": 76,
+            "isDefault": false
+          },
+          {
+            "name": "parseModelDetailResponse",
+            "line": 84,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/prompt/prompt_service.dart": {
+      "sizeLines": 144,
+      "sha256": "91fb29ac4d616390e2b3dd644617b5a18f6e35518afb3ec187015567f2094be2",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getTemplate",
+            "startLine": 16,
+            "endLine": 18,
+            "params": []
+          },
+          {
+            "name": "getSystemPrompts",
+            "startLine": 21,
+            "endLine": 23,
+            "params": []
+          },
+          {
+            "name": "substituteVariables",
+            "startLine": 101,
+            "endLine": 103,
+            "params": []
+          },
+          {
+            "name": "getSkillPrompt",
+            "startLine": 106,
+            "endLine": 116,
+            "params": []
+          },
+          {
+            "name": "verifyVersionIntegrity",
+            "startLine": 119,
+            "endLine": 121,
+            "params": []
+          },
+          {
+            "name": "getVersionHistory",
+            "startLine": 124,
+            "endLine": 126,
+            "params": []
+          },
+          {
+            "name": "substituteTemplateVariables",
+            "startLine": 130,
+            "endLine": 144,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "PromptService",
+            "startLine": 9,
+            "endLine": 127,
+            "methods": [
+              "getTemplate",
+              "getSystemPrompts",
+              "createTemplate",
+              "_createVersion",
+              "updateTemplate",
+              "Exception",
+              "renderTemplate",
+              "substituteTemplateVariables",
+              "substituteVariables",
+              "getSkillPrompt",
+              "verifyVersionIntegrity",
+              "getVersionHistory"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "PromptService",
+            "line": 9,
+            "isDefault": false
+          },
+          {
+            "name": "getTemplate",
+            "line": 16,
+            "isDefault": false
+          },
+          {
+            "name": "getSystemPrompts",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "substituteVariables",
+            "line": 101,
+            "isDefault": false
+          },
+          {
+            "name": "getSkillPrompt",
+            "line": 106,
+            "isDefault": false
+          },
+          {
+            "name": "verifyVersionIntegrity",
+            "line": 119,
+            "isDefault": false
+          },
+          {
+            "name": "getVersionHistory",
+            "line": 124,
+            "isDefault": false
+          },
+          {
+            "name": "substituteTemplateVariables",
+            "line": 130,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/prompt/variable_substitutor.dart": {
+      "sizeLines": 136,
+      "sha256": "f4ae675e33f584cdca167449deefdbee827bca4d7b019ad54df8c4f3abfdd8a1",
+      "symbols": {
+        "functions": [
+          {
+            "name": "substitute",
+            "startLine": 15,
+            "endLine": 28,
+            "params": []
+          },
+          {
+            "name": "_formatComplexValue",
+            "startLine": 93,
+            "endLine": 102,
+            "params": []
+          },
+          {
+            "name": "extractVariables",
+            "startLine": 105,
+            "endLine": 124,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "VariableSubstitutor",
+            "startLine": 2,
+            "endLine": 136,
+            "methods": [
+              "substitute",
+              "_processConditionals",
+              "_processLoops",
+              "_processStandardVariables",
+              "_formatComplexValue",
+              "extractVariables",
+              "validateVariables"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "VariableSubstitutor",
+            "line": 2,
+            "isDefault": false
+          },
+          {
+            "name": "substitute",
+            "line": 15,
+            "isDefault": false
+          },
+          {
+            "name": "extractVariables",
+            "line": 105,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/provenance/provenance_service.dart": {
+      "sizeLines": 179,
+      "sha256": "ef3ba9a4615afe4268121fa39179a8a275e8804aba4c9737afed8058e61afdbb",
+      "symbols": {
+        "functions": [
+          {
+            "name": "getProvenanceChain",
+            "startLine": 110,
+            "endLine": 112,
+            "params": []
+          },
+          {
+            "name": "verifyIntegrity",
+            "startLine": 115,
+            "endLine": 117,
+            "params": []
+          },
+          {
+            "name": "verifyChain",
+            "startLine": 120,
+            "endLine": 122,
+            "params": []
+          },
+          {
+            "name": "buildProvenanceReport",
+            "startLine": 125,
+            "endLine": 153,
+            "params": []
+          },
+          {
+            "name": "exportProvenanceChainJson",
+            "startLine": 156,
+            "endLine": 178,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ProvenanceService",
+            "startLine": 7,
+            "endLine": 179,
+            "methods": [
+              "recordApiCall",
+              "recordToolInvocation",
+              "recordAgentCall",
+              "recordMessage",
+              "getProvenanceChain",
+              "verifyIntegrity",
+              "verifyChain",
+              "buildProvenanceReport",
+              "exportProvenanceChainJson",
+              "jsonEncode"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ProvenanceService",
+            "line": 7,
+            "isDefault": false
+          },
+          {
+            "name": "getProvenanceChain",
+            "line": 110,
+            "isDefault": false
+          },
+          {
+            "name": "verifyIntegrity",
+            "line": 115,
+            "isDefault": false
+          },
+          {
+            "name": "verifyChain",
+            "line": 120,
+            "isDefault": false
+          },
+          {
+            "name": "buildProvenanceReport",
+            "line": 125,
+            "isDefault": false
+          },
+          {
+            "name": "exportProvenanceChainJson",
+            "line": 156,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/services.dart": {
+      "sizeLines": 36,
+      "sha256": "61615da5bc8b435adb1a863830701de8a2b4313891c2caea23ba1e6931d1de25",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "lib/services/tool/divination_skill_interface.dart": {
+      "sizeLines": 179,
+      "sha256": "a03c74fa80696a9f3b8b969afb597064e408d10b9fb52d2c81c6acbf1fc68734",
+      "symbols": {
+        "functions": [
+          {
+            "name": "Function",
+            "startLine": 45,
+            "endLine": 51,
+            "params": []
+          },
+          {
+            "name": "getPanelData",
+            "startLine": 49,
+            "endLine": 51,
+            "params": []
+          },
+          {
+            "name": "canHandleDivinationType",
+            "startLine": 62,
+            "endLine": 64,
+            "params": []
+          },
+          {
+            "name": "getTools",
+            "startLine": 84,
+            "endLine": 140,
+            "params": []
+          },
+          {
+            "name": "Function",
+            "startLine": 143,
+            "endLine": 149,
+            "params": []
+          },
+          {
+            "name": "_getPanel",
+            "startLine": 151,
+            "endLine": 156,
+            "params": []
+          },
+          {
+            "name": "_explainElement",
+            "startLine": 165,
+            "endLine": 169,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "DivinationSkillInterface",
+            "startLine": 5,
+            "endLine": 29,
+            "methods": [
+              "getTools",
+              "executeTool",
+              "getPanelData",
+              "getElementExplanation",
+              "canHandleDivinationType"
+            ],
+            "properties": []
+          },
+          {
+            "name": "BaseDivinationSkillInterface",
+            "startLine": 32,
+            "endLine": 65,
+            "methods": [
+              "executeTool",
+              "Exception",
+              "handler",
+              "Function",
+              "getPanelData",
+              "getElementExplanation",
+              "canHandleDivinationType"
+            ],
+            "properties": []
+          },
+          {
+            "name": "QimenDunjiaSkillInterfaceExample",
+            "startLine": 69,
+            "endLine": 179,
+            "methods": [
+              "getTools",
+              "Function",
+              "_getPanel",
+              "_analyzeHourPalace",
+              "_explainElement",
+              "getElementExplanation"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "DivinationSkillInterface",
+            "line": 5,
+            "isDefault": false
+          },
+          {
+            "name": "BaseDivinationSkillInterface",
+            "line": 32,
+            "isDefault": false
+          },
+          {
+            "name": "Function",
+            "line": 45,
+            "isDefault": false
+          },
+          {
+            "name": "getPanelData",
+            "line": 49,
+            "isDefault": false
+          },
+          {
+            "name": "canHandleDivinationType",
+            "line": 62,
+            "isDefault": false
+          },
+          {
+            "name": "QimenDunjiaSkillInterfaceExample",
+            "line": 69,
+            "isDefault": false
+          },
+          {
+            "name": "getTools",
+            "line": 84,
+            "isDefault": false
+          },
+          {
+            "name": "Function",
+            "line": 143,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/tool/tool_executor.dart": {
+      "sizeLines": 188,
+      "sha256": "c89bef143fb56555258a4d5eab6242e753ebffd8b10a5bf430c9220a52d676b5",
+      "symbols": {
+        "functions": [
+          {
+            "name": "use",
+            "startLine": 17,
+            "endLine": 19,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ToolExecutor",
+            "startLine": 10,
+            "endLine": 70,
+            "methods": [
+              "use",
+              "execute",
+              "handler",
+              "executeWithConfirmation",
+              "Function"
+            ],
+            "properties": []
+          },
+          {
+            "name": "ToolMiddleware",
+            "startLine": 73,
+            "endLine": 80,
+            "methods": [
+              "handle"
+            ],
+            "properties": []
+          },
+          {
+            "name": "LoggingMiddleware",
+            "startLine": 83,
+            "endLine": 106,
+            "methods": [
+              "Function",
+              "handle"
+            ],
+            "properties": []
+          },
+          {
+            "name": "ValidationMiddleware",
+            "startLine": 109,
+            "endLine": 149,
+            "methods": [
+              "handle",
+              "next"
+            ],
+            "properties": []
+          },
+          {
+            "name": "RateLimitMiddleware",
+            "startLine": 152,
+            "endLine": 188,
+            "methods": [
+              "handle",
+              "next"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ToolExecutor",
+            "line": 10,
+            "isDefault": false
+          },
+          {
+            "name": "use",
+            "line": 17,
+            "isDefault": false
+          },
+          {
+            "name": "ToolMiddleware",
+            "line": 73,
+            "isDefault": false
+          },
+          {
+            "name": "LoggingMiddleware",
+            "line": 83,
+            "isDefault": false
+          },
+          {
+            "name": "ValidationMiddleware",
+            "line": 109,
+            "isDefault": false
+          },
+          {
+            "name": "RateLimitMiddleware",
+            "line": 152,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/tool/tool_registry.dart": {
+      "sizeLines": 145,
+      "sha256": "71759cc075ea402ff4f4c3d06ea3250679f325a7b0f159499908f684cbeb9547",
+      "symbols": {
+        "functions": [
+          {
+            "name": "registerSkill",
+            "startLine": 26,
+            "endLine": 38,
+            "params": []
+          },
+          {
+            "name": "unregisterTool",
+            "startLine": 41,
+            "endLine": 44,
+            "params": []
+          },
+          {
+            "name": "getToolDefinitions",
+            "startLine": 47,
+            "endLine": 50,
+            "params": []
+          },
+          {
+            "name": "getToolDefinitionsSync",
+            "startLine": 56,
+            "endLine": 59,
+            "params": []
+          },
+          {
+            "name": "getToolDefinition",
+            "startLine": 62,
+            "endLine": 64,
+            "params": []
+          },
+          {
+            "name": "hasTool",
+            "startLine": 67,
+            "endLine": 69,
+            "params": []
+          },
+          {
+            "name": "getRegisteredToolNames",
+            "startLine": 127,
+            "endLine": 129,
+            "params": []
+          },
+          {
+            "name": "getSkillInterface",
+            "startLine": 132,
+            "endLine": 134,
+            "params": []
+          },
+          {
+            "name": "clear",
+            "startLine": 137,
+            "endLine": 141,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ToolRegistry",
+            "startLine": 8,
+            "endLine": 142,
+            "methods": [
+              "registerTool",
+              "registerSkill",
+              "unregisterTool",
+              "getToolDefinitions",
+              "getToolDefinitionsSync",
+              "getToolDefinition",
+              "hasTool",
+              "executeTool",
+              "executeToolsParallel",
+              "getRegisteredToolNames",
+              "getSkillInterface",
+              "clear"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ToolRegistry",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "registerSkill",
+            "line": 26,
+            "isDefault": false
+          },
+          {
+            "name": "unregisterTool",
+            "line": 41,
+            "isDefault": false
+          },
+          {
+            "name": "getToolDefinitions",
+            "line": 47,
+            "isDefault": false
+          },
+          {
+            "name": "getToolDefinitionsSync",
+            "line": 56,
+            "isDefault": false
+          },
+          {
+            "name": "getToolDefinition",
+            "line": 62,
+            "isDefault": false
+          },
+          {
+            "name": "hasTool",
+            "line": 67,
+            "isDefault": false
+          },
+          {
+            "name": "getRegisteredToolNames",
+            "line": 127,
+            "isDefault": false
+          },
+          {
+            "name": "getSkillInterface",
+            "line": 132,
+            "isDefault": false
+          },
+          {
+            "name": "clear",
+            "line": 137,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/services/tool/window_control_tools.dart": {
+      "sizeLines": 99,
+      "sha256": "0c6decf17a98e9ab8874ffe0d740b3c5cf011f6cb4b84788a590cededf87a29b",
+      "symbols": {
+        "functions": [
+          {
+            "name": "execute",
+            "startLine": 43,
+            "endLine": 86,
+            "params": []
+          },
+          {
+            "name": "toFunctionDeclaration",
+            "startLine": 89,
+            "endLine": 98,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "WindowControlTool",
+            "startLine": 7,
+            "endLine": 99,
+            "methods": [
+              "execute",
+              "toFunctionDeclaration"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "WindowControlTool",
+            "line": 7,
+            "isDefault": false
+          },
+          {
+            "name": "execute",
+            "line": 43,
+            "isDefault": false
+          },
+          {
+            "name": "toFunctionDeclaration",
+            "line": 89,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/src/providers/deepseek_provider.dart": {
+      "sizeLines": 363,
+      "sha256": "7f189e82826ba8097977b155590a96e0b3f58e468620baaa6b966f9c583e857e",
+      "symbols": {
+        "functions": [
+          {
+            "name": "history",
+            "startLine": 53,
+            "endLine": 56,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "DeepSeekProvider",
+            "startLine": 20,
+            "endLine": 323,
+            "methods": [
+              "history",
+              "generateStream",
+              "sendMessageStream",
+              "_streamWithToolLoop",
+              "_streamRequest",
+              "_StreamEvent",
+              "_accumulateToolCall"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_StreamEvent",
+            "startLine": 326,
+            "endLine": 335,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "_ToolCallDelta",
+            "startLine": 338,
+            "endLine": 350,
+            "methods": [],
+            "properties": []
+          },
+          {
+            "name": "_ToolCallAccum",
+            "startLine": 353,
+            "endLine": 363,
+            "methods": [],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "DeepSeekProvider",
+            "line": 20,
+            "isDefault": false
+          },
+          {
+            "name": "history",
+            "line": 53,
+            "isDefault": false
+          },
+          {
+            "name": "_StreamEvent",
+            "line": 326,
+            "isDefault": false
+          },
+          {
+            "name": "_ToolCallDelta",
+            "line": 338,
+            "isDefault": false
+          },
+          {
+            "name": "_ToolCallAccum",
+            "line": 353,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/src/providers/nvidia_provider.dart": {
+      "sizeLines": 133,
+      "sha256": "c18830831cefc843882d2970a6923e30e8bbf930ddc71209faa2749c49f3f81c",
+      "symbols": {
+        "functions": [
+          {
+            "name": "history",
+            "startLine": 33,
+            "endLine": 36,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "NvidiaProvider",
+            "startLine": 10,
+            "endLine": 133,
+            "methods": [
+              "history",
+              "generateStream",
+              "sendMessageStream",
+              "_streamRequest"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "NvidiaProvider",
+            "line": 10,
+            "isDefault": false
+          },
+          {
+            "name": "history",
+            "line": 33,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/utils/ai_bootstrap.dart": {
+      "sizeLines": 117,
+      "sha256": "9984e1a76b412ec4edbf417d942637f04e96ae615b9f1aed41c23bdecb353f71",
+      "symbols": {
+        "functions": [
+          {
+            "name": "ensureDeepSeekProvider",
+            "startLine": 9,
+            "endLine": 55,
+            "params": []
+          },
+          {
+            "name": "_ensureDeepSeekModel",
+            "startLine": 57,
+            "endLine": 84,
+            "params": []
+          },
+          {
+            "name": "_ensureDefaultPersona",
+            "startLine": 86,
+            "endLine": 117,
+            "params": []
+          }
+        ],
+        "classes": [],
+        "exports": [
+          {
+            "name": "ensureDeepSeekProvider",
+            "line": 9,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/viewmodels/ai_chat_viewmodel.dart": {
+      "sizeLines": 264,
+      "sha256": "669f6a64679c68311ee07d30b5459aca9d48d1df722b49ce48b72e9df5e48162",
+      "symbols": {
+        "functions": [
+          {
+            "name": "resumeSession",
+            "startLine": 76,
+            "endLine": 102,
+            "params": []
+          },
+          {
+            "name": "sendMessage",
+            "startLine": 105,
+            "endLine": 125,
+            "params": []
+          },
+          {
+            "name": "_subscribeToMessages",
+            "startLine": 128,
+            "endLine": 139,
+            "params": []
+          },
+          {
+            "name": "clearSession",
+            "startLine": 142,
+            "endLine": 150,
+            "params": []
+          },
+          {
+            "name": "archiveSession",
+            "startLine": 153,
+            "endLine": 158,
+            "params": []
+          },
+          {
+            "name": "deleteSession",
+            "startLine": 161,
+            "endLine": 166,
+            "params": []
+          },
+          {
+            "name": "getAvailablePersonas",
+            "startLine": 169,
+            "endLine": 171,
+            "params": []
+          },
+          {
+            "name": "switchPersona",
+            "startLine": 174,
+            "endLine": 180,
+            "params": []
+          },
+          {
+            "name": "regenerateLastResponse",
+            "startLine": 183,
+            "endLine": 209,
+            "params": []
+          },
+          {
+            "name": "_resolveLlmConfiguration",
+            "startLine": 212,
+            "endLine": 242,
+            "params": []
+          },
+          {
+            "name": "_setLoading",
+            "startLine": 245,
+            "endLine": 248,
+            "params": []
+          },
+          {
+            "name": "_setError",
+            "startLine": 250,
+            "endLine": 253,
+            "params": []
+          },
+          {
+            "name": "_clearError",
+            "startLine": 255,
+            "endLine": 257,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 260,
+            "endLine": 263,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiChatViewModel",
+            "startLine": 9,
+            "endLine": 264,
+            "methods": [
+              "startSession",
+              "_resolveLlmConfiguration",
+              "resumeSession",
+              "Exception",
+              "sendMessage",
+              "_subscribeToMessages",
+              "clearSession",
+              "archiveSession",
+              "deleteSession",
+              "getAvailablePersonas",
+              "switchPersona",
+              "regenerateLastResponse",
+              "_setLoading",
+              "_setError",
+              "_clearError",
+              "dispose"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiChatViewModel",
+            "line": 9,
+            "isDefault": false
+          },
+          {
+            "name": "resumeSession",
+            "line": 76,
+            "isDefault": false
+          },
+          {
+            "name": "sendMessage",
+            "line": 105,
+            "isDefault": false
+          },
+          {
+            "name": "clearSession",
+            "line": 142,
+            "isDefault": false
+          },
+          {
+            "name": "archiveSession",
+            "line": 153,
+            "isDefault": false
+          },
+          {
+            "name": "deleteSession",
+            "line": 161,
+            "isDefault": false
+          },
+          {
+            "name": "getAvailablePersonas",
+            "line": 169,
+            "isDefault": false
+          },
+          {
+            "name": "switchPersona",
+            "line": 174,
+            "isDefault": false
+          },
+          {
+            "name": "regenerateLastResponse",
+            "line": 183,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 260,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/viewmodels/viewmodels.dart": {
+      "sizeLines": 4,
+      "sha256": "816b9d192f3b3914b82b574ea19cfcf6fb012c325cb4f2cf72447e3e553b4bb3",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/ai_chat_settings_dialog.dart": {
+      "sizeLines": 464,
+      "sha256": "d57966286e99ae3a1b8c8f647f864cee8bde7f81f1cab6b039e97531a071df37",
+      "symbols": {
+        "functions": [
+          {
+            "name": "createState",
+            "startLine": 24,
+            "endLine": 24,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 52,
+            "endLine": 58,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 61,
+            "endLine": 66,
+            "params": []
+          },
+          {
+            "name": "_loadData",
+            "startLine": 68,
+            "endLine": 130,
+            "params": []
+          },
+          {
+            "name": "_onProviderSelection",
+            "startLine": 132,
+            "endLine": 159,
+            "params": []
+          },
+          {
+            "name": "_onPromptChanged",
+            "startLine": 161,
+            "endLine": 189,
+            "params": []
+          },
+          {
+            "name": "_savePromptIfNeeded",
+            "startLine": 191,
+            "endLine": 222,
+            "params": []
+          },
+          {
+            "name": "_handleSave",
+            "startLine": 224,
+            "endLine": 299,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 302,
+            "endLine": 463,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiChatSettingsDialog",
+            "startLine": 13,
+            "endLine": 25,
+            "methods": [
+              "AiChatSettingsDialog",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_AiChatSettingsDialogState",
+            "startLine": 27,
+            "endLine": 464,
+            "methods": [
+              "initState",
+              "dispose",
+              "_loadData",
+              "_onProviderSelection",
+              "_onPromptChanged",
+              "_savePromptIfNeeded",
+              "_handleSave",
+              "AiPersonasCompanion",
+              "build",
+              "Center",
+              "AlertDialog",
+              "SizedBox"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiChatSettingsDialog",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 24,
+            "isDefault": false
+          },
+          {
+            "name": "_AiChatSettingsDialogState",
+            "line": 27,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 52,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 61,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 302,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/ai_chat_view.dart": {
+      "sizeLines": 562,
+      "sha256": "2218634275a392cfe8f5941fe4e7738be1b9b074a1c55da7ca15ad09f00e1735",
+      "symbols": {
+        "functions": [
+          {
+            "name": "createState",
+            "startLine": 61,
+            "endLine": 61,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 74,
+            "endLine": 80,
+            "params": []
+          },
+          {
+            "name": "_initProvider",
+            "startLine": 82,
+            "endLine": 97,
+            "params": []
+          },
+          {
+            "name": "_onToolResult",
+            "startLine": 101,
+            "endLine": 121,
+            "params": []
+          },
+          {
+            "name": "_onProviderChanged",
+            "startLine": 123,
+            "endLine": 126,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 129,
+            "endLine": 134,
+            "params": []
+          },
+          {
+            "name": "_switchToSession",
+            "startLine": 141,
+            "endLine": 181,
+            "params": []
+          },
+          {
+            "name": "_createNewSession",
+            "startLine": 184,
+            "endLine": 211,
+            "params": []
+          },
+          {
+            "name": "_openSettings",
+            "startLine": 217,
+            "endLine": 254,
+            "params": []
+          },
+          {
+            "name": "_showPersonaDetails",
+            "startLine": 256,
+            "endLine": 308,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 315,
+            "endLine": 364,
+            "params": []
+          },
+          {
+            "name": "_buildSessionHistoryDrawer",
+            "startLine": 367,
+            "endLine": 464,
+            "params": []
+          },
+          {
+            "name": "_buildSessionTile",
+            "startLine": 466,
+            "endLine": 500,
+            "params": []
+          },
+          {
+            "name": "_showSessionActions",
+            "startLine": 502,
+            "endLine": 550,
+            "params": []
+          },
+          {
+            "name": "_formatTime",
+            "startLine": 552,
+            "endLine": 561,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiChatView",
+            "startLine": 23,
+            "endLine": 62,
+            "methods": [
+              "AiChatView",
+              "Function",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_AiChatViewState",
+            "startLine": 64,
+            "endLine": 562,
+            "methods": [
+              "initState",
+              "_initProvider",
+              "_onToolResult",
+              "_onProviderChanged",
+              "dispose",
+              "_switchToSession",
+              "SnackBar",
+              "_createNewSession",
+              "_openSettings",
+              "_showPersonaDetails",
+              "AlertDialog",
+              "SizedBox",
+              "Divider",
+              "build",
+              "Scaffold",
+              "_buildSessionHistoryDrawer",
+              "Drawer",
+              "Center",
+              "_buildSessionTile",
+              "ListTile",
+              "_showSessionActions",
+              "_formatTime"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiChatView",
+            "line": 23,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 61,
+            "isDefault": false
+          },
+          {
+            "name": "_AiChatViewState",
+            "line": 64,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 74,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 129,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 315,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/ai_chat_window.dart": {
+      "sizeLines": 235,
+      "sha256": "be3459c250a9c6ec68c5af73c1af895b924088b707bd41840870c91ecce7ce0f",
+      "symbols": {
+        "functions": [
+          {
+            "name": "createState",
+            "startLine": 26,
+            "endLine": 26,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 33,
+            "endLine": 36,
+            "params": []
+          },
+          {
+            "name": "_initSession",
+            "startLine": 38,
+            "endLine": 57,
+            "params": []
+          },
+          {
+            "name": "_scrollToBottom",
+            "startLine": 59,
+            "endLine": 69,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 72,
+            "endLine": 110,
+            "params": []
+          },
+          {
+            "name": "_buildHeader",
+            "startLine": 112,
+            "endLine": 173,
+            "params": []
+          },
+          {
+            "name": "_buildMessageList",
+            "startLine": 175,
+            "endLine": 228,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 231,
+            "endLine": 234,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiChatWindow",
+            "startLine": 11,
+            "endLine": 27,
+            "methods": [
+              "AiChatWindow",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_AiChatWindowState",
+            "startLine": 29,
+            "endLine": 235,
+            "methods": [
+              "initState",
+              "_initSession",
+              "_scrollToBottom",
+              "build",
+              "Container",
+              "_buildHeader",
+              "SizedBox",
+              "Text",
+              "_buildMessageList",
+              "Center",
+              "Icon",
+              "ChatMessageBubble",
+              "dispose"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiChatWindow",
+            "line": 11,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 26,
+            "isDefault": false
+          },
+          {
+            "name": "_AiChatWindowState",
+            "line": 29,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 33,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 72,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 231,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/ai_persona_editor.dart": {
+      "sizeLines": 813,
+      "sha256": "9be818129a02ca8a538bb92095c4906184309d6295d100ef11f35a8b8611ce2a",
+      "symbols": {
+        "functions": [
+          {
+            "name": "createState",
+            "startLine": 22,
+            "endLine": 22,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 66,
+            "endLine": 83,
+            "params": []
+          },
+          {
+            "name": "_loadDropdowns",
+            "startLine": 85,
+            "endLine": 149,
+            "params": []
+          },
+          {
+            "name": "_parseStringSet",
+            "startLine": 153,
+            "endLine": 157,
+            "params": []
+          },
+          {
+            "name": "_parseIntSet",
+            "startLine": 161,
+            "endLine": 165,
+            "params": []
+          },
+          {
+            "name": "_onProviderSelection",
+            "startLine": 167,
+            "endLine": 197,
+            "params": []
+          },
+          {
+            "name": "_onPromptChanged",
+            "startLine": 199,
+            "endLine": 218,
+            "params": []
+          },
+          {
+            "name": "_updatePrompt",
+            "startLine": 220,
+            "endLine": 241,
+            "params": []
+          },
+          {
+            "name": "_saveNewPrompt",
+            "startLine": 243,
+            "endLine": 297,
+            "params": []
+          },
+          {
+            "name": "_save",
+            "startLine": 299,
+            "endLine": 364,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 398,
+            "endLine": 677,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 803,
+            "endLine": 812,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "AiPersonaEditor",
+            "startLine": 14,
+            "endLine": 23,
+            "methods": [
+              "AiPersonaEditor",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_AiPersonaEditorState",
+            "startLine": 25,
+            "endLine": 813,
+            "methods": [
+              "initState",
+              "_loadDropdowns",
+              "_parseStringSet",
+              "_parseIntSet",
+              "_onProviderSelection",
+              "_onPromptChanged",
+              "_updatePrompt",
+              "_saveNewPrompt",
+              "_save",
+              "build",
+              "Scaffold",
+              "SizedBox",
+              "Function",
+              "Column",
+              "FilterChip",
+              "dispose"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "AiPersonaEditor",
+            "line": 14,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 22,
+            "isDefault": false
+          },
+          {
+            "name": "_AiPersonaEditorState",
+            "line": 25,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 66,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 398,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 803,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/chat_input_bar.dart": {
+      "sizeLines": 142,
+      "sha256": "6d9fd4e73c2201deb0e7bd516535e7767de50e19e7c6ec3d18bee45320ab9efc",
+      "symbols": {
+        "functions": [
+          {
+            "name": "createState",
+            "startLine": 17,
+            "endLine": 17,
+            "params": []
+          },
+          {
+            "name": "_handleSend",
+            "startLine": 28,
+            "endLine": 43,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 46,
+            "endLine": 99,
+            "params": []
+          },
+          {
+            "name": "_buildSendButton",
+            "startLine": 101,
+            "endLine": 134,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 137,
+            "endLine": 141,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ChatInputBar",
+            "startLine": 4,
+            "endLine": 18,
+            "methods": [
+              "Function",
+              "ChatInputBar",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_ChatInputBarState",
+            "startLine": 20,
+            "endLine": 142,
+            "methods": [
+              "_handleSend",
+              "build",
+              "Container",
+              "SizedBox",
+              "_buildSendButton",
+              "AnimatedContainer",
+              "dispose"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ChatInputBar",
+            "line": 4,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 17,
+            "isDefault": false
+          },
+          {
+            "name": "_ChatInputBarState",
+            "line": 20,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 46,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 137,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/chat_message_bubble.dart": {
+      "sizeLines": 192,
+      "sha256": "a7fb4dcf964be707c604454c756d6102f0651fa2251b6f1ebd3c38626cfb6ed2",
+      "symbols": {
+        "functions": [
+          {
+            "name": "build",
+            "startLine": 22,
+            "endLine": 44,
+            "params": []
+          },
+          {
+            "name": "_buildAvatar",
+            "startLine": 46,
+            "endLine": 58,
+            "params": []
+          },
+          {
+            "name": "_buildBubble",
+            "startLine": 60,
+            "endLine": 93,
+            "params": []
+          },
+          {
+            "name": "_buildStreamingIndicator",
+            "startLine": 95,
+            "endLine": 119,
+            "params": []
+          },
+          {
+            "name": "_buildActions",
+            "startLine": 121,
+            "endLine": 146,
+            "params": []
+          },
+          {
+            "name": "_buildToolMessage",
+            "startLine": 163,
+            "endLine": 191,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ChatMessageBubble",
+            "startLine": 7,
+            "endLine": 192,
+            "methods": [
+              "ChatMessageBubble",
+              "build",
+              "_buildToolMessage",
+              "Padding",
+              "SizedBox",
+              "_buildAvatar",
+              "CircleAvatar",
+              "_buildBubble",
+              "Container",
+              "_buildStreamingIndicator",
+              "Row",
+              "_buildActions",
+              "SnackBar",
+              "_buildActionButton",
+              "IconButton"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ChatMessageBubble",
+            "line": 7,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 22,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/llm_provider_editor.dart": {
+      "sizeLines": 173,
+      "sha256": "97b013e993d26fd166816a29df5a23ce49fb12a9f25cbe2847b2e46fa0e5cd5d",
+      "symbols": {
+        "functions": [
+          {
+            "name": "createState",
+            "startLine": 21,
+            "endLine": 21,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 37,
+            "endLine": 45,
+            "params": []
+          },
+          {
+            "name": "_save",
+            "startLine": 47,
+            "endLine": 105,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 108,
+            "endLine": 164,
+            "params": []
+          },
+          {
+            "name": "dispose",
+            "startLine": 167,
+            "endLine": 172,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "LlmProviderEditor",
+            "startLine": 13,
+            "endLine": 22,
+            "methods": [
+              "LlmProviderEditor",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_LlmProviderEditorState",
+            "startLine": 24,
+            "endLine": 173,
+            "methods": [
+              "initState",
+              "_save",
+              "build",
+              "Scaffold",
+              "SizedBox",
+              "dispose"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "LlmProviderEditor",
+            "line": 13,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 21,
+            "isDefault": false
+          },
+          {
+            "name": "_LlmProviderEditorState",
+            "line": 24,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 37,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 108,
+            "isDefault": false
+          },
+          {
+            "name": "dispose",
+            "line": 167,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/persona_selection_sheet.dart": {
+      "sizeLines": 130,
+      "sha256": "f50ec7e9ccfe0a01f91070e02173bf1844f26bc164b4c5587e7def65ada97a46",
+      "symbols": {
+        "functions": [
+          {
+            "name": "createState",
+            "startLine": 23,
+            "endLine": 23,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 32,
+            "endLine": 35,
+            "params": []
+          },
+          {
+            "name": "_handleRefresh",
+            "startLine": 37,
+            "endLine": 49,
+            "params": []
+          },
+          {
+            "name": "_handleAdd",
+            "startLine": 51,
+            "endLine": 69,
+            "params": []
+          },
+          {
+            "name": "_handleDelete",
+            "startLine": 71,
+            "endLine": 108,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 111,
+            "endLine": 129,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "PersonaSelectionSheet",
+            "startLine": 6,
+            "endLine": 24,
+            "methods": [
+              "Function",
+              "PersonaSelectionSheet",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_PersonaSelectionSheetState",
+            "startLine": 26,
+            "endLine": 130,
+            "methods": [
+              "initState",
+              "_handleRefresh",
+              "_handleAdd",
+              "_handleDelete",
+              "build",
+              "SizedBox",
+              "SingleChildScrollView"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "PersonaSelectionSheet",
+            "line": 6,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 23,
+            "isDefault": false
+          },
+          {
+            "name": "_PersonaSelectionSheetState",
+            "line": 26,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 32,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 111,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/persona_selector.dart": {
+      "sizeLines": 268,
+      "sha256": "4af890673e3d06bc1b5d5b3f6e29c31b4b07b713500bfe13e2c3285409eaa2de",
+      "symbols": {
+        "functions": [
+          {
+            "name": "build",
+            "startLine": 28,
+            "endLine": 77,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 122,
+            "endLine": 219,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 228,
+            "endLine": 267,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "PersonaSelector",
+            "startLine": 6,
+            "endLine": 104,
+            "methods": [
+              "PersonaSelector",
+              "build",
+              "Container",
+              "Text",
+              "SizedBox",
+              "ClampingScrollPhysics",
+              "_AddPersonaCard",
+              "SnackBar",
+              "_PersonaCard",
+              "showAsBottomSheet"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_PersonaCard",
+            "startLine": 106,
+            "endLine": 220,
+            "methods": [
+              "_PersonaCard",
+              "build",
+              "Card",
+              "SizedBox"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_AddPersonaCard",
+            "startLine": 222,
+            "endLine": 268,
+            "methods": [
+              "_AddPersonaCard",
+              "build",
+              "Card",
+              "SizedBox"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "PersonaSelector",
+            "line": 6,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 28,
+            "isDefault": false
+          },
+          {
+            "name": "_PersonaCard",
+            "line": 106,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 122,
+            "isDefault": false
+          },
+          {
+            "name": "_AddPersonaCard",
+            "line": 222,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 228,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/provider_selection_sheet.dart": {
+      "sizeLines": 172,
+      "sha256": "ee7654ca99f4a8499d61b0613a5c77814bcd63ed9565b3faed22868ab090046c",
+      "symbols": {
+        "functions": [
+          {
+            "name": "createState",
+            "startLine": 23,
+            "endLine": 23,
+            "params": []
+          },
+          {
+            "name": "initState",
+            "startLine": 31,
+            "endLine": 34,
+            "params": []
+          },
+          {
+            "name": "_handleRefresh",
+            "startLine": 36,
+            "endLine": 48,
+            "params": []
+          },
+          {
+            "name": "_handleAdd",
+            "startLine": 50,
+            "endLine": 70,
+            "params": []
+          },
+          {
+            "name": "_handleEdit",
+            "startLine": 72,
+            "endLine": 83,
+            "params": []
+          },
+          {
+            "name": "build",
+            "startLine": 86,
+            "endLine": 171,
+            "params": []
+          }
+        ],
+        "classes": [
+          {
+            "name": "ProviderSelectionSheet",
+            "startLine": 8,
+            "endLine": 24,
+            "methods": [
+              "Function",
+              "ProviderSelectionSheet",
+              "createState"
+            ],
+            "properties": []
+          },
+          {
+            "name": "_ProviderSelectionSheetState",
+            "startLine": 26,
+            "endLine": 172,
+            "methods": [
+              "initState",
+              "_handleRefresh",
+              "_handleAdd",
+              "_handleEdit",
+              "build",
+              "SizedBox",
+              "Container",
+              "Spacer",
+              "Divider",
+              "ListTile"
+            ],
+            "properties": []
+          }
+        ],
+        "exports": [
+          {
+            "name": "ProviderSelectionSheet",
+            "line": 8,
+            "isDefault": false
+          },
+          {
+            "name": "createState",
+            "line": 23,
+            "isDefault": false
+          },
+          {
+            "name": "_ProviderSelectionSheetState",
+            "line": 26,
+            "isDefault": false
+          },
+          {
+            "name": "initState",
+            "line": 31,
+            "isDefault": false
+          },
+          {
+            "name": "build",
+            "line": 86,
+            "isDefault": false
+          }
+        ],
+        "callGraph": []
+      }
+    },
+    "lib/widgets/widgets.dart": {
+      "sizeLines": 12,
+      "sha256": "6d81e1e8814afa1522e9fe01e28291a620874554020244c230c6133b58aa6f46",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    },
+    "pubspec.yaml": {
+      "sizeLines": 59,
+      "sha256": "682b0f17fc998f97d3cdaadf0a96e04b491f8067786a39e4a719ed1d932cb466",
+      "symbols": {
+        "functions": [],
+        "classes": [],
+        "exports": [],
+        "callGraph": []
+      }
+    }
+  }
+}

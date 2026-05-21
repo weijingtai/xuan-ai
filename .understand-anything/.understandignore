@@ -1,0 +1,21 @@
+# Project-specific Understand Anything exclusions.
+
+# User-requested exclusions
+example/
+assets/
+
+# Generated Flutter/Dart outputs
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+.dart_tool/
+build/
+
+# Large historical notes that distract from architecture analysis
+docs/ai_chat_history.txt
+
+# Local/editor scaffolding
+.gitignore
+.flutter-plugins
+.flutter-plugins-dependencies
+*.code-workspace
