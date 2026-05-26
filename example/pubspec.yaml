@@ -15,7 +15,7 @@ dependencies:
       url: http://xuan:***@192.168.0.165:3000/xuan/xuan-ai.git
       ref: main
 
-  common:
+  xuan_common:
     git:
       url: http://xuan:***@192.168.0.165:3000/xuan/xuan-common.git
       ref: main
