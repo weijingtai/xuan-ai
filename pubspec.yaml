@@ -36,6 +36,10 @@ dependencies:
       url: http://xuan:***@192.168.0.165:3000/xuan/xuan-common.git
       ref: main
 
+  # Storage core (SchemaRegistry, XuanError, etc.)
+  persistence_core:
+    path: ../xuan-storage/core
+
   # AI Toolkit
   flutter_ai_toolkit: ^0.9.1
   flutter_ai_providers: ^0.3.4+1

@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 
 import 'tables/tables.dart';
 import 'connection.dart' as impl;
+import 'ai_schema.dart';
 
 // DAOs
 import 'daos/llm_providers_dao.dart';
@@ -92,7 +93,10 @@ class AiDatabase extends _$AiDatabase {
                 },
               ),
             ),
-      );
+      ) {
+    // Register schema with central hub for Federated Repository pattern.
+    registerAiSchema();
+  }
 
   @override
   int get schemaVersion => 3;
