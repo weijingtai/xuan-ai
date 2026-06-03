@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:common/domain/ai/ai_context.dart';
-import 'package:common/domain/ai/resolved_persona.dart';
-import 'package:common/domain/ai/session_summary.dart';
+import 'package:ai_core/ai/ai_context.dart';
+import 'package:ai_core/ai/resolved_persona.dart';
+import 'package:ai_core/ai/session_summary.dart';
 import 'package:flutter_ai_toolkit/flutter_ai_toolkit.dart';
 import 'package:logging/logging.dart';
 

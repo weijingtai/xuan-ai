@@ -6,9 +6,9 @@ import 'package:drift/drift.dart' hide Column;
 import 'package:uuid/uuid.dart';
 
 import '../database/ai_database.dart';
-import 'package:common/database/app_database.dart' as common_db;
-import 'package:common/datamodel/divination_type_data_model.dart';
-import 'package:common/datamodel/sub_divination_type_data_model.dart';
+import 'package:xuan_common/database/app_database.dart' as common_db;
+import 'package:metaphysics_core/datamodel/divination_type_data_model.dart';
+import 'package:metaphysics_core/datamodel/sub_divination_type_data_model.dart';
 import 'provider_selection_sheet.dart';
 
 class AiPersonaEditor extends StatefulWidget {

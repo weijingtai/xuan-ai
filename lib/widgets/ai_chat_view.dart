@@ -1,10 +1,10 @@
-import 'package:common/domain/ai/ai_chat_event.dart';
-import 'package:common/domain/ai/session_summary.dart';
+import 'package:ai_core/ai/ai_chat_event.dart';
+import 'package:ai_core/ai/session_summary.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ai_toolkit/flutter_ai_toolkit.dart';
-import 'package:common/domain/ai/resolved_persona.dart';
-import 'package:common/services/ai_service.dart';
+import 'package:ai_core/ai/resolved_persona.dart';
+import 'package:xuan_common/services/ai_service.dart';
 import 'package:logging/logging.dart';
 
 import '../services/ai_service_impl.dart';

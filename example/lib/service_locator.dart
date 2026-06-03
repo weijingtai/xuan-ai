@@ -1,5 +1,5 @@
 import 'package:ai_core/ai_core.dart';
-import 'package:common/database/app_database.dart' as common_db;
+import 'package:xuan_common/database/app_database.dart' as common_db;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ServiceLocator {

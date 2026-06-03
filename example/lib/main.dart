@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ai_core/ai_core.dart';
-import 'package:common/database/app_database.dart' as common_db;
+import 'package:xuan_common/database/app_database.dart' as common_db;
 
 import 'service_locator.dart';
 import 'screens/home_screen.dart';
