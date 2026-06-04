@@ -1,10 +1,8 @@
 import 'package:ai_core/ai_core.dart';
-import 'package:xuan_common/database/app_database.dart' as common_db;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ServiceLocator {
   final AiDatabase db;
-  final common_db.AppDatabase appDb;
   final LlmService llmService;
   final PromptService promptService;
   final ChatPersistenceService persistenceService;
@@ -13,7 +11,6 @@ class ServiceLocator {
 
   ServiceLocator._({
     required this.db,
-    required this.appDb,
     required this.llmService,
     required this.promptService,
     required this.persistenceService,
@@ -23,7 +20,6 @@ class ServiceLocator {
 
   static Future<ServiceLocator> initialize() async {
     final db = AiDatabase();
-    final appDb = common_db.AppDatabase();
 
     final llmService = LlmService(db);
     final promptService = PromptService(db);
@@ -49,7 +45,6 @@ class ServiceLocator {
 
     return ServiceLocator._(
       db: db,
-      appDb: appDb,
       llmService: llmService,
       promptService: promptService,
       persistenceService: persistenceService,

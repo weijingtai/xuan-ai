@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ai_core/ai_core.dart';
-import 'package:xuan_common/database/app_database.dart' as common_db;
 
 import 'service_locator.dart';
 import 'screens/home_screen.dart';
@@ -15,12 +14,12 @@ void main() async {
     MultiProvider(
       providers: [
         Provider<AiDatabase>.value(value: services.db),
-        Provider<common_db.AppDatabase>.value(value: services.appDb),
         Provider<LlmService>.value(value: services.llmService),
         Provider<PromptService>.value(value: services.promptService),
         Provider<ChatService>.value(value: services.chatService),
         Provider<ChatPersistenceService>.value(
-            value: services.persistenceService),
+          value: services.persistenceService,
+        ),
         Provider<ToolRegistry>.value(value: services.toolRegistry),
         ChangeNotifierProvider(
           create: (_) => AiChatViewModel(
