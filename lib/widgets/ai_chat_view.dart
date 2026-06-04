@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ai_toolkit/flutter_ai_toolkit.dart';
 import 'package:ai_core/ai/resolved_persona.dart';
-import 'package:xuan_common/services/ai_service.dart';
+import 'package:ai_core/ai_core.dart' hide LlmProvider;
 import 'package:logging/logging.dart';
 
 import '../services/ai_service_impl.dart';

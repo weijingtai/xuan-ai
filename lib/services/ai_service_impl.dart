@@ -8,8 +8,8 @@ import 'package:ai_core/ai/ai_config_summary.dart';
 import 'package:ai_core/ai/ai_context.dart';
 import 'package:ai_core/ai/resolved_persona.dart';
 import 'package:ai_core/ai/session_summary.dart';
-import 'package:xuan_common/services/ai_audit_service.dart';
-import 'package:xuan_common/services/ai_service.dart';
+import 'package:ai_core/ai_core.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
@@ -22,7 +22,6 @@ import 'agent/agent_runner.dart';
 import '../database/ai_database.dart';
 import 'package:ai_core/ai/ai_persona.dart'
     as common; // Domain model alias
-import 'package:xuan_common/services/ai_registry.dart';
 import 'chat/session_manager.dart';
 import 'tool/tool_registry.dart';
 import '../models/tool_definition.dart';

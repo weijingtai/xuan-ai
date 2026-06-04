@@ -4,7 +4,7 @@ import 'package:ai_core/ai/ai_context.dart';
 import '../../models/models.dart';
 import '../llm/llm_service.dart';
 import 'package:logging/logging.dart';
-import 'package:xuan_common/services/ai_audit_service.dart';
+import 'package:ai_core/ai_core.dart';
 import 'package:ai_core/ai/ai_audit_log.dart';
 import 'package:uuid/uuid.dart';
 
