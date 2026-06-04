@@ -30,11 +30,6 @@ dependencies:
   # HTTP & Streaming
   dio: ^5.9.1
 
-  # Shared module
-  xuan_common:
-    git:
-      url: http://xuan:***@192.168.0.165:3000/xuan/xuan-common.git
-      ref: main
 
   # Storage core (SchemaRegistry, XuanError, etc.)
   persistence_core:
@@ -45,6 +40,7 @@ dependencies:
   flutter_ai_providers: ^0.3.4+1
   google_generative_ai: ^0.4.7
   logging: ^1.3.0
+
 
 dev_dependencies:
   flutter_test:
