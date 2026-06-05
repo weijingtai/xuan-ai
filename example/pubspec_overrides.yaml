@@ -1,0 +1,10 @@
+# Temporary local overrides for Phase 8 verification only.
+# DELETE this file before committing or merging to main.
+
+dependency_overrides:
+  ai_core:
+    path: ..
+  persistence_core:
+    path: ../../xuan-storage/core
+  xuan_four_zhu_card:
+    path: ../../xuan-four-zhu-card

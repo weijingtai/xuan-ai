@@ -12,7 +12,7 @@
 
 ```dart
 // 示例：八字模块 (xuan-bazi)
-import 'package:common/domain/ai/ai_context.dart';
+import 'package:xuan_common/domain/ai/ai_context.dart';
 
 AiContext buildBaziContext(BaziChart chart) {
   return AiContext(
@@ -127,7 +127,7 @@ class _BaziAnalysisPanelState extends State<BaziAnalysisPanel> {
 ### 1. 定义工具
 
 ```dart
-import 'package:common/domain/ai/agent_tool.dart';
+import 'package:xuan_common/domain/ai/agent_tool.dart';
 
 class ReplotBaziTool extends AgentTool {
   @override
@@ -180,7 +180,7 @@ aiService.registerTool(ReplotBaziTool());
 如果你想在聊天输入框上方添加快捷指令按钮（例如“查看格局”、“计算强弱”）：
 
 ```dart
-import 'package:common/domain/ai/ai_action.dart';
+import 'package:xuan_common/domain/ai/ai_action.dart';
 
 class CheckStructureAction extends AiAction {
   @override
