@@ -35,6 +35,15 @@ dependencies:
   persistence_core:
     path: ../xuan-storage/core
 
+  # Storage refactor — interface port (pure; no concrete backend)
+  repository_interface_ai:
+    path: ../repository-interface-ai
+  # TRANSITIONAL (see plan §10): product still references the concrete AiDatabase
+  # and its drift-generated data classes from 17 files this wave. Removed once
+  # all DAO call-sites move behind repository_interface_ai ports.
+  persistence_drift:
+    path: ../xuan-storage/drift
+
   # AI Toolkit
   flutter_ai_toolkit: ^0.9.1
   flutter_ai_providers: ^0.3.4+1
@@ -52,6 +61,10 @@ dev_dependencies:
 
 dependency_overrides:
   google_fonts: ^6.2.1
+  # Required because persistence_drift declares persistence_core via git URL;
+  # override to path to match ai_core's own declaration.
+  persistence_core:
+    path: ../xuan-storage/core
 
 flutter:
   uses-material-design: true
