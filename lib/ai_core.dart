@@ -21,3 +21,7 @@ export 'widgets/widgets.dart';
 
 // Utils
 export 'utils/ai_bootstrap.dart';
+
+// Ports (interface + dependency bundle)
+export 'ports/ai_storage_dependencies.dart';
+export 'package:repository_interface_ai/repository_interface_ai.dart';
