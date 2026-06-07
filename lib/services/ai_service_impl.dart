@@ -46,16 +46,19 @@ class AiServiceImpl implements AiService {
   final AiAuditService _auditService;
   final LlmService _llmService;
   final AiDatabase _db;
+  final AiSecretStore _secrets;
   late final SessionManager _sessionManager;
 
   AiServiceImpl({
     AiAuditService? auditService,
     required LlmService llmService,
     required AiDatabase db,
+    required AiSecretStore secrets,
     ToolRegistry? toolRegistry,
   }) : _auditService = auditService ?? AiAuditServiceImpl(),
        _llmService = llmService,
        _db = db,
+       _secrets = secrets,
        _toolRegistry = toolRegistry ?? ToolRegistry() {
     _sessionManager = SessionManager(db: _db);
   }
@@ -188,7 +191,7 @@ class AiServiceImpl implements AiService {
       description: dbPersona.description,
       avatarUrl: dbPersona.avatarUrl,
       providerName: provider.name,
-      apiKey: provider.encryptedApiKey ?? '',
+      apiKey: await _secrets.getApiKey(provider.uuid) ?? '',
       baseUrl: provider.baseUrl,
       modelId: model?.modelId ?? 'deepseek-chat',
       temperature: dbPersona.temperature,
