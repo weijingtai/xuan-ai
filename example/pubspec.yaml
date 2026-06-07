@@ -17,6 +17,11 @@ dependencies:
 
   provider: ^6.1.5+1
   shared_preferences: ^2.5.4
+  flutter_secure_storage: ^9.2.2
+  repository_interface_ai:
+    path: ../../repository-interface-ai
+  persistence_drift:
+    path: ../../xuan-storage/drift
 
 flutter:
   uses-material-design: true
