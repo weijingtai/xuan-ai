@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
-import '../../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import '../chat/chat_service.dart';
 import '../provenance/provenance_service.dart';
 

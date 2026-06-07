@@ -10,7 +10,7 @@ import 'package:logging/logging.dart';
 import '../services/ai_service_impl.dart';
 import '../services/chat/provider_factory.dart';
 import '../services/tool/tool_registry.dart';
-import '../database/ai_database.dart' hide LlmProvider;
+import 'package:persistence_drift/ai/ai_database.dart' hide LlmProvider;
 import 'ai_chat_settings_dialog.dart';
 
 /// AI 聊天界面。

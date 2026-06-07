@@ -4,7 +4,7 @@ import 'package:drift/drift.dart';
 import 'package:logger/logger.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import '../../models/models.dart';
 import 'llm_client.dart';
 import 'openai_compatible_client.dart';

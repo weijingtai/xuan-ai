@@ -19,7 +19,7 @@ import '../widgets/persona_selection_sheet.dart';
 import 'ai_audit_service_impl.dart';
 import 'llm/llm_service.dart';
 import 'agent/agent_runner.dart';
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import 'package:ai_core/ai/ai_persona.dart'
     as common; // Domain model alias
 import 'chat/session_manager.dart';

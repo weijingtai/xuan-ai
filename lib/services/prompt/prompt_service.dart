@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 
 /// Prompt service for managing prompt templates and versions
 class PromptService {

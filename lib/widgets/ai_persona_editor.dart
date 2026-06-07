@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:drift/drift.dart' hide Column;
 import 'package:uuid/uuid.dart';
 
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import '../ports/expertise_catalog_port.dart';
 import 'provider_selection_sheet.dart';
 

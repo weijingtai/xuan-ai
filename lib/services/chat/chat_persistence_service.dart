@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:uuid/uuid.dart';
 
-import '../../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 
 /// Chat persistence service for managing chat sessions and messages
 class ChatPersistenceService {

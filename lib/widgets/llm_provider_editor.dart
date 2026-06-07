@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:drift/drift.dart' hide Column;
 import 'package:uuid/uuid.dart';
 
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import '../services/llm/llm_service.dart';
 
 /// LLM Provider editor widget for creating and editing providers.

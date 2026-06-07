@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:drift/drift.dart' hide Column;
 import 'package:uuid/uuid.dart';
 
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import 'provider_selection_sheet.dart';
 
 /// 对话框：实时修改聊天配置（Provider, Model, Prompt）。

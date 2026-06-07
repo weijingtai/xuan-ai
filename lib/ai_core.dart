@@ -5,7 +5,7 @@
 library ai_core;
 
 // Database
-export 'database/ai_database.dart';
+export 'package:persistence_drift/ai/ai_database.dart';
 
 // Models
 export 'models/models.dart';

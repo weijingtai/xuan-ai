@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import '../../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import '../../models/models.dart';
 import '../llm/llm_service.dart';
 import '../prompt/prompt_service.dart';

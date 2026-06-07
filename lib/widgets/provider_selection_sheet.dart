@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import 'llm_provider_editor.dart';
 
 /// Bottom sheet for selecting an LLM provider.
