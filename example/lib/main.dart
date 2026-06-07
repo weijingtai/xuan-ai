@@ -21,6 +21,8 @@ void main() async {
           value: services.persistenceService,
         ),
         Provider<ToolRegistry>.value(value: services.toolRegistry),
+        Provider<AiStorageDependencies>.value(value: services.storage),
+        Provider<AiSecretStore>.value(value: services.secrets),
         ChangeNotifierProvider(
           create: (_) => AiChatViewModel(
             chatService: services.chatService,
