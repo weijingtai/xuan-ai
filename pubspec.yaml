@@ -37,7 +37,8 @@ dependencies:
 
   # Storage refactor — interface port (pure; no concrete backend)
   repository_interface_ai:
-    path: ../repository-interface-ai
+    git:
+      url: http://192.168.0.165:3000/xuan/repository-interface-ai.git
   # TRANSITIONAL (see plan §10): product still references the concrete AiDatabase
   # and its drift-generated data classes from 17 files this wave. Removed once
   # all DAO call-sites move behind repository_interface_ai ports.
