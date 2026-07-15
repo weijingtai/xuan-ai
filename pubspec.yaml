@@ -33,7 +33,9 @@ dependencies:
 
   # Storage core (SchemaRegistry, XuanError, etc.)
   persistence_core:
-    path: ../xuan-storage/core
+    git:
+      url: http://192.168.0.165:3000/xuan/xuan-storage.git
+      path: core
 
   # Storage refactor — interface port (pure; no concrete backend)
   repository_interface_ai:
@@ -43,7 +45,9 @@ dependencies:
   # and its drift-generated data classes from 17 files this wave. Removed once
   # all DAO call-sites move behind repository_interface_ai ports.
   persistence_drift:
-    path: ../xuan-storage/drift
+    git:
+      url: http://192.168.0.165:3000/xuan/xuan-storage.git
+      path: drift
 
   # AI Toolkit
   flutter_ai_toolkit: ^0.9.1
@@ -65,7 +69,9 @@ dependency_overrides:
   # Required because persistence_drift declares persistence_core via git URL;
   # override to path to match ai_core's own declaration.
   persistence_core:
-    path: ../xuan-storage/core
+    git:
+      url: http://192.168.0.165:3000/xuan/xuan-storage.git
+      path: core
 
 flutter:
   uses-material-design: true
