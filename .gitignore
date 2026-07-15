@@ -43,8 +43,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Generated files
-*.g.dart
+# Generated files (git deps need .g.dart at compile time — do NOT ignore)
 *.freezed.dart
 *.mocks.dart
 
