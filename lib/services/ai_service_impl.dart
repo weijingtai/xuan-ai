@@ -20,8 +20,7 @@ import 'ai_audit_service_impl.dart';
 import 'llm/llm_service.dart';
 import 'agent/agent_runner.dart';
 import 'package:persistence_drift/ai/ai_database.dart';
-import 'package:ai_core/ai/ai_persona.dart'
-    as common; // Domain model alias
+import 'package:ai_core/ai/ai_persona_summary.dart';
 import 'chat/session_manager.dart';
 import 'tool/tool_registry.dart';
 import '../models/tool_definition.dart';
@@ -367,7 +366,7 @@ class AiServiceImpl implements AiService {
   Widget buildChatView(
     BuildContext context, {
     AiContext? initialContext,
-    common.AiPersona? persona,
+    AiPersonaSummary? persona,
   }) {
     return _AsyncChatViewBuilder(
       aiService: this,
@@ -377,7 +376,7 @@ class AiServiceImpl implements AiService {
   }
 
   @override
-  Future<common.AiPersona?> showPersonaSelector({
+  Future<AiPersonaSummary?> showPersonaSelector({
     required BuildContext context,
     List<int>? requiredSkills,
   }) async {
@@ -411,7 +410,7 @@ class AiServiceImpl implements AiService {
         instruction = template?.content;
       }
 
-      return common.AiPersona(
+      return AiPersonaSummary(
         uuid: selectedDbPersona.uuid,
         name: selectedDbPersona.name,
         description: selectedDbPersona.description,

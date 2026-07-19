@@ -1,13 +1,15 @@
 import 'package:equatable/equatable.dart';
 
-/// Represents an AI Persona (virtual character) independent of the database implementation.
-class AiPersona extends Equatable {
+/// 表示 AI 人设的轻量级摘要，独立于数据库实现。
+///
+/// 重命名为 [AiPersonaSummary] 以避免与 Drift 生成的 [AiPersona] 冲突。
+class AiPersonaSummary extends Equatable {
   final String uuid;
   final String name;
   final String? description;
   final String? instruction;
 
-  const AiPersona({
+  const AiPersonaSummary({
     required this.uuid,
     required this.name,
     this.description,

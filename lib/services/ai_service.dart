@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../ai/ai_chat_event.dart';
-import '../ai/ai_persona.dart';
+import '../ai/ai_persona_summary.dart';
 import '../ai/ai_action.dart';
 import '../ai/ai_config_summary.dart';
 import '../ai/ai_context.dart';
@@ -56,7 +56,7 @@ abstract class AiService {
   Widget buildChatView(
     BuildContext context, {
     AiContext? initialContext,
-    AiPersona? persona,
+    AiPersonaSummary? persona,
   });
 
   /// 弹出 AI 人设选择器。
@@ -64,9 +64,9 @@ abstract class AiService {
   /// [context]: Flutter BuildContext，用于显示 Dialog/BottomSheet。
   /// [requiredSkills]: 可选，仅展示具备指定 Skill ID 的人设。
   ///
-  /// 返回用户选择的 [AiPersona]，如果取消则返回 null。
+  /// 返回用户选择的 [AiPersonaSummary]，如果取消则返回 null。
   /// 此操作可能允许用户在界面上新增人设。
-  Future<AiPersona?> showPersonaSelector({
+  Future<AiPersonaSummary?> showPersonaSelector({
     required BuildContext context,
     List<int>? requiredSkills,
   });
