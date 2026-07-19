@@ -25,8 +25,4 @@ flutter:
 dependency_overrides:
   ai_core:
     path: ..
-  repository_interface_ai:
-    path: ../../repository-interface-ai
-  persistence_drift:
-    path: ../../xuan-storage/drift
   google_fonts: ^6.2.1
