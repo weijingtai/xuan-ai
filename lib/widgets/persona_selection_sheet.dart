@@ -1,4 +1,4 @@
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import 'package:flutter/material.dart';
 import 'ai_persona_editor.dart';
 import 'persona_selector.dart';

@@ -1,4 +1,4 @@
-import 'package:ai_core/database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import 'package:drift/drift.dart';
 
 const _kDeepSeekProviderUuid = '50b69123-5735-4309-b695-188880628238';

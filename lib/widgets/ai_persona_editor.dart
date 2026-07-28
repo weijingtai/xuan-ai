@@ -5,18 +5,16 @@ import 'package:provider/provider.dart';
 import 'package:drift/drift.dart' hide Column;
 import 'package:uuid/uuid.dart';
 
-import '../database/ai_database.dart';
-import 'package:common/database/app_database.dart' as common_db;
-import 'package:common/datamodel/divination_type_data_model.dart';
-import 'package:common/datamodel/sub_divination_type_data_model.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
+import '../ports/expertise_catalog_port.dart';
 import 'provider_selection_sheet.dart';
 
 class AiPersonaEditor extends StatefulWidget {
   final AiDatabase? db;
-  final common_db.AppDatabase? appDb;
+  final ExpertiseCatalogPort? expertiseCatalog;
   final AiPersona? persona;
 
-  const AiPersonaEditor({super.key, this.db, this.appDb, this.persona});
+  const AiPersonaEditor({super.key, this.db, this.expertiseCatalog, this.persona});
 
   @override
   State<AiPersonaEditor> createState() => _AiPersonaEditorState();
@@ -43,10 +41,10 @@ class _AiPersonaEditorState extends State<AiPersonaEditor> {
   bool _isSavingPrompt = false;
 
   // Expertise category options (loaded from AppDatabase)
-  List<DivinationTypeDataModel> _divinationTypes = [];
-  List<SubDivinationTypeDataModel> _subDivinationTypes = [];
-  List<common_db.Skill> _skills = [];
-  List<common_db.SkillClass> _skillClasses = [];
+  List<ExpertiseDivinationType> _divinationTypes = [];
+  List<ExpertiseSubDivinationType> _subDivinationTypes = [];
+  List<ExpertiseSkill> _skills = [];
+  List<ExpertiseSkillClass> _skillClasses = [];
 
   // Expertise selections: null = "全部" (all), Set = specific selections
   Set<String>? _selectedDivTypeUuids;
@@ -59,8 +57,7 @@ class _AiPersonaEditorState extends State<AiPersonaEditor> {
   bool get _isEditing => widget.persona != null;
 
   AiDatabase get _db => widget.db ?? context.read<AiDatabase>();
-  common_db.AppDatabase get _appDb =>
-      widget.appDb ?? context.read<common_db.AppDatabase>();
+  ExpertiseCatalogPort? get _expertiseCatalog => widget.expertiseCatalog;
 
   @override
   void initState() {
@@ -111,15 +108,23 @@ class _AiPersonaEditorState extends State<AiPersonaEditor> {
       }
     }
 
-    // Load expertise categories from AppDatabase
-    final appDb = _appDb;
-    final divinationTypes = await appDb.divinationTypesDao
-        .getAllDivinationTypes();
-    final subDivinationTypes = await (appDb.select(
-      appDb.subDivinationTypes,
-    )..where((t) => t.deletedAt.isNull())).get();
-    final skills = await appDb.skillsDao.getAllSkills();
-    final skillClasses = await appDb.skillClassesDao.getAllSkillClasses();
+    // Load expertise categories from port (or empty if unavailable)
+    final port = _expertiseCatalog;
+    final List<ExpertiseDivinationType> divinationTypes;
+    final List<ExpertiseSubDivinationType> subDivinationTypes;
+    final List<ExpertiseSkill> skills;
+    final List<ExpertiseSkillClass> skillClasses;
+    if (port != null) {
+      divinationTypes = await port.getDivinationTypes();
+      subDivinationTypes = await port.getSubDivinationTypes();
+      skills = await port.getSkills();
+      skillClasses = await port.getSkillClasses();
+    } else {
+      divinationTypes = [];
+      subDivinationTypes = [];
+      skills = [];
+      skillClasses = [];
+    }
 
     // Parse existing expertiseJson if editing
     if (_isEditing && widget.persona?.expertiseJson != null) {
@@ -387,7 +392,7 @@ class _AiPersonaEditorState extends State<AiPersonaEditor> {
   /// Skill classes filtered by the current skill selection.
   /// When skills = "全部" (null), show all classes.
   /// When specific skills are selected, only show classes belonging to them.
-  List<common_db.SkillClass> get _filteredSkillClasses {
+  List<ExpertiseSkillClass> get _filteredSkillClasses {
     if (_selectedSkillIds == null) return _skillClasses;
     return _skillClasses
         .where((sc) => _selectedSkillIds!.contains(sc.skillId))

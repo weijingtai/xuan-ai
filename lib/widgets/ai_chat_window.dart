@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import '../viewmodels/ai_chat_viewmodel.dart';
 import 'chat_message_bubble.dart';
 import 'chat_input_bar.dart';

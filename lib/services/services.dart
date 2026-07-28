@@ -23,6 +23,7 @@ export 'tool/tool_registry.dart';
 export 'tool/tool_executor.dart';
 export 'tool/divination_skill_interface.dart';
 export 'tool/window_control_tools.dart';
+export 'tool/window_manager.dart';
 
 // Provenance Services
 export 'provenance/provenance_service.dart';
@@ -30,6 +31,11 @@ export 'provenance/provenance_service.dart';
 // Agent Services
 export 'agent/agent_orchestrator.dart';
 export 'agent/agent_runner.dart';
+
+// AI Service Contracts
+export 'ai_service.dart';
+export 'ai_audit_service.dart';
+export 'ai_registry.dart';
 
 // AI Service Implementation
 export 'ai_service_impl.dart';

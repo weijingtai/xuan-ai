@@ -1,9 +1,9 @@
-import 'package:common/domain/ai/ai_audit_log.dart';
-import 'package:common/services/ai_audit_service.dart';
+import 'package:ai_core/ai/ai_audit_log.dart';
+import 'package:ai_core/ai_core.dart';
 import 'package:logging/logging.dart';
 
 // 假设我们有一个 Database 类 (稍后实现)
-// import '../database/ai_database.dart';
+// import 'package:persistence_drift/ai/ai_database.dart';
 
 class AiAuditServiceImpl implements AiAuditService {
   final _logger = Logger('AiAuditService');

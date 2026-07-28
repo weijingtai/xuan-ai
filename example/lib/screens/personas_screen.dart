@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ai_core/ai_core.dart';
-import 'package:common/database/app_database.dart' as common_db;
 
 /// Persona management screen that lists all AI personas and allows
 /// creating, editing, deleting, and setting defaults.
@@ -66,11 +65,10 @@ class _PersonasScreenState extends State<PersonasScreen> {
     AiDatabase db, {
     AiPersona? persona,
   }) async {
-    final appDb = context.read<common_db.AppDatabase>();
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => AiPersonaEditor(db: db, appDb: appDb, persona: persona),
+        builder: (_) => AiPersonaEditor(db: db, persona: persona),
       ),
     );
   }

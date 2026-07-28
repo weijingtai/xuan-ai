@@ -5,7 +5,7 @@
 library ai_core;
 
 // Database
-export 'database/ai_database.dart';
+export 'package:persistence_drift/ai/ai_database.dart';
 
 // Models
 export 'models/models.dart';
@@ -21,3 +21,7 @@ export 'widgets/widgets.dart';
 
 // Utils
 export 'utils/ai_bootstrap.dart';
+
+// Ports (interface + dependency bundle)
+export 'ports/ai_storage_dependencies.dart';
+export 'package:repository_interface_ai/repository_interface_ai.dart';

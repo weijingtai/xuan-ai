@@ -1,29 +1,34 @@
 import 'package:ai_core/ai_core.dart';
-import 'package:common/database/app_database.dart' as common_db;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:persistence_drift/ai/persistence_drift_ai.dart';
+
+import 'secure_ai_secret_store.dart';
+
+const String _kDeepSeekProviderUuidForExample = '50b69123-5735-4309-b695-188880628238';
 
 class ServiceLocator {
   final AiDatabase db;
-  final common_db.AppDatabase appDb;
   final LlmService llmService;
   final PromptService promptService;
   final ChatPersistenceService persistenceService;
   final ChatService chatService;
   final ToolRegistry toolRegistry;
+  final AiStorageDependencies storage;
+  final AiSecretStore secrets;
 
   ServiceLocator._({
     required this.db,
-    required this.appDb,
     required this.llmService,
     required this.promptService,
     required this.persistenceService,
     required this.chatService,
     required this.toolRegistry,
+    required this.storage,
+    required this.secrets,
   });
 
   static Future<ServiceLocator> initialize() async {
     final db = AiDatabase();
-    final appDb = common_db.AppDatabase();
 
     final llmService = LlmService(db);
     final promptService = PromptService(db);
@@ -33,11 +38,28 @@ class ServiceLocator {
     // Register example tool
     _registerExampleTools(toolRegistry);
 
-    // Ensure default data exists (Provider, Model, Persona)
-    // Try to load saved API key, if any
+    // Build secure secret store + drift-backed adapters
+    final secrets = SecureAiSecretStore();
+    final chatHistory = DriftAiChatHistoryRepository(db);
+    final config = DriftAiConfigRepository(db);
+    final prompts = DriftAiPromptStore(db);
+    final storage = AiStorageDependencies(
+      chatHistory: chatHistory,
+      config: config,
+      prompts: prompts,
+      secrets: secrets,
+    );
+
+    // One-time migration: move any legacy plaintext key out of SharedPreferences.
     final prefs = await SharedPreferences.getInstance();
-    final savedKey = prefs.getString('api_key');
-    await ensureDeepSeekProvider(db, apiKey: savedKey);
+    final legacyKey = prefs.getString('api_key');
+    if (legacyKey != null && legacyKey.isNotEmpty) {
+      await secrets.setApiKey(_kDeepSeekProviderUuidForExample, legacyKey);
+      await prefs.remove('api_key');
+    }
+    // Read key back from secure store (migrated or newly stored).
+    final _ = await secrets.getApiKey(_kDeepSeekProviderUuidForExample);
+    await ensureDeepSeekProvider(db, apiKey: null); // never write the key into drift
 
     final chatService = ChatService(
       db: db,
@@ -49,12 +71,13 @@ class ServiceLocator {
 
     return ServiceLocator._(
       db: db,
-      appDb: appDb,
       llmService: llmService,
       promptService: promptService,
       persistenceService: persistenceService,
       chatService: chatService,
       toolRegistry: toolRegistry,
+      storage: storage,
+      secrets: secrets,
     );
   }
 
@@ -70,22 +93,24 @@ class ServiceLocator {
     required String apiKey,
     required String baseUrl,
   }) async {
+    final secrets = SecureAiSecretStore();
     final provider = await db.llmProvidersDao.getDefault();
     if (provider != null) {
-      await db.llmProvidersDao.updateApiKey(provider.uuid, apiKey);
+      await secrets.setApiKey(provider.uuid, apiKey);
     }
 
-    // Save to SharedPreferences for persistence across restarts
+    // Save base_url to SharedPreferences (non-secret)
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('api_key', apiKey);
     await prefs.setString('base_url', baseUrl);
   }
 
   /// Load saved settings
   static Future<Map<String, String>> loadSettings() async {
+    final secrets = SecureAiSecretStore();
     final prefs = await SharedPreferences.getInstance();
+    const defaultProviderUuid = _kDeepSeekProviderUuidForExample;
     return {
-      'api_key': prefs.getString('api_key') ?? '',
+      'api_key': await secrets.getApiKey(defaultProviderUuid) ?? '',
       'base_url': prefs.getString('base_url') ?? 'https://api.openai.com/v1',
     };
   }

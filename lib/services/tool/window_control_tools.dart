@@ -1,5 +1,5 @@
-import 'package:common/domain/ai/agent_tool.dart';
-import 'package:common/domain/gui/window_manager.dart';
+import 'package:ai_core/ai/agent_tool.dart';
+import 'window_manager.dart';
 
 /// 窗口控制工具
 ///

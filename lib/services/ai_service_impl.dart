@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'package:common/domain/ai/agent_tool.dart';
-import 'package:common/domain/ai/ai_audit_log.dart';
-import 'package:common/domain/ai/ai_action.dart';
-import 'package:common/domain/ai/ai_chat_event.dart';
-import 'package:common/domain/ai/ai_config_summary.dart';
-import 'package:common/domain/ai/ai_context.dart';
-import 'package:common/domain/ai/resolved_persona.dart';
-import 'package:common/domain/ai/session_summary.dart';
-import 'package:common/services/ai_audit_service.dart';
-import 'package:common/services/ai_service.dart';
+import 'package:ai_core/ai/agent_tool.dart';
+import 'package:ai_core/ai/ai_audit_log.dart';
+import 'package:ai_core/ai/ai_action.dart';
+import 'package:ai_core/ai/ai_chat_event.dart';
+import 'package:ai_core/ai/ai_config_summary.dart';
+import 'package:ai_core/ai/ai_context.dart';
+import 'package:ai_core/ai/resolved_persona.dart';
+import 'package:ai_core/ai/session_summary.dart';
+import 'package:ai_core/ai_core.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
@@ -19,10 +19,8 @@ import '../widgets/persona_selection_sheet.dart';
 import 'ai_audit_service_impl.dart';
 import 'llm/llm_service.dart';
 import 'agent/agent_runner.dart';
-import '../database/ai_database.dart';
-import 'package:common/domain/ai/ai_persona.dart'
-    as common; // Domain model alias
-import 'package:common/services/ai_registry.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
+import 'package:ai_core/ai/ai_persona_summary.dart';
 import 'chat/session_manager.dart';
 import 'tool/tool_registry.dart';
 import '../models/tool_definition.dart';
@@ -47,16 +45,19 @@ class AiServiceImpl implements AiService {
   final AiAuditService _auditService;
   final LlmService _llmService;
   final AiDatabase _db;
+  final AiSecretStore _secrets;
   late final SessionManager _sessionManager;
 
   AiServiceImpl({
     AiAuditService? auditService,
     required LlmService llmService,
     required AiDatabase db,
+    required AiSecretStore secrets,
     ToolRegistry? toolRegistry,
   }) : _auditService = auditService ?? AiAuditServiceImpl(),
        _llmService = llmService,
        _db = db,
+       _secrets = secrets,
        _toolRegistry = toolRegistry ?? ToolRegistry() {
     _sessionManager = SessionManager(db: _db);
   }
@@ -189,7 +190,7 @@ class AiServiceImpl implements AiService {
       description: dbPersona.description,
       avatarUrl: dbPersona.avatarUrl,
       providerName: provider.name,
-      apiKey: provider.encryptedApiKey ?? '',
+      apiKey: await _secrets.getApiKey(provider.uuid) ?? '',
       baseUrl: provider.baseUrl,
       modelId: model?.modelId ?? 'deepseek-chat',
       temperature: dbPersona.temperature,
@@ -365,7 +366,7 @@ class AiServiceImpl implements AiService {
   Widget buildChatView(
     BuildContext context, {
     AiContext? initialContext,
-    common.AiPersona? persona,
+    AiPersonaSummary? persona,
   }) {
     return _AsyncChatViewBuilder(
       aiService: this,
@@ -375,7 +376,7 @@ class AiServiceImpl implements AiService {
   }
 
   @override
-  Future<common.AiPersona?> showPersonaSelector({
+  Future<AiPersonaSummary?> showPersonaSelector({
     required BuildContext context,
     List<int>? requiredSkills,
   }) async {
@@ -409,7 +410,7 @@ class AiServiceImpl implements AiService {
         instruction = template?.content;
       }
 
-      return common.AiPersona(
+      return AiPersonaSummary(
         uuid: selectedDbPersona.uuid,
         name: selectedDbPersona.name,
         description: selectedDbPersona.description,

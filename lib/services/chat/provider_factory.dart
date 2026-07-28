@@ -1,4 +1,4 @@
-import 'package:common/domain/ai/resolved_persona.dart';
+import 'package:ai_core/ai/resolved_persona.dart';
 import 'package:flutter_ai_toolkit/flutter_ai_toolkit.dart';
 import 'package:logging/logging.dart';
 

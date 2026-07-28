@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 import '../services/chat/chat_service.dart';
 import '../services/chat/chat_persistence_service.dart';
 

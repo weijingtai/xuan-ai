@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:common/domain/ai/agent_tool.dart';
-import 'package:common/domain/ai/ai_context.dart';
+import 'package:ai_core/ai/agent_tool.dart';
+import 'package:ai_core/ai/ai_context.dart';
 import '../../models/models.dart';
 import '../llm/llm_service.dart';
 import 'package:logging/logging.dart';
-import 'package:common/services/ai_audit_service.dart';
-import 'package:common/domain/ai/ai_audit_log.dart';
+import 'package:ai_core/ai_core.dart';
+import 'package:ai_core/ai/ai_audit_log.dart';
 import 'package:uuid/uuid.dart';
 
 /// AgentRunner: Executes LLM requests with tool support (Function Calling loop).

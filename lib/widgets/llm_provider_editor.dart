@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:drift/drift.dart' hide Column;
 import 'package:uuid/uuid.dart';
 
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
+import 'package:repository_interface_ai/repository_interface_ai.dart';
 import '../services/llm/llm_service.dart';
 
 /// LLM Provider editor widget for creating and editing providers.
@@ -27,11 +28,13 @@ class _LlmProviderEditorState extends State<LlmProviderEditor> {
   late final TextEditingController _baseUrlCtrl;
   late final TextEditingController _apiKeyCtrl;
   bool _isSaving = false;
+  bool _apiKeyLoaded = false;
 
   bool get _isEditing => widget.provider != null;
 
   AiDatabase get _db => widget.db ?? context.read<AiDatabase>();
   LlmService get _llmService => widget.llmService ?? context.read<LlmService>();
+  AiSecretStore get _secrets => context.read<AiSecretStore>();
 
   @override
   void initState() {
@@ -41,7 +44,20 @@ class _LlmProviderEditorState extends State<LlmProviderEditor> {
     _baseUrlCtrl = TextEditingController(
       text: p?.baseUrl ?? 'https://api.openai.com/v1',
     );
-    _apiKeyCtrl = TextEditingController(text: p?.encryptedApiKey ?? '');
+    _apiKeyCtrl = TextEditingController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isEditing && !_apiKeyLoaded) {
+      _apiKeyLoaded = true;
+      _secrets.getApiKey(widget.provider!.uuid).then((key) {
+        if (mounted && key != null) {
+          _apiKeyCtrl.text = key;
+        }
+      });
+    }
   }
 
   Future<void> _save() async {
@@ -60,15 +76,19 @@ class _LlmProviderEditorState extends State<LlmProviderEditor> {
           uuid: Value(uuid),
           name: Value(_nameCtrl.text.trim()),
           baseUrl: Value(_baseUrlCtrl.text.trim()),
-          encryptedApiKey: Value(
-            _apiKeyCtrl.text.trim().isEmpty ? null : _apiKeyCtrl.text.trim(),
-          ),
           createdAt: Value(
             _isEditing ? widget.provider!.createdAt : DateTime.now(),
           ),
           lastUpdatedAt: Value(DateTime.now()),
         ),
       );
+      // Route API key through secure storage — never write to drift.
+      final apiKeyText = _apiKeyCtrl.text.trim();
+      if (apiKeyText.isNotEmpty) {
+        await _secrets.setApiKey(uuid, apiKeyText);
+      } else {
+        await _secrets.deleteApiKey(uuid);
+      }
       debugPrint('[LlmProviderEditor] _save: provider saved successfully');
 
       // Auto-sync models for new providers (best-effort).

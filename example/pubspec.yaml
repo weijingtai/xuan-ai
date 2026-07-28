@@ -12,16 +12,11 @@ dependencies:
 
   ai_core:
     git:
-      url: http://xuan:***@192.168.0.165:3000/xuan/xuan-ai.git
-      ref: main
-
-  xuan_common:
-    git:
-      url: http://xuan:***@192.168.0.165:3000/xuan/xuan-common.git
-      ref: main
+      url: http://192.168.0.165:3000/xuan/xuan-ai.git
 
   provider: ^6.1.5+1
   shared_preferences: ^2.5.4
+  flutter_secure_storage: ^9.2.2
 
 flutter:
   uses-material-design: true
@@ -29,4 +24,7 @@ flutter:
     - assets/sql/
 
 dependency_overrides:
+  ai_core:
+    git:
+      url: http://192.168.0.165:3000/xuan/xuan-ai.git
   google_fonts: ^6.2.1

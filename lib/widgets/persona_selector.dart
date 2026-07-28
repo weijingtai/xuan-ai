@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../database/ai_database.dart';
+import 'package:persistence_drift/ai/ai_database.dart';
 
 /// Persona selector widget
 class PersonaSelector extends StatelessWidget {
